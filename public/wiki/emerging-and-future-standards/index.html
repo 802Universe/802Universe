@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Emerging &amp; Future Standards · 802.11 Reference</title><meta name="description" content="A complete, accuracy-reviewed IEEE 802.11 (Wi-Fi) engineering reference - PHY, MAC, security, spectrum, roaming. Every standard from 802.11-1997 to Wi-Fi 8."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript><script>
+      // accent theme (navy default / green) + nav state, applied before paint
+      const th = localStorage.getItem("accent");
+      if (th === "green") document.documentElement.setAttribute("data-theme", "green");
+      if (localStorage.getItem("nav-collapsed") === "1")
+        document.documentElement.setAttribute("data-nav", "collapsed");
+    </script><link rel="stylesheet" href="/wiki/_astro/Base.zKibCCgX.css"></head><body><div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><a href="/wiki/"><span class="logo">802.11<span class="dot">·</span>ref</span><span class="tag">Wireless engineering reference</span></a></div><div class="nav-search"><input type="search" id="navsearch" placeholder="Search  ( / )" autocomplete="off"></div><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Start Here</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/glossary-and-acronyms/"><span>Glossary &amp; Acronyms</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/resources/"><span>Useful Resources</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/tags/"><span>Browse by Tag</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/parameters/"><span>Parameter Explorer</span><span class="lvl">L1</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Standards &amp; Spectrum</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/master-comparison/"><span>Master Comparison</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-plans/"><span>Channel Plans</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/regulatory-domains/"><span>Regulatory Domains</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/non-802-11-standards/"><span>Non-802.11 Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/802-11-amendments/"><span>802.11 Amendments</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/fcc-part-15-unii-rules/"><span>FCC Part 15 UNII Rules</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/afc-system-6-ghz/"><span>AFC System (6 GHz)</span><span class="lvl">L2</span></a><a class="leaf active" href="/wiki/emerging-and-future-standards/"><span>Emerging &amp; Future Standards</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/advanced-regulatory/"><span>Advanced Regulatory</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/wi-fi-8-11bn-preview/"><span>Wi-Fi 8 (11bn) Preview</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radar-and-dfs/"><span>Radar &amp; DFS</span><span class="lvl">L2-L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>PHY Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/mcs-rate-tables/"><span>MCS Rate Tables</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/channel-models/"><span>Channel Models</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/link-budget-worksheet/"><span>Link Budget Worksheet</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/ber-vs-snr-reference/"><span>BER vs SNR Reference</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/ppdu-frame-formats/"><span>PPDU Frame Formats</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/ru-tone-plans-802-11ax/"><span>RU Tone Plans (802.11ax)</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rf-propagation-deep-dive/"><span>RF Propagation Deep Dive</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/advanced-phy-mathematics/"><span>Advanced PHY Mathematics</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/tool-engine-formulas/"><span>Formula Reference</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rssi-mcs-thresholds/"><span>RSSI-MCS Thresholds</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/antenna-and-rf-hardware/"><span>Antenna &amp; RF Hardware</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/evm-specification-table/"><span>EVM Specification Table</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/winner-ii-and-channel-simulation/"><span>WINNER II &amp; Channel Simulation</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/modulation-and-db-math/"><span>Modulation &amp; dB Math</span><span class="lvl">L1-L2</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>MAC Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/802-11-frame-types/"><span>802.11 Frame Types</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sta-state-machine/"><span>STA State Machine</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/qos-and-dscp-mapping/"><span>QoS &amp; DSCP Mapping</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/multicast-in-wi-fi/"><span>Multicast in Wi-Fi</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/element-id-registry/"><span>Element ID Registry</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/status-and-reason-codes/"><span>Status &amp; Reason Codes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/mac-header-anatomy/"><span>MAC Header Anatomy</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-access-and-backoff/"><span>Channel Access &amp; Backoff</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/power-save-and-twt/"><span>Power Save &amp; TWT</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/aggregation-and-block-ack/"><span>Aggregation &amp; Block Ack</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/discovery-and-join-process/"><span>Discovery &amp; Join Process</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sounding-and-mu-sequences/"><span>Sounding &amp; MU Sequences</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Security</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/security-standards/"><span>Security Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/4-way-handshake-and-keys/"><span>4-Way Handshake &amp; Keys</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/eap-methods/"><span>EAP Methods</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/security-attacks-and-cves/"><span>Security Attacks &amp; CVEs</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radius-attributes/"><span>RADIUS Attributes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/fils-and-fast-auth-802-11ai/"><span>FILS &amp; Fast Auth (802.11ai)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/rsn-ie-and-security-structures/"><span>RSN IE &amp; Security Structures</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/key-derivation-reference/"><span>Key Derivation Reference</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Roaming &amp; Operations</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/wi-fi-alliance-certifications/"><span>Wi-Fi Alliance Certifications</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/capwap-protocol/"><span>CAPWAP Protocol</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/3gpp-wi-fi-interworking/"><span>3GPP-Wi-Fi Interworking</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/network-protocols-advanced/"><span>Network Protocols (Advanced)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/roaming-reference/"><span>Roaming Reference</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/backhaul-and-60-ghz-planning/"><span>Backhaul &amp; 60 GHz Planning</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/oui-vendor-prefix-wi-fi/"><span>OUI Vendor Prefix (Wi-Fi)</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/mlo-and-wi-fi-7-deep-dive/"><span>MLO &amp; Wi-Fi 7 Deep Dive</span><span class="lvl">L2-L3</span></a></div></nav></aside><div class="scrim" id="scrim"></div><div class="main"><div class="topbar"><button class="iconbtn menu-toggle" id="menutoggle" aria-label="Menu">☰</button><button class="iconbtn nav-collapse" id="navcollapse" aria-label="Toggle sidebar"><span class="lbl"></span></button><div class="crumb"><b>Standards &amp; Spectrum</b></div><div class="spacer"></div><button class="iconbtn" id="themetoggle" aria-label="Switch accent color"><span class="swatch"></span><span id="themelabel">Navy</span></button></div><div class="spectrum-rule"></div><main class="content"><div class="pagehead" data-pagefind-body><div class="eyebrow"><span>Standards &amp; Spectrum</span><span class="lvl">L2</span></div><h1 data-pagefind-meta="title">Emerging &amp; Future Standards</h1><div class="tagrow"><a class="tagchip" href="/wiki/tags/wi-fi-7-11be/">Wi-Fi 7 (11be)</a><a class="tagchip" href="/wiki/tags/wi-fi-8-11bn/">Wi-Fi 8 (11bn)</a><a class="tagchip" href="/wiki/tags/reference/">Reference</a></div><button class="toggle-all" id="toggleall" aria-label="Expand or collapse all sections"><span class="ta-icon">⊞</span><span class="ta-label">Expand all</span></button></div><section class="block collapsible collapsed" data-pagefind-body><h2 id="emerging-future-802-11-standards-ieee-task-group-status-wi-f" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">Emerging &amp; Future 802.11 Standards - IEEE Task Group Status, Wi-Fi Alliance Roadmap, IMT-2030</span><span class="rowcount">8 rows</span><a class="anchor" href="#emerging-future-802-11-standards-ieee-task-group-status-wi-f" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Standard</th><th>IEEE TG</th><th>Target Year</th><th>Spectrum</th><th>Peak Rate Target</th><th>Key New Features</th><th>Primary Use Case</th><th>Source / Status</th></tr></thead><tbody><tr><td>802.11bf
+(Wi-Fi Sensing)</td><td>TGbf</td><td>2024 (ratified)</td><td>2.4/5/6 GHz
+(+60 GHz option)</td><td>N/A (sensing, not data throughput)</td><td>• SENS PPDU format for explicit sensing
+• CIR (Channel Impulse Response) measurements
+• Sensing initiator/responder protocol
+• Privacy protections (consent mechanism)
+• Passive sensing (no dedicated PPDU) also defined
+• Sub-7 GHz + 60 GHz DMG variants</td><td>Gesture recognition, breathing/heartbeat detection, presence detection, fall detection, smart home automation. Contactless vital signs monitoring.</td><td>IEEE 802.11bf-2024
+Wi-Fi Alliance Sensing SIG (forming)</td></tr><tr><td>802.11az
+(Next-Gen Positioning)</td><td>TGaz</td><td>2022 (ratified)</td><td>2.4/5/6 GHz
++60 GHz</td><td>&lt; 10 cm ranging accuracy</td><td>• NDP-based ranging (fine timing measurement)
+• Trigger-based (TB) ranging for MU scheduling
+• Non-TB ranging for SU devices
+• AoA (Angle of Arrival) using LTF phase difference
+• Sub-nanosecond TOA (Time of Arrival)
+• Secure ranging (anti-spoofing via PASN)</td><td>Indoor navigation (sub-meter), asset tracking, parking lot navigation, RTLS (Real-Time Location Systems), proximity services, automotive UWB replacement for PKE.</td><td>IEEE 802.11az-2022
+FiRa Consortium compliance testing</td></tr><tr><td>802.11ba
+(Wake-Up Radio)</td><td>TGba</td><td>2021 (ratified)</td><td>2.4/5 GHz
+(control channel)</td><td>~250 kbps (WUR only)</td><td>• WUR (Wake-Up Radio) receiver: ~1 µW always-on
+• OOK modulation (On-Off Keying), 62.5/250 kbps
+• WUR beacon for synchronization
+• Main radio wakes only on WUR trigger
+• Backward compatible with 802.11n/ac/ax
+• WUR frame: SYNC + WUR-ID + optional payload</td><td>IoT devices requiring years of battery life: smart meters, agriculture sensors, industrial monitoring, medical wearables. Eliminates periodic beacon wakeup power drain.</td><td>IEEE 802.11ba-2021
+Wi-Fi Alliance WUR certification planned</td></tr><tr><td>802.11bd
+(Next-Gen V2X)</td><td>TGbd</td><td>2022 (ratified)</td><td>5.9 GHz (ITS)
++60 GHz (short range)</td><td>~4× 802.11p throughput</td><td>• Backward compatible with 802.11p (OCB mode)
+• LDPC (adds ~2 dB coding gain over 802.11p BCC)
+• STBC (diversity gain)
+• Midamble for Doppler tracking at high speed
+• Higher MCS support (up to 64-QAM)
+• 10/20 MHz channel (vs 10 MHz only in 802.11p)
+• Dual-mode: NGV + legacy 802.11p coexistence</td><td>Vehicle-to-Vehicle (V2V), Vehicle-to-Infrastructure (V2I) safety messages. Competing with 3GPP C-V2X (PC5 mode 4). Key: backward compat ensures existing 802.11p RSUs remain functional.</td><td>IEEE 802.11bd-2022
+5GAA (5G Automotive Association) evaluation</td></tr><tr><td>802.11bn
+(Ultra-High Reliability / Wi-Fi 8)</td><td>TGbn</td><td>~2028 (target)</td><td>2.4/5/6 GHz
+(all bands)</td><td>~100 Gbps aggregate</td><td>• Coordinated AP operation: C-OFDMA, C-SR, C-TDMA
+• Multi-AP joint transmission (coherent beamforming across APs)
+• Enhanced <a class="xlink" href="/wiki/mlo-and-wi-fi-7-deep-dive/">MLO</a> with NSTR improvements
+• Restricted TWT v2 (guaranteed latency slots)
+• AI/ML-based CSI feedback compression
+• HARQ enhancements
+• EHT-compatible backward compat
+• Frequency-domain duplexing (FD) studies</td><td>Deterministic latency for XR (Extended Reality) / AR/VR, industrial automation (&lt; 1 ms), dense IoT, high-reliability enterprise, 6G complementary technology.</td><td>IEEE 802.11bn PAR approved 2022
+TGbn task group active
+No draft published yet (as of 2024)</td></tr><tr><td>802.11bb
+(Light Communication / LiCOM)</td><td>TGbb</td><td>2023 (ratified)</td><td>IR: 850-1000 nm
+Visible: 380-750 nm</td><td>~9.6 Gbps</td><td>• LC (Light Communication) PHY
+• OOK and OFDM on light carrier
+• Downlink: LED/laser; Uplink: IR LED
+• LOS required (≤30 m typical)
+• Immunity to RF interference
+• No radio frequency → usable in EMI-sensitive environments
+• Integrates with 802.11 MAC (same CSMA/CA)</td><td>Aircraft cabins, hospitals (EMI-free zones), classified environments (no RF leakage), industrial clean rooms, data center rack interconnect, secure comms.</td><td>IEEE 802.11bb-2023
+LiFi Alliance promoting</td></tr><tr><td>802.11bh
+(Randomized / Changing MAC)</td><td>TGbh</td><td>2024 (target)</td><td>All bands</td><td>N/A (protocol layer)</td><td>• Standardized framework for MAC address randomization
+• Per-network identifier for network continuity
+• Reduce tracking while maintaining SSID-specific stability
+• Addresses KARMA attack and probe privacy issues
+• PASN (Pre-Association Security Negotiation) integration</td><td>Privacy in public Wi-Fi, GDPR compliance, anti-tracking in retail/transportation, seamless roaming with random MACs.</td><td>IEEE 802.11bh PAR approved 2020
+TGbh active</td></tr><tr><td>Wi-Fi 8 Alliance Program</td><td>Wi-Fi Alliance</td><td>~2028-2029</td><td>All bands</td><td>100 Gbps target</td><td>Expected mandatory: multi-AP coordination, enhanced <a class="xlink" href="/wiki/mlo-and-wi-fi-7-deep-dive/">MLO</a>, WPA3 (of course), AI-assisted radio management, sub-1ms latency guarantee option</td><td>XR/AR/VR enterprise, Industry 4.0, smart factory, telemedicine, high-density stadiums</td><td>Wi-Fi Alliance technical roadmap 2024</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="3gpp-5g-nr-u-coexistence-with-wi-fi-3gpp-release-16-17" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">3GPP / 5G NR-U Coexistence with Wi-Fi - 3GPP Release 16/17</span><span class="rowcount">4 rows</span><a class="anchor" href="#3gpp-5g-nr-u-coexistence-with-wi-fi-3gpp-release-16-17" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>NR-U Feature</th><th>3GPP Spec</th><th>Comparable Wi-Fi Feature</th><th>LBT Category</th><th>Coexistence Impact</th><th>Key Difference from Wi-Fi</th><th>Measurement Study Results</th><th>Notes</th></tr></thead><tbody><tr><td>NR-U Channel Access (LBT)</td><td>3GPP TS 37.213 §4.2</td><td>Wi-Fi EDCA (802.11e)</td><td>Cat 2 (no backoff, short defer) or Cat 4 (EDCA-equivalent backoff)</td><td>Shares same 5/6 GHz channels as Wi-Fi. Cat 4 designed for fairness with Wi-Fi EDCA.</td><td>NR-U uses 9 µs slot time (same as Wi-Fi 5 GHz). NR-U has CWmin=15 (same as BE). NR-U AIFS equivalent = 2 slots (VO-equivalent - concern for Wi-Fi fairness).</td><td>ETSI TR 103 594 coexistence study: NR-U Cat4 shares approximately fairly with 802.11ax. Cat2 NR-U can starve Wi-Fi.</td><td>3GPP Release 16 (Rel-16)</td></tr><tr><td>NR-U Frame Structure</td><td>3GPP TS 37.213</td><td>802.11ax PPDU</td><td>Cat 4 with 9µs slot</td><td>Configurable numerology µ: subcarrier spacing 15/30/60 kHz (vs 78.125 kHz fixed for ax). Different OFDM symbol duration.</td><td>NR-U can use 14-symbol slot (1 ms for 15 kHz) vs 802.11ax 16 µs symbol. Frame alignment to 5 ms half-frame = bursty access pattern that can dominate channel.</td><td>-</td><td>Rel-16</td></tr><tr><td>NR-U Energy Detection</td><td>3GPP TS 37.213</td><td>CCA in 802.11ax</td><td>-</td><td>NR-U ED threshold: same as Wi-Fi (-62 dBm for 20 MHz). Both use similar energy detection.</td><td>802.11ax adds OBSS/PD (BSS Color) for spatial reuse. NR-U has no equivalent spatial reuse mechanism in Rel-16.</td><td>Studies show NR-U without BSS Color equivalent has higher CCI than 802.11ax in dense deployments.</td><td>Rel-16</td></tr><tr><td>NR-U Uplink</td><td>3GPP TS 37.213</td><td>UL OFDMA (Trigger Frame)</td><td>Cat 4 per UE</td><td>NR-U UL: each UE independently contends (no coordinated trigger). Less efficient than 802.11ax UL trigger-based OFDMA.</td><td>802.11ax: AP sends single Trigger Frame → all UEs transmit simultaneously → 1 contention event for N UEs. NR-U: N UEs each contend → N×EDCA overhead.</td><td>Throughput disadvantage for NR-U in UL-heavy applications vs 802.11ax OFDMA.</td><td>Rel-16/17</td></tr></tbody></table></div></div></section><section class="related"><h2>Related pages</h2><div class="related-grid"><a class="related-card" href="/wiki/mcs-rate-tables/"><span class="rc-title">MCS Rate Tables</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/3gpp-wi-fi-interworking/"><span class="rc-title">3GPP-Wi-Fi Interworking</span><span class="rc-cat">Roaming &amp; Operations</span></a><a class="related-card" href="/wiki/802-11-amendments/"><span class="rc-title">802.11 Amendments</span><span class="rc-cat">Standards &amp; Spectrum</span></a><a class="related-card" href="/wiki/802-11-frame-types/"><span class="rc-title">802.11 Frame Types</span><span class="rc-cat">MAC Layer</span></a><a class="related-card" href="/wiki/capwap-protocol/"><span class="rc-title">CAPWAP Protocol</span><span class="rc-cat">Roaming &amp; Operations</span></a><a class="related-card" href="/wiki/channel-plans/"><span class="rc-title">Channel Plans</span><span class="rc-cat">Standards &amp; Spectrum</span></a></div></section><script>
+    (function () {
+      // per-section collapse
+      document.querySelectorAll(".block.collapsible .block-head").forEach((head) => {
+        const sec = head.closest(".block");
+        head.addEventListener("click", (e) => {
+          if (e.target.closest("a.anchor")) return; // let anchor links work
+          const collapsed = sec.classList.toggle("collapsed");
+          head.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+      // expand-all / collapse-all (single button, two functions)
+      const ta = document.getElementById("toggleall");
+      function anyCollapsed() {
+        return document.querySelector(".block.collapsible.collapsed") !== null;
+      }
+      function sync() {
+        const expand = anyCollapsed(); // if something is collapsed, button offers "Expand all"
+        ta.querySelector(".ta-label").textContent = expand ? "Expand all" : "Collapse all";
+        ta.querySelector(".ta-icon").textContent = expand ? "⊞" : "⊟";
+      }
+      ta?.addEventListener("click", () => {
+        const expand = anyCollapsed();
+        document.querySelectorAll(".block.collapsible").forEach((sec) => {
+          sec.classList.toggle("collapsed", !expand);
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(expand));
+        });
+        sync();
+      });
+      // if the user follows a #anchor, open that section
+      function openHash() {
+        if (!location.hash) return;
+        const el = document.querySelector(location.hash);
+        const sec = el?.closest(".block.collapsible");
+        if (sec) {
+          sec.classList.remove("collapsed");
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", "true");
+          el.scrollIntoView();
+        }
+      }
+      document.querySelectorAll(".block-head").forEach((h) =>
+        h.addEventListener("click", sync)
+      );
+      window.addEventListener("hashchange", openHash);
+      openHash();
+      sync();
+    })();
+  </script></main><footer class="foot"><span>Reviewed 2026-07-17 · Compiled by <a href="https://www.linkedin.com/in/manish-kumar-sharma-39a22756/" target="_blank" rel="noopener">Manish Sharma</a> · <a href="/wiki/">Home</a></span></footer></div></div><script>(function(){const base = "/wiki";
+
+      // accent toggle: Navy (default) <-> Green
+      const tt = document.getElementById("themetoggle");
+      const tl = document.getElementById("themelabel");
+      function syncAccentLabel() {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (tl) tl.textContent = green ? "Green" : "Navy";
+      }
+      syncAccentLabel();
+      tt?.addEventListener("click", () => {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (green) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("accent", "navy");
+        } else {
+          document.documentElement.setAttribute("data-theme", "green");
+          localStorage.setItem("accent", "green");
+        }
+        syncAccentLabel();
+      });
+
+      // desktop sidebar collapse toggle (persisted)
+      document.getElementById("navcollapse")?.addEventListener("click", () => {
+        const collapsed = document.documentElement.getAttribute("data-nav") === "collapsed";
+        if (collapsed) {
+          document.documentElement.removeAttribute("data-nav");
+          localStorage.removeItem("nav-collapsed");
+        } else {
+          document.documentElement.setAttribute("data-nav", "collapsed");
+          localStorage.setItem("nav-collapsed", "1");
+        }
+      });
+
+      // preserve sidebar scroll position across page navigations
+      const sbEl = document.getElementById("sidebar");
+      if (sbEl) {
+        const KEY = "sb-scroll";
+        const saved = sessionStorage.getItem(KEY);
+        if (saved !== null) {
+          sbEl.scrollTop = parseInt(saved, 10) || 0;
+        } else {
+          // first visit: bring the current page's item into view
+          sbEl.querySelector("a.leaf.active")?.scrollIntoView({ block: "center" });
+        }
+        const save = () => sessionStorage.setItem(KEY, String(sbEl.scrollTop));
+        sbEl.addEventListener("scroll", save, { passive: true });
+        sbEl.querySelectorAll("a.leaf").forEach((a) => a.addEventListener("click", save));
+      }
+      // mobile menu
+      const sb = document.getElementById("sidebar");
+      const sc = document.getElementById("scrim");
+      document.getElementById("menutoggle")?.addEventListener("click", () => {
+        sb.classList.toggle("open"); sc.classList.toggle("show");
+      });
+      sc?.addEventListener("click", () => { sb.classList.remove("open"); sc.classList.remove("show"); });
+
+      // sidebar category collapse (caret)
+      document.querySelectorAll(".nav-group > .cat").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const grp = btn.closest(".nav-group");
+          const collapsed = grp.classList.toggle("collapsed");
+          btn.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+
+      // nav search: filter sidebar + "/" focus + Enter -> full search page
+      const ns = document.getElementById("navsearch");
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement !== ns) { e.preventDefault(); ns.focus(); }
+      });
+      function norm(s){return s.toLowerCase();}
+      ns?.addEventListener("input", () => {
+        const q = norm(ns.value.trim());
+        document.querySelectorAll(".nav-group").forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll("a.leaf").forEach((a) => {
+            const show = !q || norm(a.textContent).includes(q);
+            a.style.display = show ? "" : "none";
+            if (show) anyVisible = true;
+          });
+          // while searching, force-expand groups that have matches
+          if (q) { g.classList.toggle("collapsed", !anyVisible); }
+          g.querySelector(".cat").style.display = anyVisible || !q ? "" : "none";
+        });
+      });
+      ns?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && ns.value.trim()) {
+          location.href = base + "/search/?q=" + encodeURIComponent(ns.value.trim());
+        }
+      });
+    })();</script></body></html>
