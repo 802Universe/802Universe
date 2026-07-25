@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Key Derivation Reference · 802.11 Reference</title><meta name="description" content="A complete, accuracy-reviewed IEEE 802.11 (Wi-Fi) engineering reference - PHY, MAC, security, spectrum, roaming. Every standard from 802.11-1997 to Wi-Fi 8."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript><script>
+      // accent theme (navy default / green) + nav state, applied before paint
+      const th = localStorage.getItem("accent");
+      if (th === "green") document.documentElement.setAttribute("data-theme", "green");
+      if (localStorage.getItem("nav-collapsed") === "1")
+        document.documentElement.setAttribute("data-nav", "collapsed");
+    </script><link rel="stylesheet" href="/wiki/_astro/Base.zKibCCgX.css"></head><body><div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><a href="/wiki/"><span class="logo">802.11<span class="dot">·</span>ref</span><span class="tag">Wireless engineering reference</span></a></div><div class="nav-search"><input type="search" id="navsearch" placeholder="Search  ( / )" autocomplete="off"></div><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Start Here</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/glossary-and-acronyms/"><span>Glossary &amp; Acronyms</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/resources/"><span>Useful Resources</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/tags/"><span>Browse by Tag</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/parameters/"><span>Parameter Explorer</span><span class="lvl">L1</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Standards &amp; Spectrum</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/master-comparison/"><span>Master Comparison</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-plans/"><span>Channel Plans</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/regulatory-domains/"><span>Regulatory Domains</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/non-802-11-standards/"><span>Non-802.11 Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/802-11-amendments/"><span>802.11 Amendments</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/fcc-part-15-unii-rules/"><span>FCC Part 15 UNII Rules</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/afc-system-6-ghz/"><span>AFC System (6 GHz)</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/emerging-and-future-standards/"><span>Emerging &amp; Future Standards</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/advanced-regulatory/"><span>Advanced Regulatory</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/wi-fi-8-11bn-preview/"><span>Wi-Fi 8 (11bn) Preview</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radar-and-dfs/"><span>Radar &amp; DFS</span><span class="lvl">L2-L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>PHY Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/mcs-rate-tables/"><span>MCS Rate Tables</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/channel-models/"><span>Channel Models</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/link-budget-worksheet/"><span>Link Budget Worksheet</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/ber-vs-snr-reference/"><span>BER vs SNR Reference</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/ppdu-frame-formats/"><span>PPDU Frame Formats</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/ru-tone-plans-802-11ax/"><span>RU Tone Plans (802.11ax)</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rf-propagation-deep-dive/"><span>RF Propagation Deep Dive</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/advanced-phy-mathematics/"><span>Advanced PHY Mathematics</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/tool-engine-formulas/"><span>Formula Reference</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rssi-mcs-thresholds/"><span>RSSI-MCS Thresholds</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/antenna-and-rf-hardware/"><span>Antenna &amp; RF Hardware</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/evm-specification-table/"><span>EVM Specification Table</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/winner-ii-and-channel-simulation/"><span>WINNER II &amp; Channel Simulation</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/modulation-and-db-math/"><span>Modulation &amp; dB Math</span><span class="lvl">L1-L2</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>MAC Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/802-11-frame-types/"><span>802.11 Frame Types</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sta-state-machine/"><span>STA State Machine</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/qos-and-dscp-mapping/"><span>QoS &amp; DSCP Mapping</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/multicast-in-wi-fi/"><span>Multicast in Wi-Fi</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/element-id-registry/"><span>Element ID Registry</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/status-and-reason-codes/"><span>Status &amp; Reason Codes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/mac-header-anatomy/"><span>MAC Header Anatomy</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-access-and-backoff/"><span>Channel Access &amp; Backoff</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/power-save-and-twt/"><span>Power Save &amp; TWT</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/aggregation-and-block-ack/"><span>Aggregation &amp; Block Ack</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/discovery-and-join-process/"><span>Discovery &amp; Join Process</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sounding-and-mu-sequences/"><span>Sounding &amp; MU Sequences</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Security</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/security-standards/"><span>Security Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/4-way-handshake-and-keys/"><span>4-Way Handshake &amp; Keys</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/eap-methods/"><span>EAP Methods</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/security-attacks-and-cves/"><span>Security Attacks &amp; CVEs</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radius-attributes/"><span>RADIUS Attributes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/fils-and-fast-auth-802-11ai/"><span>FILS &amp; Fast Auth (802.11ai)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/rsn-ie-and-security-structures/"><span>RSN IE &amp; Security Structures</span><span class="lvl">L2-L3</span></a><a class="leaf active" href="/wiki/key-derivation-reference/"><span>Key Derivation Reference</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Roaming &amp; Operations</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/wi-fi-alliance-certifications/"><span>Wi-Fi Alliance Certifications</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/capwap-protocol/"><span>CAPWAP Protocol</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/3gpp-wi-fi-interworking/"><span>3GPP-Wi-Fi Interworking</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/network-protocols-advanced/"><span>Network Protocols (Advanced)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/roaming-reference/"><span>Roaming Reference</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/backhaul-and-60-ghz-planning/"><span>Backhaul &amp; 60 GHz Planning</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/oui-vendor-prefix-wi-fi/"><span>OUI Vendor Prefix (Wi-Fi)</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/mlo-and-wi-fi-7-deep-dive/"><span>MLO &amp; Wi-Fi 7 Deep Dive</span><span class="lvl">L2-L3</span></a></div></nav></aside><div class="scrim" id="scrim"></div><div class="main"><div class="topbar"><button class="iconbtn menu-toggle" id="menutoggle" aria-label="Menu">☰</button><button class="iconbtn nav-collapse" id="navcollapse" aria-label="Toggle sidebar"><span class="lbl"></span></button><div class="crumb"><b>Security</b></div><div class="spacer"></div><button class="iconbtn" id="themetoggle" aria-label="Switch accent color"><span class="swatch"></span><span id="themelabel">Navy</span></button></div><div class="spectrum-rule"></div><main class="content"><div class="pagehead" data-pagefind-body><div class="eyebrow"><span>Security</span><span class="lvl">L3</span></div><h1 data-pagefind-meta="title">Key Derivation Reference</h1><div class="tagrow"><a class="tagchip" href="/wiki/tags/security/">Security</a><a class="tagchip" href="/wiki/tags/reference/">Reference</a></div><button class="toggle-all" id="toggleall" aria-label="Expand or collapse all sections"><span class="ta-icon">⊞</span><span class="ta-label">Expand all</span></button></div><section class="block collapsible collapsed" data-pagefind-body><h2 id="key-derivation-reference-all-wi-fi-key-formulas-lengths-and-" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">KEY DERIVATION REFERENCE -- All Wi-Fi key formulas, lengths, and derivation chains | IEEE 802.11-2020 §12.6, §12.7 | For Key Derivation Visualiser, 4-Way HS Analyzer, PMKID Checker tools</span><span class="rowcount">15 rows</span><a class="anchor" href="#key-derivation-reference-all-wi-fi-key-formulas-lengths-and-" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Key Name</th><th>Length</th><th>Derivation Formula</th><th>Purpose</th><th>Source Standard</th></tr></thead><tbody><tr><td>PMK (Pre-Shared Key mode)</td><td>256 bits</td><td>PMK = PBKDF2(HMAC-SHA1, Passphrase, SSID, Iterations=4096, dkLen=32)
+Note: SSID is the salt; 4096 PBKDF2 iterations makes offline attack slow but not infeasible
+For AES-256: dkLen=32 bytes = 256 bits
+Derivation takes ~100ms on modern CPU = brute force protection</td><td>Master secret for PSK auth. Input to 4-way handshake.</td><td>IEEE 802.11i, RFC 2898 PBKDF2</td></tr><tr><td>PMK (Enterprise/EAP mode)</td><td>256 bits</td><td>PMK = MSK[0:32] (first 32 bytes of MSK)
+MSK = Master Session Key derived by EAP method during 802.1X auth
+For GCMP-256/192-bit: PMK-256 = first 32B of MSK
+For WPA3-Ent 192-bit: PMK from HMAC-SHA-384 EAP method</td><td>Same role as PSK-PMK but derived from EAP/RADIUS auth</td><td>IEEE 802.1X, RFC 3748</td></tr><tr><td>PMK (SAE/WPA3 mode)</td><td>256 bits</td><td>keyseed = H(&lt;0&gt;^n, k) where k = shared secret from SAE Commit exchange (derived via PWE)
+KCK||PMK = KDF-512(keyseed, &#39;SAE KCK and PMK&#39;, context) - PMK = second 256 bits
+Note: With H2E: PMK derived from hash-to-element (constant time, no timing oracle)
+Fresh PMK per session = perfect forward secrecy</td><td>WPA3-Personal PMK. No PMKID offline attack possible.</td><td>IEEE 802.11-2020 §12.4</td></tr><tr><td>PMKID</td><td>128 bits (16 bytes)</td><td>PMKID = HMAC-SHA1-128(PMK, &#39;PMK Name&#39; || AP_MAC_BSSID || STA_MAC)
+Where &#39;PMK Name&#39; is literal ASCII string (8 bytes)
+Formatted as: AA:BB:CC:DD:EE:FF:GG:HH:II:JJ:KK:LL:MM:NN:OO:PP
+WPA2-PSK: PMKID extractable from Assoc Req <a class="xlink" href="/wiki/rsn-ie-and-security-structures/">RSN IE</a> without capturing 4-way handshake (hashcat mode 22000)
+WPA3-SAE: PMKID computed differently and not useful for offline attack</td><td>Carried in <a class="xlink" href="/wiki/rsn-ie-and-security-structures/">RSN IE</a> for PMKSA cache lookup. WPA2 PSK: offline attack vector.</td><td>IEEE 802.11-2020 §12.7.1.3</td></tr><tr><td>PTK (Pairwise Transient Key)</td><td>384 bits (CCMP-128) or 704 bits (192-bit suite)</td><td>PTK = PRF-X(PMK, &#39;Pairwise key expansion&#39;, Min(AA,SPA)||Max(AA,SPA)||Min(ANonce,SNonce)||Max(ANonce,SNonce))
+Where AA=AP MAC, SPA=STA MAC, sorted so both sides compute same value
+PRF-384 for CCMP-128: uses HMAC-SHA1 (deprecated but still common)
+PRF-512 for GCMP-256: uses HMAC-SHA256
+Note: Min/Max sorting ensures key independence regardless of who sends first</td><td>Session key derived per-association. Contains KCK+KEK+TK.</td><td>IEEE 802.11-2020 §12.7.1.2</td></tr><tr><td>KCK (Key Confirmation Key)</td><td>128 bits (CCMP) or 192 bits (GCMP-256)</td><td>KCK = PTK[0:KCK_len]
+For CCMP-128: KCK = PTK bits 0-127 (16 bytes)
+For GCMP-256 (192-bit mode): KCK = PTK bits 0-191 (24 bytes)
+Algorithm: HMAC-SHA1-128 (CCMP) or HMAC-SHA256-192 (GCMP-256)
+Usage: Compute and verify MIC in EAPOL-Key messages 2,3,4
+KRACK: If KCK is wrong (PSK mismatch), MIC fails in Msg 2 -&gt; AP retransmits Msg 1</td><td>Authenticates EAPOL-Key messages. Wrong KCK = no 4-way HS completion.</td><td>IEEE 802.11-2020 §12.7.2</td></tr><tr><td>KEK (Key Encryption Key)</td><td>128 bits (CCMP) or 256 bits (GCMP-256)</td><td>KEK = PTK[KCK_len : KCK_len+KEK_len]
+For CCMP-128: KEK = PTK bits 128-255 (16 bytes)
+For GCMP-256: KEK = PTK bits 192-447 (32 bytes)
+Algorithm: AES-KeyWrap (RFC 3394) - KEK wraps GTK and IGTK
+In EAPOL Msg 3: Key Data = AES-KeyWrap(KEK, GTK_KDE || IGTK_KDE || RSN_IE)</td><td>Encrypts GTK/IGTK delivery in EAPOL Msg 3. Confidential key distribution.</td><td>RFC 3394, IEEE 802.11-2020 §12.7.2</td></tr><tr><td>TK (Temporal Key / Data Key)</td><td>128 bits (CCMP-128) or 256 bits (GCMP-256)</td><td>TK = PTK[KCK_len+KEK_len : end]
+For CCMP-128: TK = PTK bits 256-383 (16 bytes)
+For GCMP-256: TK = PTK bits 448-703 (32 bytes)
+Usage: AES key for CCMP/GCMP encryption of all unicast data frames
+KRACK vulnerability: TK reinstallation with nonce=0 allows keystream recovery
+TK changes only when new 4-way handshake runs or GTK rekey</td><td>Encrypts/decrypts unicast data. Core session encryption key.</td><td>IEEE 802.11-2020 §12.7.2</td></tr><tr><td>GTK (Group Temporal Key)</td><td>128 bits (CCMP) or 256 bits (GCMP-256)</td><td>GTK = PRF-X(GMK, &#39;Group key expansion&#39;, AA || GKNonce)
+Where GMK = Group Master Key (AP generates randomly)
+AA = AP BSSID, GKNonce = random 256-bit nonce
+Delivered in EAPOL Msg 3 encrypted with KEK (AES-KeyWrap)
+GTK rekey: triggered on STA departure (revocation) or dot11RSNAConfigGroupRekeyTime (default 3600s)</td><td>Encrypts broadcast/multicast data. All STAs in BSS share same GTK.</td><td>IEEE 802.11-2020 §12.7.4</td></tr><tr><td>IGTK (Integrity Group Temporal Key)</td><td>128 bits (BIP-CMAC-128) or 256 bits (BIP-GMAC-256)</td><td>IGTK = PRF-X(GMK, &#39;IGTK key expansion&#39;, AA || GKNonce)
+Delivered in EAPOL Msg 3 alongside GTK
+KeyID: 4 or 5 (IGTK uses keyslots 4-5, GTK uses 1-3)
+Algorithm: BIP-CMAC-128 (CCMP suite) or BIP-GMAC-256 (WPA3-Ent 192-bit)
+Protects: broadcast Deauth, Disassoc, Action frames (PMF 802.11w)</td><td>Protects broadcast management frames. Prevents rogue Deauth attacks.</td><td>IEEE 802.11w, IEEE 802.11-2020 §12.7.5</td></tr><tr><td>PMK-R0 (Fast Transition)</td><td>256 bits</td><td>PMK-R0 = KDF-SHA256(XXKey, &#39;FT-R0&#39;, SSIDlen||SSID||MDID||R0KHlen||R0KH-ID||S0KH-ID)
+XXKey = PSK (personal) or MSK[32:64] (802.1X) - note: NOT the same bits as the plain PMK
+Derived at initial FT association
+Stored at R0KH (Root key holder - typically WLC)
+R0KH-ID identifies the key holder domain
+Never sent to APs - only PMK-R1 is pushed to individual APs</td><td>FT (802.11r) key hierarchy root. Enables fast roaming.</td><td>IEEE 802.11r, 802.11-2020 §12.11</td></tr><tr><td>PMK-R1 (Fast Transition)</td><td>256 bits</td><td>PMK-R1 = HMAC-SHA256(PMK-R0, &#39;FT-R1&#39; || R1KH-ID || S1KH-ID)
+R0KH pushes PMK-R1 to target AP (R1KH) over R0KH-R1KH interface
+Allows target AP to derive PTK without STA re-running full EAP
+FT over-Air: STA sends Reassoc with FT IEs; AP uses PMK-R1
+FT over-DS: STA requests via current AP before moving; lower latency</td><td>Per-AP key derived from PMK-R0. Sent to target APs for fast roam.</td><td>IEEE 802.11r, 802.11-2020 §12.11</td></tr><tr><td>rRK (Re-auth Root Key)</td><td>704 bits</td><td>rRK = KDF(EMSK, &#39;EAP Re-authentication Root Key@&lt;domain&gt;&#39; || length)
+Where EMSK = Extended Master Session Key (from EAP method, 64B)
+Stored only at ERP server and client
+Used to derive rIK for re-auth integrity, rMSK for new PMK</td><td>ERP (RFC 6696) root key. Enables fast re-auth without full EAP.</td><td>RFC 6696</td></tr><tr><td>rMSK (Re-auth MSK)</td><td>64 bytes</td><td>rMSK = KDF(rRK, &#39;Re-authentication Master Session Key@&lt;domain&gt;&#39; || seq_num || length)
+rMSK -&gt; PMK (first 32B) for new association after ERP re-auth
+Seq_num prevents replay
+ERP re-auth: 1 round-trip instead of full EAP (saves 200-400ms)
+FILS uses rMSK as PMK input</td><td>New PMK for fast re-auth. Used by FILS to skip 4-way handshake.</td><td>RFC 6696, 802.11ai FILS</td></tr><tr><td>FILS-PTK</td><td>Variable</td><td>PTK = FILS-PRF(PMK=rMSK, &#39;FILS PTK&#39; || ANonce || SNonce || AP_MAC || STA_MAC)
+FILS keys: ICK || KEK || TK all derived in one KDF pass (ICK authenticates the FILS exchange)
+FILS delivers GTK/IGTK + IP config in Auth Response Wrapped Data IE (encrypted with KEK)
+No separate 4-way handshake needed
+FILS reduces connection time from ~500ms to &lt;100ms</td><td>FILS fast connection key. Derived inside Auth frame exchange.</td><td>802.11ai FILS, 802.11-2020 §26</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="prf-pseudo-random-function-reference-algorithm-per-cipher-su" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">PRF (Pseudo-Random Function) REFERENCE -- Algorithm per cipher suite | IEEE 802.11-2020 §12.7.1</span><span class="rowcount">7 rows</span><a class="anchor" href="#prf-pseudo-random-function-reference-algorithm-per-cipher-su" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Cipher Suite</th><th>PTK Length</th><th>PRF Algorithm</th><th>KCK / KEK / TK Split</th><th>Notes</th></tr></thead><tbody><tr><td>CCMP-128 (WPA2 standard)</td><td>384 bits</td><td>PRF-384 using HMAC-SHA1</td><td>KCK=128b (0-127), KEK=128b (128-255), TK=128b (256-383)</td><td>Most common. HMAC-SHA1 is weak but PTK is unique per session so pre-image resistance matters more than collision resistance here.</td></tr><tr><td>CCMP-128 with SHA-256</td><td>384 bits</td><td>PRF-384 using HMAC-SHA256</td><td>KCK=128b, KEK=128b, TK=128b (same split)</td><td>WPA2 with SHA-256 key derivation. Stronger PRF.</td></tr><tr><td>GCMP-128</td><td>384 bits</td><td>PRF-384 using HMAC-SHA256</td><td>KCK=128b, KEK=128b, TK=128b</td><td>AES-GCM mode with 128-bit key. Same PTK length as CCMP-128.</td></tr><tr><td>GCMP-256 / WPA3-Enterprise 192-bit</td><td>704 bits</td><td>KDF-SHA384 (704-bit PTK)</td><td>KCK=192b (0-191), KEK=256b (192-447), TK=256b (448-703)</td><td>WPA3 Enterprise 192-bit mode. CNSA suite. Largest key lengths.</td></tr><tr><td>CCMP-256</td><td>704 bits</td><td>KDF-SHA384 (704-bit PTK)</td><td>KCK=192b, KEK=256b, TK=256b</td><td>CCMP with 256-bit key. Less common than GCMP-256.</td></tr><tr><td>BIP-CMAC-128 (group mgmt)</td><td>N/A (IGTK)</td><td>N/A (GTK rekey path)</td><td>IGTK=128b</td><td>Used for broadcast management frame protection (PMF).</td></tr><tr><td>BIP-GMAC-256 (group mgmt)</td><td>N/A (IGTK)</td><td>N/A (GTK rekey path)</td><td>IGTK=256b</td><td>WPA3-Enterprise 192-bit group management cipher.</td></tr></tbody></table></div></div></section><section class="related"><h2>Related pages</h2><div class="related-grid"><a class="related-card" href="/wiki/eap-methods/"><span class="rc-title">EAP Methods</span><span class="rc-cat">Security</span></a><a class="related-card" href="/wiki/radius-attributes/"><span class="rc-title">RADIUS Attributes</span><span class="rc-cat">Security</span></a><a class="related-card" href="/wiki/security-standards/"><span class="rc-title">Security Standards</span><span class="rc-cat">Security</span></a><a class="related-card" href="/wiki/3gpp-wi-fi-interworking/"><span class="rc-title">3GPP-Wi-Fi Interworking</span><span class="rc-cat">Roaming &amp; Operations</span></a><a class="related-card" href="/wiki/4-way-handshake-and-keys/"><span class="rc-title">4-Way Handshake &amp; Keys</span><span class="rc-cat">Security</span></a><a class="related-card" href="/wiki/802-11-amendments/"><span class="rc-title">802.11 Amendments</span><span class="rc-cat">Standards &amp; Spectrum</span></a></div></section><script>
+    (function () {
+      // per-section collapse
+      document.querySelectorAll(".block.collapsible .block-head").forEach((head) => {
+        const sec = head.closest(".block");
+        head.addEventListener("click", (e) => {
+          if (e.target.closest("a.anchor")) return; // let anchor links work
+          const collapsed = sec.classList.toggle("collapsed");
+          head.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+      // expand-all / collapse-all (single button, two functions)
+      const ta = document.getElementById("toggleall");
+      function anyCollapsed() {
+        return document.querySelector(".block.collapsible.collapsed") !== null;
+      }
+      function sync() {
+        const expand = anyCollapsed(); // if something is collapsed, button offers "Expand all"
+        ta.querySelector(".ta-label").textContent = expand ? "Expand all" : "Collapse all";
+        ta.querySelector(".ta-icon").textContent = expand ? "⊞" : "⊟";
+      }
+      ta?.addEventListener("click", () => {
+        const expand = anyCollapsed();
+        document.querySelectorAll(".block.collapsible").forEach((sec) => {
+          sec.classList.toggle("collapsed", !expand);
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(expand));
+        });
+        sync();
+      });
+      // if the user follows a #anchor, open that section
+      function openHash() {
+        if (!location.hash) return;
+        const el = document.querySelector(location.hash);
+        const sec = el?.closest(".block.collapsible");
+        if (sec) {
+          sec.classList.remove("collapsed");
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", "true");
+          el.scrollIntoView();
+        }
+      }
+      document.querySelectorAll(".block-head").forEach((h) =>
+        h.addEventListener("click", sync)
+      );
+      window.addEventListener("hashchange", openHash);
+      openHash();
+      sync();
+    })();
+  </script></main><footer class="foot"><span>Reviewed 2026-07-17 · Compiled by <a href="https://www.linkedin.com/in/manish-kumar-sharma-39a22756/" target="_blank" rel="noopener">Manish Sharma</a> · <a href="/wiki/">Home</a></span></footer></div></div><script>(function(){const base = "/wiki";
+
+      // accent toggle: Navy (default) <-> Green
+      const tt = document.getElementById("themetoggle");
+      const tl = document.getElementById("themelabel");
+      function syncAccentLabel() {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (tl) tl.textContent = green ? "Green" : "Navy";
+      }
+      syncAccentLabel();
+      tt?.addEventListener("click", () => {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (green) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("accent", "navy");
+        } else {
+          document.documentElement.setAttribute("data-theme", "green");
+          localStorage.setItem("accent", "green");
+        }
+        syncAccentLabel();
+      });
+
+      // desktop sidebar collapse toggle (persisted)
+      document.getElementById("navcollapse")?.addEventListener("click", () => {
+        const collapsed = document.documentElement.getAttribute("data-nav") === "collapsed";
+        if (collapsed) {
+          document.documentElement.removeAttribute("data-nav");
+          localStorage.removeItem("nav-collapsed");
+        } else {
+          document.documentElement.setAttribute("data-nav", "collapsed");
+          localStorage.setItem("nav-collapsed", "1");
+        }
+      });
+
+      // preserve sidebar scroll position across page navigations
+      const sbEl = document.getElementById("sidebar");
+      if (sbEl) {
+        const KEY = "sb-scroll";
+        const saved = sessionStorage.getItem(KEY);
+        if (saved !== null) {
+          sbEl.scrollTop = parseInt(saved, 10) || 0;
+        } else {
+          // first visit: bring the current page's item into view
+          sbEl.querySelector("a.leaf.active")?.scrollIntoView({ block: "center" });
+        }
+        const save = () => sessionStorage.setItem(KEY, String(sbEl.scrollTop));
+        sbEl.addEventListener("scroll", save, { passive: true });
+        sbEl.querySelectorAll("a.leaf").forEach((a) => a.addEventListener("click", save));
+      }
+      // mobile menu
+      const sb = document.getElementById("sidebar");
+      const sc = document.getElementById("scrim");
+      document.getElementById("menutoggle")?.addEventListener("click", () => {
+        sb.classList.toggle("open"); sc.classList.toggle("show");
+      });
+      sc?.addEventListener("click", () => { sb.classList.remove("open"); sc.classList.remove("show"); });
+
+      // sidebar category collapse (caret)
+      document.querySelectorAll(".nav-group > .cat").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const grp = btn.closest(".nav-group");
+          const collapsed = grp.classList.toggle("collapsed");
+          btn.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+
+      // nav search: filter sidebar + "/" focus + Enter -> full search page
+      const ns = document.getElementById("navsearch");
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement !== ns) { e.preventDefault(); ns.focus(); }
+      });
+      function norm(s){return s.toLowerCase();}
+      ns?.addEventListener("input", () => {
+        const q = norm(ns.value.trim());
+        document.querySelectorAll(".nav-group").forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll("a.leaf").forEach((a) => {
+            const show = !q || norm(a.textContent).includes(q);
+            a.style.display = show ? "" : "none";
+            if (show) anyVisible = true;
+          });
+          // while searching, force-expand groups that have matches
+          if (q) { g.classList.toggle("collapsed", !anyVisible); }
+          g.querySelector(".cat").style.display = anyVisible || !q ? "" : "none";
+        });
+      });
+      ns?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && ns.value.trim()) {
+          location.href = base + "/search/?q=" + encodeURIComponent(ns.value.trim());
+        }
+      });
+    })();</script></body></html>
