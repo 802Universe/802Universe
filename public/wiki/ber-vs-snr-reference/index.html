@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BER vs SNR Reference · 802.11 Reference</title><meta name="description" content="A complete, accuracy-reviewed IEEE 802.11 (Wi-Fi) engineering reference - PHY, MAC, security, spectrum, roaming. Every standard from 802.11-1997 to Wi-Fi 8."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript><script>
+      // accent theme (navy default / green) + nav state, applied before paint
+      const th = localStorage.getItem("accent");
+      if (th === "green") document.documentElement.setAttribute("data-theme", "green");
+      if (localStorage.getItem("nav-collapsed") === "1")
+        document.documentElement.setAttribute("data-nav", "collapsed");
+    </script><link rel="stylesheet" href="/wiki/_astro/Base.zKibCCgX.css"></head><body><div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><a href="/wiki/"><span class="logo">802.11<span class="dot">·</span>ref</span><span class="tag">Wireless engineering reference</span></a></div><div class="nav-search"><input type="search" id="navsearch" placeholder="Search  ( / )" autocomplete="off"></div><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Start Here</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/glossary-and-acronyms/"><span>Glossary &amp; Acronyms</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/resources/"><span>Useful Resources</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/tags/"><span>Browse by Tag</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/parameters/"><span>Parameter Explorer</span><span class="lvl">L1</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Standards &amp; Spectrum</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/master-comparison/"><span>Master Comparison</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-plans/"><span>Channel Plans</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/regulatory-domains/"><span>Regulatory Domains</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/non-802-11-standards/"><span>Non-802.11 Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/802-11-amendments/"><span>802.11 Amendments</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/fcc-part-15-unii-rules/"><span>FCC Part 15 UNII Rules</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/afc-system-6-ghz/"><span>AFC System (6 GHz)</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/emerging-and-future-standards/"><span>Emerging &amp; Future Standards</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/advanced-regulatory/"><span>Advanced Regulatory</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/wi-fi-8-11bn-preview/"><span>Wi-Fi 8 (11bn) Preview</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radar-and-dfs/"><span>Radar &amp; DFS</span><span class="lvl">L2-L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>PHY Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/mcs-rate-tables/"><span>MCS Rate Tables</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/channel-models/"><span>Channel Models</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/link-budget-worksheet/"><span>Link Budget Worksheet</span><span class="lvl">L2</span></a><a class="leaf active" href="/wiki/ber-vs-snr-reference/"><span>BER vs SNR Reference</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/ppdu-frame-formats/"><span>PPDU Frame Formats</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/ru-tone-plans-802-11ax/"><span>RU Tone Plans (802.11ax)</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rf-propagation-deep-dive/"><span>RF Propagation Deep Dive</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/advanced-phy-mathematics/"><span>Advanced PHY Mathematics</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/tool-engine-formulas/"><span>Formula Reference</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rssi-mcs-thresholds/"><span>RSSI-MCS Thresholds</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/antenna-and-rf-hardware/"><span>Antenna &amp; RF Hardware</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/evm-specification-table/"><span>EVM Specification Table</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/winner-ii-and-channel-simulation/"><span>WINNER II &amp; Channel Simulation</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/modulation-and-db-math/"><span>Modulation &amp; dB Math</span><span class="lvl">L1-L2</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>MAC Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/802-11-frame-types/"><span>802.11 Frame Types</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sta-state-machine/"><span>STA State Machine</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/qos-and-dscp-mapping/"><span>QoS &amp; DSCP Mapping</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/multicast-in-wi-fi/"><span>Multicast in Wi-Fi</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/element-id-registry/"><span>Element ID Registry</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/status-and-reason-codes/"><span>Status &amp; Reason Codes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/mac-header-anatomy/"><span>MAC Header Anatomy</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-access-and-backoff/"><span>Channel Access &amp; Backoff</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/power-save-and-twt/"><span>Power Save &amp; TWT</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/aggregation-and-block-ack/"><span>Aggregation &amp; Block Ack</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/discovery-and-join-process/"><span>Discovery &amp; Join Process</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sounding-and-mu-sequences/"><span>Sounding &amp; MU Sequences</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Security</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/security-standards/"><span>Security Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/4-way-handshake-and-keys/"><span>4-Way Handshake &amp; Keys</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/eap-methods/"><span>EAP Methods</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/security-attacks-and-cves/"><span>Security Attacks &amp; CVEs</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radius-attributes/"><span>RADIUS Attributes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/fils-and-fast-auth-802-11ai/"><span>FILS &amp; Fast Auth (802.11ai)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/rsn-ie-and-security-structures/"><span>RSN IE &amp; Security Structures</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/key-derivation-reference/"><span>Key Derivation Reference</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Roaming &amp; Operations</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/wi-fi-alliance-certifications/"><span>Wi-Fi Alliance Certifications</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/capwap-protocol/"><span>CAPWAP Protocol</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/3gpp-wi-fi-interworking/"><span>3GPP-Wi-Fi Interworking</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/network-protocols-advanced/"><span>Network Protocols (Advanced)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/roaming-reference/"><span>Roaming Reference</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/backhaul-and-60-ghz-planning/"><span>Backhaul &amp; 60 GHz Planning</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/oui-vendor-prefix-wi-fi/"><span>OUI Vendor Prefix (Wi-Fi)</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/mlo-and-wi-fi-7-deep-dive/"><span>MLO &amp; Wi-Fi 7 Deep Dive</span><span class="lvl">L2-L3</span></a></div></nav></aside><div class="scrim" id="scrim"></div><div class="main"><div class="topbar"><button class="iconbtn menu-toggle" id="menutoggle" aria-label="Menu">☰</button><button class="iconbtn nav-collapse" id="navcollapse" aria-label="Toggle sidebar"><span class="lbl"></span></button><div class="crumb"><b>PHY Layer</b></div><div class="spacer"></div><button class="iconbtn" id="themetoggle" aria-label="Switch accent color"><span class="swatch"></span><span id="themelabel">Navy</span></button></div><div class="spectrum-rule"></div><main class="content"><div class="pagehead" data-pagefind-body><div class="eyebrow"><span>PHY Layer</span><span class="lvl">L3</span></div><h1 data-pagefind-meta="title">BER vs SNR Reference</h1><div class="tagrow"><a class="tagchip" href="/wiki/tags/phy/">PHY</a><a class="tagchip" href="/wiki/tags/rf/">RF</a><a class="tagchip" href="/wiki/tags/math/">Math</a></div><button class="toggle-all" id="toggleall" aria-label="Expand or collapse all sections"><span class="ta-icon">⊞</span><span class="ta-label">Expand all</span></button></div><section class="block collapsible collapsed" data-pagefind-body><h2 id="ber-vs-eb-n0-reference-awgn-channel-theory-proakis-digital-c" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">BER vs Eb/N0 Reference - AWGN Channel Theory  |  Proakis &#39;Digital Communications&#39; + IEEE 802.11 PHY Specs</span><span class="rowcount">10 rows</span><a class="anchor" href="#ber-vs-eb-n0-reference-awgn-channel-theory-proakis-digital-c" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Modulation</th><th>Bits/Symbol</th><th>Theoretical BER Formula</th><th>Eb/N0 @ BER=10⁻²</th><th>Eb/N0 @ BER=10⁻³</th><th>Eb/N0 @ BER=10⁻⁴</th><th>Eb/N0 @ BER=10⁻⁵</th><th>IEEE 802.11 MCS Index</th><th>Engineering Notes</th></tr></thead><tbody><tr><td>BPSK</td><td class="codey">1</td><td>BER = Q(√(2·Eb/N0))</td><td>4.3 dB</td><td>6.8 dB</td><td>8.4 dB</td><td>9.6 dB</td><td>MCS 0 (all gen)</td><td>Best BER performance. Used for most robust/control frames. Q(x)=erfc(x/√2)/2.</td></tr><tr><td>QPSK (coherent)</td><td class="codey">2</td><td>BER = Q(√(2·Eb/N0))</td><td>4.3 dB</td><td>6.8 dB</td><td>8.4 dB</td><td>9.6 dB</td><td>MCS 1-2</td><td>Same BER as BPSK per bit. 2× spectral efficiency. Used for range-efficient data.</td></tr><tr><td>16-QAM</td><td class="codey">4</td><td>BER ≈ (3/8)·erfc(√(Eb/N0·4/5))</td><td>8.8 dB</td><td>10.6 dB</td><td>12.0 dB</td><td>13.1 dB</td><td>MCS 3-4</td><td>4 dB penalty vs BPSK at BER=10⁻³. First step in capacity vs range tradeoff.</td></tr><tr><td>64-QAM</td><td class="codey">6</td><td>BER ≈ (7/24)·erfc(√(Eb/N0·2/7))</td><td>14.4 dB</td><td>16.0 dB</td><td>17.3 dB</td><td>18.3 dB</td><td>MCS 5-7</td><td>Standard high-throughput mode. ~5 dB penalty vs 16-QAM.</td></tr><tr><td>256-QAM</td><td class="codey">8</td><td>BER ≈ (15/64)·erfc(√(Eb/N0·1/10))</td><td>20.0 dB</td><td>21.6 dB</td><td>22.8 dB</td><td>23.8 dB</td><td>MCS 8-9 (802.11ac/ax)</td><td>Introduced in 802.11ac. Requires very low noise floor and good RF design.</td></tr><tr><td>1024-QAM</td><td class="codey">10</td><td>BER ≈ (31/160)·erfc(√(Eb/N0·1/17.5))</td><td>26.0 dB</td><td>27.5 dB</td><td>28.7 dB</td><td>29.6 dB</td><td>MCS 10-11 (802.11ax)</td><td>New in 802.11ax. Requires EVM ≤ -35 dB. Only viable very close to AP.</td></tr><tr><td>4096-QAM</td><td class="codey">12</td><td>BER ≈ (63/384)·erfc(√(Eb/N0·1/30))</td><td>32.0 dB</td><td>33.5 dB</td><td>34.6 dB</td><td>35.5 dB</td><td>MCS 12-13 (802.11be)</td><td>New in 802.11be. EVM ≤ -38 dB. Phase noise and IQ imbalance critical.</td></tr><tr><td>DBPSK</td><td class="codey">1</td><td>BER = 0.5·exp(-Eb/N0)</td><td>4.7 dB</td><td>7.3 dB</td><td>9.0 dB</td><td>10.2 dB</td><td>802.11b/g legacy</td><td>Differential BPSK: no coherent phase reference needed. ~1 dB penalty vs BPSK.</td></tr><tr><td>DQPSK</td><td class="codey">2</td><td>BER ≈ erfc(√(Eb/N0·sin(π/4)))</td><td>5.3 dB</td><td>8.0 dB</td><td>9.7 dB</td><td>11.0 dB</td><td>802.11b HR-DSSS</td><td>~1 dB penalty vs QPSK. Used in 802.11b 2 Mbps.</td></tr><tr><td>CCK (11 Mbps)</td><td>-</td><td>Chip-level: effectively ≈ QPSK</td><td>~10 dB</td><td>~12 dB</td><td>~14 dB</td><td>~15 dB</td><td>802.11b 11 Mbps</td><td>Complementary Code Keying. Complex spreading codes. BER approximation only.</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="snr-to-sensitivity-conversion-ieee-802-11-2020-17-3-10-7-for" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">SNR to Sensitivity Conversion - IEEE 802.11-2020 §17.3.10.7  |  Formula: Sens(dBm) = -174 + NF + 10·log₁₀(BW) + SNRmin</span><span class="rowcount">8 rows</span><a class="anchor" href="#snr-to-sensitivity-conversion-ieee-802-11-2020-17-3-10-7-for" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Channel BW</th><th>Thermal Noise @ BW</th><th>+ NF (8 dB client)</th><th>Noise Floor (kTB)</th><th>+ SNR MCS0 (5dB)</th><th>Sensitivity MCS0</th><th>+ SNR MCS11 (33dB)</th><th>Sensitivity MCS11</th><th>Notes</th></tr></thead><tbody><tr><td>1 MHz (HaLow)</td><td>-174+60=-114 dBm</td><td>-114+8</td><td>-106 dBm</td><td>-106+5</td><td>-101 dBm</td><td>-106+33</td><td>-73 dBm</td><td>802.11ah sub-1GHz. Best sensitivity due to narrow BW.</td></tr><tr><td>2 MHz (HaLow)</td><td>-174+63=-111 dBm</td><td>-111+8</td><td>-103 dBm</td><td>-103+5</td><td>-98 dBm</td><td>-103+33</td><td>-70 dBm</td><td></td></tr><tr><td>4 MHz (HaLow)</td><td>-174+66=-108 dBm</td><td>-108+8</td><td>-100 dBm</td><td>-100+5</td><td>-95 dBm</td><td>-100+33</td><td>-67 dBm</td><td></td></tr><tr><td>20 MHz</td><td>-174+73=-101 dBm</td><td>-101+8</td><td>-93 dBm</td><td>-93+5</td><td>-88 dBm</td><td>-93+33</td><td>-60 dBm</td><td>Standard Wi-Fi channel reference.</td></tr><tr><td>40 MHz</td><td>-174+76=-98 dBm</td><td>-98+8</td><td>-90 dBm</td><td>-90+5</td><td>-85 dBm</td><td>-90+33</td><td>-57 dBm</td><td>3 dB higher noise vs 20 MHz.</td></tr><tr><td>80 MHz</td><td>-174+79=-95 dBm</td><td>-95+8</td><td>-87 dBm</td><td>-87+5</td><td>-82 dBm</td><td>-87+33</td><td>-54 dBm</td><td></td></tr><tr><td>160 MHz</td><td>-174+82=-92 dBm</td><td>-92+8</td><td>-84 dBm</td><td>-84+5</td><td>-79 dBm</td><td>-84+33</td><td>-51 dBm</td><td></td></tr><tr><td>320 MHz (802.11be)</td><td>-174+85=-89 dBm</td><td>-89+8</td><td>-81 dBm</td><td>-81+5</td><td>-76 dBm</td><td>-81+33</td><td>-48 dBm</td><td>Widest channel = worst sensitivity floor.</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="shannon-capacity-reference-c-b-log-1-snr-theoretical-maximum" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">Shannon Capacity Reference - C = B·log₂(1+SNR)  |  Theoretical maximum spectral efficiency</span><span class="rowcount">8 rows</span><a class="anchor" href="#shannon-capacity-reference-c-b-log-1-snr-theoretical-maximum" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>SNR (dB)</th><th>SNR (linear)</th><th>Capacity @ 20 MHz</th><th>Capacity @ 40 MHz</th><th>Capacity @ 80 MHz</th><th>Capacity @ 160 MHz</th><th>Capacity @ 320 MHz</th><th>802.11 PHY Rate @ ~this SNR</th><th>Notes</th></tr></thead><tbody><tr><td class="codey">5</td><td>3.16</td><td>66 Mbps</td><td>132 Mbps</td><td>264 Mbps</td><td>528 Mbps</td><td>1056 Mbps</td><td>~29 Mbps (BPSK 1/2, MCS0)</td><td>802.11 uses ~50% of Shannon limit at low SNR.</td></tr><tr><td class="codey">10</td><td class="codey">10</td><td>133 Mbps</td><td>266 Mbps</td><td>532 Mbps</td><td>1064 Mbps</td><td>2128 Mbps</td><td>~65 Mbps (QPSK 3/4, MCS2)</td><td></td></tr><tr><td class="codey">15</td><td>31.6</td><td>196 Mbps</td><td>392 Mbps</td><td>784 Mbps</td><td>1568 Mbps</td><td>3136 Mbps</td><td>~130 Mbps (16-QAM 1/2, MCS3)</td><td></td></tr><tr><td class="codey">20</td><td class="codey">100</td><td>266 Mbps</td><td>532 Mbps</td><td>1064 Mbps</td><td>2128 Mbps</td><td>4256 Mbps</td><td>~200 Mbps (64-QAM 2/3, MCS5)</td><td></td></tr><tr><td class="codey">25</td><td class="codey">316</td><td>331 Mbps</td><td>662 Mbps</td><td>1324 Mbps</td><td>2648 Mbps</td><td>5296 Mbps</td><td>~287 Mbps (64-QAM 5/6, MCS7)</td><td></td></tr><tr><td class="codey">30</td><td>1000</td><td>398 Mbps</td><td>796 Mbps</td><td>1592 Mbps</td><td>3184 Mbps</td><td>6368 Mbps</td><td>~344 Mbps (256-QAM 3/4, MCS8)</td><td>Approaching 802.11ax single-stream limit at 160 MHz</td></tr><tr><td class="codey">35</td><td>3162</td><td>465 Mbps</td><td>930 Mbps</td><td>1860 Mbps</td><td>3720 Mbps</td><td>7440 Mbps</td><td>~480 Mbps (1024-QAM 5/6, MCS11)</td><td></td></tr><tr><td class="codey">40</td><td>10000</td><td>532 Mbps</td><td>1064 Mbps</td><td>2128 Mbps</td><td>4256 Mbps</td><td>8512 Mbps</td><td>~575 Mbps (4096-QAM 5/6, MCS13)</td><td>802.11be MCS13 reaches ~70% Shannon efficiency</td></tr></tbody></table></div></div></section><section class="related"><h2>Related pages</h2><div class="related-grid"><a class="related-card" href="/wiki/modulation-and-db-math/"><span class="rc-title">Modulation &amp; dB Math</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/advanced-phy-mathematics/"><span class="rc-title">Advanced PHY Mathematics</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/channel-models/"><span class="rc-title">Channel Models</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/evm-specification-table/"><span class="rc-title">EVM Specification Table</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/tool-engine-formulas/"><span class="rc-title">Formula Reference</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/link-budget-worksheet/"><span class="rc-title">Link Budget Worksheet</span><span class="rc-cat">PHY Layer</span></a></div></section><script>
+    (function () {
+      // per-section collapse
+      document.querySelectorAll(".block.collapsible .block-head").forEach((head) => {
+        const sec = head.closest(".block");
+        head.addEventListener("click", (e) => {
+          if (e.target.closest("a.anchor")) return; // let anchor links work
+          const collapsed = sec.classList.toggle("collapsed");
+          head.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+      // expand-all / collapse-all (single button, two functions)
+      const ta = document.getElementById("toggleall");
+      function anyCollapsed() {
+        return document.querySelector(".block.collapsible.collapsed") !== null;
+      }
+      function sync() {
+        const expand = anyCollapsed(); // if something is collapsed, button offers "Expand all"
+        ta.querySelector(".ta-label").textContent = expand ? "Expand all" : "Collapse all";
+        ta.querySelector(".ta-icon").textContent = expand ? "⊞" : "⊟";
+      }
+      ta?.addEventListener("click", () => {
+        const expand = anyCollapsed();
+        document.querySelectorAll(".block.collapsible").forEach((sec) => {
+          sec.classList.toggle("collapsed", !expand);
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(expand));
+        });
+        sync();
+      });
+      // if the user follows a #anchor, open that section
+      function openHash() {
+        if (!location.hash) return;
+        const el = document.querySelector(location.hash);
+        const sec = el?.closest(".block.collapsible");
+        if (sec) {
+          sec.classList.remove("collapsed");
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", "true");
+          el.scrollIntoView();
+        }
+      }
+      document.querySelectorAll(".block-head").forEach((h) =>
+        h.addEventListener("click", sync)
+      );
+      window.addEventListener("hashchange", openHash);
+      openHash();
+      sync();
+    })();
+  </script></main><footer class="foot"><span>Reviewed 2026-07-17 · Compiled by <a href="https://www.linkedin.com/in/manish-kumar-sharma-39a22756/" target="_blank" rel="noopener">Manish Sharma</a> · <a href="/wiki/">Home</a></span></footer></div></div><script>(function(){const base = "/wiki";
+
+      // accent toggle: Navy (default) <-> Green
+      const tt = document.getElementById("themetoggle");
+      const tl = document.getElementById("themelabel");
+      function syncAccentLabel() {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (tl) tl.textContent = green ? "Green" : "Navy";
+      }
+      syncAccentLabel();
+      tt?.addEventListener("click", () => {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (green) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("accent", "navy");
+        } else {
+          document.documentElement.setAttribute("data-theme", "green");
+          localStorage.setItem("accent", "green");
+        }
+        syncAccentLabel();
+      });
+
+      // desktop sidebar collapse toggle (persisted)
+      document.getElementById("navcollapse")?.addEventListener("click", () => {
+        const collapsed = document.documentElement.getAttribute("data-nav") === "collapsed";
+        if (collapsed) {
+          document.documentElement.removeAttribute("data-nav");
+          localStorage.removeItem("nav-collapsed");
+        } else {
+          document.documentElement.setAttribute("data-nav", "collapsed");
+          localStorage.setItem("nav-collapsed", "1");
+        }
+      });
+
+      // preserve sidebar scroll position across page navigations
+      const sbEl = document.getElementById("sidebar");
+      if (sbEl) {
+        const KEY = "sb-scroll";
+        const saved = sessionStorage.getItem(KEY);
+        if (saved !== null) {
+          sbEl.scrollTop = parseInt(saved, 10) || 0;
+        } else {
+          // first visit: bring the current page's item into view
+          sbEl.querySelector("a.leaf.active")?.scrollIntoView({ block: "center" });
+        }
+        const save = () => sessionStorage.setItem(KEY, String(sbEl.scrollTop));
+        sbEl.addEventListener("scroll", save, { passive: true });
+        sbEl.querySelectorAll("a.leaf").forEach((a) => a.addEventListener("click", save));
+      }
+      // mobile menu
+      const sb = document.getElementById("sidebar");
+      const sc = document.getElementById("scrim");
+      document.getElementById("menutoggle")?.addEventListener("click", () => {
+        sb.classList.toggle("open"); sc.classList.toggle("show");
+      });
+      sc?.addEventListener("click", () => { sb.classList.remove("open"); sc.classList.remove("show"); });
+
+      // sidebar category collapse (caret)
+      document.querySelectorAll(".nav-group > .cat").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const grp = btn.closest(".nav-group");
+          const collapsed = grp.classList.toggle("collapsed");
+          btn.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+
+      // nav search: filter sidebar + "/" focus + Enter -> full search page
+      const ns = document.getElementById("navsearch");
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement !== ns) { e.preventDefault(); ns.focus(); }
+      });
+      function norm(s){return s.toLowerCase();}
+      ns?.addEventListener("input", () => {
+        const q = norm(ns.value.trim());
+        document.querySelectorAll(".nav-group").forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll("a.leaf").forEach((a) => {
+            const show = !q || norm(a.textContent).includes(q);
+            a.style.display = show ? "" : "none";
+            if (show) anyVisible = true;
+          });
+          // while searching, force-expand groups that have matches
+          if (q) { g.classList.toggle("collapsed", !anyVisible); }
+          g.querySelector(".cat").style.display = anyVisible || !q ? "" : "none";
+        });
+      });
+      ns?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && ns.value.trim()) {
+          location.href = base + "/search/?q=" + encodeURIComponent(ns.value.trim());
+        }
+      });
+    })();</script></body></html>

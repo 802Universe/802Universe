@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Advanced Regulatory · 802.11 Reference</title><meta name="description" content="A complete, accuracy-reviewed IEEE 802.11 (Wi-Fi) engineering reference - PHY, MAC, security, spectrum, roaming. Every standard from 802.11-1997 to Wi-Fi 8."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript><script>
+      // accent theme (navy default / green) + nav state, applied before paint
+      const th = localStorage.getItem("accent");
+      if (th === "green") document.documentElement.setAttribute("data-theme", "green");
+      if (localStorage.getItem("nav-collapsed") === "1")
+        document.documentElement.setAttribute("data-nav", "collapsed");
+    </script><link rel="stylesheet" href="/wiki/_astro/Base.zKibCCgX.css"></head><body><div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><a href="/wiki/"><span class="logo">802.11<span class="dot">·</span>ref</span><span class="tag">Wireless engineering reference</span></a></div><div class="nav-search"><input type="search" id="navsearch" placeholder="Search  ( / )" autocomplete="off"></div><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Start Here</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/glossary-and-acronyms/"><span>Glossary &amp; Acronyms</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/resources/"><span>Useful Resources</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/tags/"><span>Browse by Tag</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/parameters/"><span>Parameter Explorer</span><span class="lvl">L1</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Standards &amp; Spectrum</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/master-comparison/"><span>Master Comparison</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-plans/"><span>Channel Plans</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/regulatory-domains/"><span>Regulatory Domains</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/non-802-11-standards/"><span>Non-802.11 Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/802-11-amendments/"><span>802.11 Amendments</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/fcc-part-15-unii-rules/"><span>FCC Part 15 UNII Rules</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/afc-system-6-ghz/"><span>AFC System (6 GHz)</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/emerging-and-future-standards/"><span>Emerging &amp; Future Standards</span><span class="lvl">L2</span></a><a class="leaf active" href="/wiki/advanced-regulatory/"><span>Advanced Regulatory</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/wi-fi-8-11bn-preview/"><span>Wi-Fi 8 (11bn) Preview</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radar-and-dfs/"><span>Radar &amp; DFS</span><span class="lvl">L2-L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>PHY Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/mcs-rate-tables/"><span>MCS Rate Tables</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/channel-models/"><span>Channel Models</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/link-budget-worksheet/"><span>Link Budget Worksheet</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/ber-vs-snr-reference/"><span>BER vs SNR Reference</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/ppdu-frame-formats/"><span>PPDU Frame Formats</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/ru-tone-plans-802-11ax/"><span>RU Tone Plans (802.11ax)</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rf-propagation-deep-dive/"><span>RF Propagation Deep Dive</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/advanced-phy-mathematics/"><span>Advanced PHY Mathematics</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/tool-engine-formulas/"><span>Formula Reference</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rssi-mcs-thresholds/"><span>RSSI-MCS Thresholds</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/antenna-and-rf-hardware/"><span>Antenna &amp; RF Hardware</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/evm-specification-table/"><span>EVM Specification Table</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/winner-ii-and-channel-simulation/"><span>WINNER II &amp; Channel Simulation</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/modulation-and-db-math/"><span>Modulation &amp; dB Math</span><span class="lvl">L1-L2</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>MAC Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/802-11-frame-types/"><span>802.11 Frame Types</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sta-state-machine/"><span>STA State Machine</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/qos-and-dscp-mapping/"><span>QoS &amp; DSCP Mapping</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/multicast-in-wi-fi/"><span>Multicast in Wi-Fi</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/element-id-registry/"><span>Element ID Registry</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/status-and-reason-codes/"><span>Status &amp; Reason Codes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/mac-header-anatomy/"><span>MAC Header Anatomy</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-access-and-backoff/"><span>Channel Access &amp; Backoff</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/power-save-and-twt/"><span>Power Save &amp; TWT</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/aggregation-and-block-ack/"><span>Aggregation &amp; Block Ack</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/discovery-and-join-process/"><span>Discovery &amp; Join Process</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sounding-and-mu-sequences/"><span>Sounding &amp; MU Sequences</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Security</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/security-standards/"><span>Security Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/4-way-handshake-and-keys/"><span>4-Way Handshake &amp; Keys</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/eap-methods/"><span>EAP Methods</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/security-attacks-and-cves/"><span>Security Attacks &amp; CVEs</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radius-attributes/"><span>RADIUS Attributes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/fils-and-fast-auth-802-11ai/"><span>FILS &amp; Fast Auth (802.11ai)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/rsn-ie-and-security-structures/"><span>RSN IE &amp; Security Structures</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/key-derivation-reference/"><span>Key Derivation Reference</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Roaming &amp; Operations</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/wi-fi-alliance-certifications/"><span>Wi-Fi Alliance Certifications</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/capwap-protocol/"><span>CAPWAP Protocol</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/3gpp-wi-fi-interworking/"><span>3GPP-Wi-Fi Interworking</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/network-protocols-advanced/"><span>Network Protocols (Advanced)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/roaming-reference/"><span>Roaming Reference</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/backhaul-and-60-ghz-planning/"><span>Backhaul &amp; 60 GHz Planning</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/oui-vendor-prefix-wi-fi/"><span>OUI Vendor Prefix (Wi-Fi)</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/mlo-and-wi-fi-7-deep-dive/"><span>MLO &amp; Wi-Fi 7 Deep Dive</span><span class="lvl">L2-L3</span></a></div></nav></aside><div class="scrim" id="scrim"></div><div class="main"><div class="topbar"><button class="iconbtn menu-toggle" id="menutoggle" aria-label="Menu">☰</button><button class="iconbtn nav-collapse" id="navcollapse" aria-label="Toggle sidebar"><span class="lbl"></span></button><div class="crumb"><b>Standards &amp; Spectrum</b></div><div class="spacer"></div><button class="iconbtn" id="themetoggle" aria-label="Switch accent color"><span class="swatch"></span><span id="themelabel">Navy</span></button></div><div class="spectrum-rule"></div><main class="content"><div class="pagehead" data-pagefind-body><div class="eyebrow"><span>Standards &amp; Spectrum</span><span class="lvl">L3</span></div><h1 data-pagefind-meta="title">Advanced Regulatory</h1><div class="tagrow"><a class="tagchip" href="/wiki/tags/regulatory/">Regulatory</a><a class="tagchip" href="/wiki/tags/rf/">RF</a></div><button class="toggle-all" id="toggleall" aria-label="Expand or collapse all sections"><span class="ta-icon">⊞</span><span class="ta-label">Expand all</span></button></div><section class="block collapsible collapsed" data-pagefind-body><h2 id="advanced-regulatory-reference-sar-etsi-en-301-893-itu-r-sm-3" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">Advanced Regulatory Reference - SAR, ETSI EN 301 893, ITU-R SM.329, CE/RED, ITU RR, CBRS  |  IEEE/FCC/ETSI/ITU Official Sources</span><span class="rowcount">8 rows</span><a class="anchor" href="#advanced-regulatory-reference-sar-etsi-en-301-893-itu-r-sm-3" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Topic</th><th>Standard / CFR</th><th>Key Parameters / Limits</th><th>Measurement Method / Process</th><th>Engineering Impact</th></tr></thead><tbody><tr><td>SAR - Specific Absorption Rate (FCC)</td><td>47 CFR §2.1091
+§2.1093
+IEC 62209-1</td><td>FCC limit: 1.6 W/kg averaged over any 1 gram of tissue (head/body)
+FCC general population limit: applies to all consumer devices
+FCC occupational limit: 5 W/kg per 1g (controlled environment)
+Exclusion distance: devices operating ≤ 20 mW average TX power are exempt from SAR testing (§2.1091(c))</td><td>Measurement: SAR probe scanned in tissue-simulating liquid phantom (head/body model). 1g cube averaging. Per IEC 62209-1 (SAR measurement in tissue-simulating liquids). Separation distances tested: 0mm (contact), 5mm, 10mm, 15mm, 20mm.
+Test equipment: SAR scanner + probe calibration traceable to NIST.</td><td>Wi-Fi devices must be tested at max TX power in each band. Dual-band/tri-band devices tested simultaneously. High-gain antennas require spatial separation compensation. SAR typically limits TX power at close body proximity → devices reduce power when body-mounted.</td></tr><tr><td>SAR - ICNIRP / European Standard</td><td>ICNIRP 1998 + 2020 guidelines
+IEC 62209-2 / EN 50566
+IEC 62209-3</td><td>ICNIRP limit: 2 W/kg averaged over 10 grams of tissue (far less restrictive than FCC 1g)
+General public: 2 W/kg over 10g (head/trunk), 4 W/kg over 10g (limbs)
+Occupational: 10 W/kg over 10g
+Frequency range: 100 kHz - 6 GHz</td><td>IEC 62209-2: SAR measurement for devices used close to ear. IEC 62209-3: wireless devices used close to body. EN 50566: close-body products.
+Vectored E-field probe + robotic scanner in SAR phantom. 10g cube averaging.
+CE marking requires SAR compliance with ICNIRP via RED Article 3.1(a).</td><td>EU devices: 2 W/kg over 10g is far easier to comply with than US 1.6W/kg over 1g. Same Wi-Fi device often has higher US limit risk. Devices sold globally need to meet both.</td></tr><tr><td>ETSI EN 301 893 v2.2.1 (5 GHz Wi-Fi)</td><td>ETSI EN 301 893
+v2.2.1 (2021)
+EU Directive 2014/53/EU</td><td>UNII-1 (5150-5250): e.i.r.p. ≤ 200 mW (23 dBm), indoor only
+UNII-2A (5250-5350): e.i.r.p. ≤ 200 mW, DFS+TPC mandatory, indoor
+UNII-2C (5470-5725): e.i.r.p. ≤ 1 W (30 dBm), DFS+TPC mandatory
+UNII-3 (5725-5875): NOT available for 802.11 in EU (ISM band §15.247 not applicable in ETSI)
+TPC: 3 dB minimum reduction capability
+Spurious emissions: §4.2.6 - in-band and out-of-band spurious per ITU-R SM.329</td><td>Radar types for DFS (EN 301 893 §4.7):
+Type 1: PW=0.5-5µs, PRI=1000-5000µs (short pulse)
+Type 2: PW=0.5-5µs, PRI=625-5000µs (high PRF)
+Type 3: PW=0.5-5µs, PRI varies (staggered PRF)
+Type 4: PW=0.5-5µs (frequency hopping)
+Type 5: PW=1µs (very short pulse)
+Type 6: PW=1µs (similar to Type 5)
+Test conditions: CW signal + all 6 radar types at minimum detection level</td><td>ETSI vs FCC key difference: UNII-3 (5725-5875) is NOT available in EU for 802.11 - reserved for ISM band fixed links. European 802.11ac/ax products cannot use 5 GHz channels 149-165 (EU) without special authorization.</td></tr><tr><td>ITU-R SM.329 Spurious Emissions</td><td>ITU-R SM.329-12
+(2012)</td><td>Spurious emission limits by power class:
+Class A (≤ 100 mW): 2 µW (-27 dBm) below 1 GHz; 20 µW (-17 dBm) 1-40 GHz
+Class B (100 mW - 1 W): 20 µW (-17 dBm)
+Class C (1 W - 10 W): 200 µW (-7 dBm)
+Class D (10 W - 50 W): 1 mW (+0 dBm)
+Spurious domain: emissions beyond necessary bandwidth (outside 250% of OBW)</td><td>Measurement: spectrum analyzer + calibrated antenna. Conducted (50Ω) + radiated (anechoic chamber or OATS). Resolution BW: typically 100 kHz-1 MHz depending on frequency.
+Spurious must be measured at max TX power across all harmonics and sub-harmonics.
+Regulatory limit: whichever is more restrictive between national (FCC Part 15.209 / EN 301 893 §4.2.6) and ITU-R SM.329.</td><td>SM.329 is the international baseline. All national regulators reference it. Wi-Fi devices must comply: 2.4 GHz harmonics at 4.8, 7.2, 9.6 GHz, etc. must be &lt; SM.329 limits. 5 GHz harmonics at 10/15/20 GHz. 6 GHz harmonics at 12/18/24 GHz.</td></tr><tr><td>CE Marking / EU Radio Equipment Directive (RED)</td><td>EU Directive 2014/53/EU
+(RED - Radio Equipment Directive)
+Effective June 2016</td><td>Essential Requirements:
+Art. 3.1(a): Safety - EN 62368-1 (audio/video/IT equipment safety) or EN 60950-1
+Art. 3.1(b): EMC - EN 55032 (emissions) + EN 55035 (immunity)
+Art. 3.2: Radio - EN 300 328 (2.4 GHz) + EN 301 893 (5 GHz) + EN 303 687 (6 GHz)
+Additional for internet-connected: Art. 3.3(d)-(f) cybersecurity requirements (effective Aug 2025)
+DoC: Declaration of Conformity signed by EU Responsible Person</td><td>Compliance path:
+1. Self-declaration (for most Wi-Fi products - harmonized standards available)
+2. Apply harmonized ETSI standards → EU legal presumption of conformity
+3. Notified Body not mandatory for Art. 3.2 if harmonized standard used
+4. Technical Construction File (TCF) must be kept for 10 years
+5. CE mark + DoC + EU Responsible Person contact required
+6. EPREL product registration for energy-related products</td><td>RED replaces R&amp;TTE Directive (1999/5/EC). Key change: RED requires all radio equipment to use spectrum efficiently. Art. 3.3 cybersecurity delegated act (2022/30/EU): routers/smart devices must have network access controls, data minimization, no hardcoded passwords - effective Aug 2025.</td></tr><tr><td>ITU Radio Regulations - ISM Bands</td><td>ITU Radio Regulations
+Article 5 (Frequency Allocations)
+ITU-R SM.1538 (SRD)</td><td>ISM (Industrial Scientific Medical) band definitions per ITU RR §5.150:
+2400-2500 MHz: ISM - secondary allocation, all regions
+5725-5875 MHz: ISM - secondary allocation, all regions
+24000-24050 MHz: ISM - all regions
+61000-61500 MHz: ISM - all regions
+122000-123000 MHz: ISM - all regions
+245000-246000 MHz: ISM - all regions
+Short Range Devices (SRD): ITU-R SM.1538 defines technical characteristics for license-exempt devices by region (EU=CEPT ERC 70-03, US=FCC Part 15, Japan=ARIB)</td><td>ISM band rules per region:
+EU (ETSI): CEPT ERC Recommendation 70-03 - defines SRD channels, duty cycle limits per band, sub-band power limits. Updated regularly by CEPT Working Group FM.
+US (FCC): Part 15 Subpart B (unintentional), Part 15 Subpart C (intentional). ISM at 2.4 GHz = Part 15.247.
+Japan (ARIB): ARIB STD-T66 + STD-T71 (5 GHz). Low-power radio station system.</td><td>Critical for global product compliance: a device approved for US 2.4 GHz (Part 15.247 up to 1 W EIRP point-to-point) may NOT be approved in EU (ETSI EN 300 328 max 100 mW EIRP standard Wi-Fi). Regional antenna gain rules differ significantly.</td></tr><tr><td>CBRS - Citizens Broadband Radio Service</td><td>47 CFR Part 96
+FCC Report &amp; Order
+FCC 15-47 + 17-258</td><td>CBRS band: 3550-3700 MHz (150 MHz)
+Three-tier priority system:
+Tier 1 (Incumbent): Federal/DoD radar systems, grandfathered FSS. Highest priority, protected always.
+Tier 2 (PAL - Priority Access License): Licensed via FCC auction (3-year license, 10 MHz channels). Protected from Tier 3.
+Tier 3 (GAA - General Authorized Access): License-exempt, opportunistic. Can be interfered by Tier 1+2.
+SAS (Spectrum Access System): cloud database, similar to 6 GHz AFC. Devices query SAS for available spectrum.</td><td>SAS Architecture:
+SAS operators (FCC-approved): Google, CommScope, Federated Wireless, Sony, Amdocs, USCC
+CBSD (Citizens Broadband Radio Service Device): AP-equivalent at 3.5 GHz
+CBSD → SAS query: location, antenna, power → SAS returns authorized channels + EIRP
+End User Device (EUD): connects to CBSD (like STA to AP)
+Interface: RESTful JSON API (WINNF-TS-0016)
+Power limits: Category A ≤ 30 dBm EIRP; Category B ≤ 47 dBm EIRP</td><td>CBRS relevance to Wi-Fi engineers: CBRS at 3.5 GHz uses same SAS/AFC concept as 6 GHz AFC. LTE and 5G NR in CBRS band coexist with Wi-Fi 6/7 in 6 GHz using similar database-driven spectrum coordination. GAA devices share spectrum opportunistically - same concept as 6 GHz LPI devices, but with SAS coordination. Private LTE/5G networks on CBRS compete with Wi-Fi for enterprise connectivity.</td></tr><tr><td>WINNER II <a class="xlink" href="/wiki/channel-models/">Channel Models</a></td><td>IST WINNER II D1.1.2
+3GPP TR 38.901 (5G NR)
+IEEE 802.11ax eval ref</td><td>WINNER II scenarios relevant to outdoor/large Wi-Fi:
+B1: Urban micro-cell NLOS - shopping mall, city outdoor. PL exponent 3.8, σ=8dB.
+B3: Indoor hotspot NLOS - large hall, airport. PL = 35.4+21.9log(d)+20log(fc), σ=4dB.
+C1: Suburban macro-cell - residential outdoor. PL = 23.8log(d)+41.2+20log(fc/5), σ=6dB.
+C2: Urban macro-cell - typical city. PL = 26log(d)+39+20log(fc), σ=8dB.
+D1: Rural macro-cell - sparse outdoor, long range. PL = 21.5log(d)+44.2+20log(fc), σ=8dB.
+3GPP TR 38.901: InH, UMi, UMa, RMa - same scenarios, used for 5G NR and 5G/Wi-Fi coexistence studies.</td><td>Cross-reference to 802.11ax: TGax used adapted WINNER II models. B3≈TGax Enterprise Indoor. C2≈TGax Outdoor (outdoor hotspot). D1≈802.11ah (sub-1 GHz rural, multi-km range). 3GPP TR 38.901 InH corresponds to IEEE 802.11 indoor scenarios for coexistence evaluation between NR-U and 802.11ax.</td><td>WINNER II models include spatial correlation matrices (per-antenna, per-cluster) critical for MU-MIMO and massive MIMO simulation. Used in ns-3, OPNET, MATLAB WLAN Toolbox for IEEE 802.11 simulations.</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="additional-regulatory-details-sar-exclusion-icnirp-mpe-cbrs-" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">ADDITIONAL REGULATORY DETAILS - SAR exclusion, ICNIRP MPE, CBRS SAS flow</span><span class="rowcount">2 rows</span><a class="anchor" href="#additional-regulatory-details-sar-exclusion-icnirp-mpe-cbrs-" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Topic</th><th>Standard / CFR</th><th>Key Parameters / Limits</th><th>Measurement Method / Process</th><th>Engineering Impact</th></tr></thead><tbody><tr><td>SAR Exclusion Distance / MPE</td><td>47 CFR §2.1091
+IEEE C95.1-2019
+FCC KDB 447498</td><td>Exclusion distance: devices with conducted power ≤ 20 mW (13 dBm) are exempt from SAR testing
+FCC grants categorical exclusion to devices:
+• Mobile devices ≥ 20 cm from body: if total radiated power ≤ 3 W
+• Portable devices (≤ 20 cm): full SAR test required if &gt; 20 mW
+
+Maximum Permissible Exposure (MPE):
+• Uncontrolled environment (public): 0.6 mW/cm² at 5 GHz
+• Controlled environment (workers): 3 mW/cm²
+
+MPE distance formula: d² = P_EIRP × G / (4π × MPE_limit)
+For 20 dBm EIRP at 5 GHz: minimum 20 cm separation from users</td><td>SAR test protocol:
+• Scanning resolution: 5mm grid
+• Tissue-equivalent liquid dielectric constant within ±5% of target
+• System validation: validation dipole within ±1 dB
+• Worst-case body position tested (against head, held in hand)
+
+For Wi-Fi routers/APs (fixed, ≥ 20 cm from users): usually MPE evaluation only (no SAR test)</td><td>Wi-Fi 6 AP at 20 dBm EIRP, 5 GHz: MPE safety distance ≈ 8-10 cm → no human proximity risk at typical ceiling mount. Mobile handset at max power (23 dBm) at 5 GHz held to head: SAR test mandatory. Key: conducted power &gt; 20 mW + &lt; 20 cm body separation = full SAR test required.</td></tr><tr><td>FCC Part 96 SAS Authorization Flow - CBRS</td><td>47 CFR Part 96
+FCC 17-258
+WINN Forum TS-0016</td><td>CBRS 3-tier architecture:
+Tier 1 (Incumbents/Priority Access Users): Protected; never interfered
+Tier 2 (Priority Access License PAL): Paid auction; 10 MHz × 7 years
+Tier 3 (General Authorized Access GAA): Free; protected from interference by Tier 1/2 only
+
+SAS (Spectrum Access System) authorization:
+1. CBSD (AP) registers with SAS: capabilities, location, antenna height
+2. SAS responds with available spectrum + max EIRP
+3. CBSD requests Grant: specific channel + EIRP
+4. SAS issues Grant: CBSD may transmit within granted parameters
+5. Heartbeat every 1-240 minutes: CBSD confirms Grant is active
+6. CBSD must vacate channel within 60s of Grant suspension</td><td>SAS operators (FCC-approved): Google SAS, CommScope SAS, Federated Wireless, Amdocs, Comsearch. CBSDs must support CBRS Alliance WINNF-TS-0016 API. Max EIRP: 47 dBm for Category B (outdoor), 30 dBm for Category A (indoor/low-power). CBRS band (3550-3700 MHz) uses same SAS architecture concept as 6 GHz AFC - Wi-Fi engineers deploying 6 GHz SP mode use the same paradigm.</td><td></td></tr></tbody></table></div></div></section><section class="related"><h2>Related pages</h2><div class="related-grid"><a class="related-card" href="/wiki/radar-and-dfs/"><span class="rc-title">Radar &amp; DFS</span><span class="rc-cat">Standards &amp; Spectrum</span></a><a class="related-card" href="/wiki/afc-system-6-ghz/"><span class="rc-title">AFC System (6 GHz)</span><span class="rc-cat">Standards &amp; Spectrum</span></a><a class="related-card" href="/wiki/antenna-and-rf-hardware/"><span class="rc-title">Antenna &amp; RF Hardware</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/backhaul-and-60-ghz-planning/"><span class="rc-title">Backhaul &amp; 60 GHz Planning</span><span class="rc-cat">Roaming &amp; Operations</span></a><a class="related-card" href="/wiki/ber-vs-snr-reference/"><span class="rc-title">BER vs SNR Reference</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/channel-models/"><span class="rc-title">Channel Models</span><span class="rc-cat">PHY Layer</span></a></div></section><script>
+    (function () {
+      // per-section collapse
+      document.querySelectorAll(".block.collapsible .block-head").forEach((head) => {
+        const sec = head.closest(".block");
+        head.addEventListener("click", (e) => {
+          if (e.target.closest("a.anchor")) return; // let anchor links work
+          const collapsed = sec.classList.toggle("collapsed");
+          head.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+      // expand-all / collapse-all (single button, two functions)
+      const ta = document.getElementById("toggleall");
+      function anyCollapsed() {
+        return document.querySelector(".block.collapsible.collapsed") !== null;
+      }
+      function sync() {
+        const expand = anyCollapsed(); // if something is collapsed, button offers "Expand all"
+        ta.querySelector(".ta-label").textContent = expand ? "Expand all" : "Collapse all";
+        ta.querySelector(".ta-icon").textContent = expand ? "⊞" : "⊟";
+      }
+      ta?.addEventListener("click", () => {
+        const expand = anyCollapsed();
+        document.querySelectorAll(".block.collapsible").forEach((sec) => {
+          sec.classList.toggle("collapsed", !expand);
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(expand));
+        });
+        sync();
+      });
+      // if the user follows a #anchor, open that section
+      function openHash() {
+        if (!location.hash) return;
+        const el = document.querySelector(location.hash);
+        const sec = el?.closest(".block.collapsible");
+        if (sec) {
+          sec.classList.remove("collapsed");
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", "true");
+          el.scrollIntoView();
+        }
+      }
+      document.querySelectorAll(".block-head").forEach((h) =>
+        h.addEventListener("click", sync)
+      );
+      window.addEventListener("hashchange", openHash);
+      openHash();
+      sync();
+    })();
+  </script></main><footer class="foot"><span>Reviewed 2026-07-17 · Compiled by <a href="https://www.linkedin.com/in/manish-kumar-sharma-39a22756/" target="_blank" rel="noopener">Manish Sharma</a> · <a href="/wiki/">Home</a></span></footer></div></div><script>(function(){const base = "/wiki";
+
+      // accent toggle: Navy (default) <-> Green
+      const tt = document.getElementById("themetoggle");
+      const tl = document.getElementById("themelabel");
+      function syncAccentLabel() {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (tl) tl.textContent = green ? "Green" : "Navy";
+      }
+      syncAccentLabel();
+      tt?.addEventListener("click", () => {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (green) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("accent", "navy");
+        } else {
+          document.documentElement.setAttribute("data-theme", "green");
+          localStorage.setItem("accent", "green");
+        }
+        syncAccentLabel();
+      });
+
+      // desktop sidebar collapse toggle (persisted)
+      document.getElementById("navcollapse")?.addEventListener("click", () => {
+        const collapsed = document.documentElement.getAttribute("data-nav") === "collapsed";
+        if (collapsed) {
+          document.documentElement.removeAttribute("data-nav");
+          localStorage.removeItem("nav-collapsed");
+        } else {
+          document.documentElement.setAttribute("data-nav", "collapsed");
+          localStorage.setItem("nav-collapsed", "1");
+        }
+      });
+
+      // preserve sidebar scroll position across page navigations
+      const sbEl = document.getElementById("sidebar");
+      if (sbEl) {
+        const KEY = "sb-scroll";
+        const saved = sessionStorage.getItem(KEY);
+        if (saved !== null) {
+          sbEl.scrollTop = parseInt(saved, 10) || 0;
+        } else {
+          // first visit: bring the current page's item into view
+          sbEl.querySelector("a.leaf.active")?.scrollIntoView({ block: "center" });
+        }
+        const save = () => sessionStorage.setItem(KEY, String(sbEl.scrollTop));
+        sbEl.addEventListener("scroll", save, { passive: true });
+        sbEl.querySelectorAll("a.leaf").forEach((a) => a.addEventListener("click", save));
+      }
+      // mobile menu
+      const sb = document.getElementById("sidebar");
+      const sc = document.getElementById("scrim");
+      document.getElementById("menutoggle")?.addEventListener("click", () => {
+        sb.classList.toggle("open"); sc.classList.toggle("show");
+      });
+      sc?.addEventListener("click", () => { sb.classList.remove("open"); sc.classList.remove("show"); });
+
+      // sidebar category collapse (caret)
+      document.querySelectorAll(".nav-group > .cat").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const grp = btn.closest(".nav-group");
+          const collapsed = grp.classList.toggle("collapsed");
+          btn.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+
+      // nav search: filter sidebar + "/" focus + Enter -> full search page
+      const ns = document.getElementById("navsearch");
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement !== ns) { e.preventDefault(); ns.focus(); }
+      });
+      function norm(s){return s.toLowerCase();}
+      ns?.addEventListener("input", () => {
+        const q = norm(ns.value.trim());
+        document.querySelectorAll(".nav-group").forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll("a.leaf").forEach((a) => {
+            const show = !q || norm(a.textContent).includes(q);
+            a.style.display = show ? "" : "none";
+            if (show) anyVisible = true;
+          });
+          // while searching, force-expand groups that have matches
+          if (q) { g.classList.toggle("collapsed", !anyVisible); }
+          g.querySelector(".cat").style.display = anyVisible || !q ? "" : "none";
+        });
+      });
+      ns?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && ns.value.trim()) {
+          location.href = base + "/search/?q=" + encodeURIComponent(ns.value.trim());
+        }
+      });
+    })();</script></body></html>

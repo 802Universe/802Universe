@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Network Protocols (Advanced) · 802.11 Reference</title><meta name="description" content="A complete, accuracy-reviewed IEEE 802.11 (Wi-Fi) engineering reference - PHY, MAC, security, spectrum, roaming. Every standard from 802.11-1997 to Wi-Fi 8."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript><script>
+      // accent theme (navy default / green) + nav state, applied before paint
+      const th = localStorage.getItem("accent");
+      if (th === "green") document.documentElement.setAttribute("data-theme", "green");
+      if (localStorage.getItem("nav-collapsed") === "1")
+        document.documentElement.setAttribute("data-nav", "collapsed");
+    </script><link rel="stylesheet" href="/wiki/_astro/Base.zKibCCgX.css"></head><body><div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><a href="/wiki/"><span class="logo">802.11<span class="dot">·</span>ref</span><span class="tag">Wireless engineering reference</span></a></div><div class="nav-search"><input type="search" id="navsearch" placeholder="Search  ( / )" autocomplete="off"></div><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Start Here</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/glossary-and-acronyms/"><span>Glossary &amp; Acronyms</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/resources/"><span>Useful Resources</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/tags/"><span>Browse by Tag</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/parameters/"><span>Parameter Explorer</span><span class="lvl">L1</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Standards &amp; Spectrum</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/master-comparison/"><span>Master Comparison</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-plans/"><span>Channel Plans</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/regulatory-domains/"><span>Regulatory Domains</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/non-802-11-standards/"><span>Non-802.11 Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/802-11-amendments/"><span>802.11 Amendments</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/fcc-part-15-unii-rules/"><span>FCC Part 15 UNII Rules</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/afc-system-6-ghz/"><span>AFC System (6 GHz)</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/emerging-and-future-standards/"><span>Emerging &amp; Future Standards</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/advanced-regulatory/"><span>Advanced Regulatory</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/wi-fi-8-11bn-preview/"><span>Wi-Fi 8 (11bn) Preview</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radar-and-dfs/"><span>Radar &amp; DFS</span><span class="lvl">L2-L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>PHY Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/mcs-rate-tables/"><span>MCS Rate Tables</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/channel-models/"><span>Channel Models</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/link-budget-worksheet/"><span>Link Budget Worksheet</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/ber-vs-snr-reference/"><span>BER vs SNR Reference</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/ppdu-frame-formats/"><span>PPDU Frame Formats</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/ru-tone-plans-802-11ax/"><span>RU Tone Plans (802.11ax)</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rf-propagation-deep-dive/"><span>RF Propagation Deep Dive</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/advanced-phy-mathematics/"><span>Advanced PHY Mathematics</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/tool-engine-formulas/"><span>Formula Reference</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rssi-mcs-thresholds/"><span>RSSI-MCS Thresholds</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/antenna-and-rf-hardware/"><span>Antenna &amp; RF Hardware</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/evm-specification-table/"><span>EVM Specification Table</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/winner-ii-and-channel-simulation/"><span>WINNER II &amp; Channel Simulation</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/modulation-and-db-math/"><span>Modulation &amp; dB Math</span><span class="lvl">L1-L2</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>MAC Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/802-11-frame-types/"><span>802.11 Frame Types</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sta-state-machine/"><span>STA State Machine</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/qos-and-dscp-mapping/"><span>QoS &amp; DSCP Mapping</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/multicast-in-wi-fi/"><span>Multicast in Wi-Fi</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/element-id-registry/"><span>Element ID Registry</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/status-and-reason-codes/"><span>Status &amp; Reason Codes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/mac-header-anatomy/"><span>MAC Header Anatomy</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-access-and-backoff/"><span>Channel Access &amp; Backoff</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/power-save-and-twt/"><span>Power Save &amp; TWT</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/aggregation-and-block-ack/"><span>Aggregation &amp; Block Ack</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/discovery-and-join-process/"><span>Discovery &amp; Join Process</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sounding-and-mu-sequences/"><span>Sounding &amp; MU Sequences</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Security</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/security-standards/"><span>Security Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/4-way-handshake-and-keys/"><span>4-Way Handshake &amp; Keys</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/eap-methods/"><span>EAP Methods</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/security-attacks-and-cves/"><span>Security Attacks &amp; CVEs</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radius-attributes/"><span>RADIUS Attributes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/fils-and-fast-auth-802-11ai/"><span>FILS &amp; Fast Auth (802.11ai)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/rsn-ie-and-security-structures/"><span>RSN IE &amp; Security Structures</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/key-derivation-reference/"><span>Key Derivation Reference</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Roaming &amp; Operations</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/wi-fi-alliance-certifications/"><span>Wi-Fi Alliance Certifications</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/capwap-protocol/"><span>CAPWAP Protocol</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/3gpp-wi-fi-interworking/"><span>3GPP-Wi-Fi Interworking</span><span class="lvl">L3</span></a><a class="leaf active" href="/wiki/network-protocols-advanced/"><span>Network Protocols (Advanced)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/roaming-reference/"><span>Roaming Reference</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/backhaul-and-60-ghz-planning/"><span>Backhaul &amp; 60 GHz Planning</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/oui-vendor-prefix-wi-fi/"><span>OUI Vendor Prefix (Wi-Fi)</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/mlo-and-wi-fi-7-deep-dive/"><span>MLO &amp; Wi-Fi 7 Deep Dive</span><span class="lvl">L2-L3</span></a></div></nav></aside><div class="scrim" id="scrim"></div><div class="main"><div class="topbar"><button class="iconbtn menu-toggle" id="menutoggle" aria-label="Menu">☰</button><button class="iconbtn nav-collapse" id="navcollapse" aria-label="Toggle sidebar"><span class="lbl"></span></button><div class="crumb"><b>Roaming &amp; Operations</b></div><div class="spacer"></div><button class="iconbtn" id="themetoggle" aria-label="Switch accent color"><span class="swatch"></span><span id="themelabel">Navy</span></button></div><div class="spectrum-rule"></div><main class="content"><div class="pagehead" data-pagefind-body><div class="eyebrow"><span>Roaming &amp; Operations</span><span class="lvl">L3</span></div><h1 data-pagefind-meta="title">Network Protocols (Advanced)</h1><div class="tagrow"><a class="tagchip" href="/wiki/tags/roaming/">Roaming</a><a class="tagchip" href="/wiki/tags/reference/">Reference</a></div><button class="toggle-all" id="toggleall" aria-label="Expand or collapse all sections"><span class="ta-icon">⊞</span><span class="ta-label">Expand all</span></button></div><section class="block collapsible collapsed" data-pagefind-body><h2 id="easymesh-ipv6-over-wi-fi-pmksa-erp-deep-dive-wi-fi-alliance-" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">EasyMesh, IPv6 over Wi-Fi, PMKSA/ERP deep dive  |  Wi-Fi Alliance Multi-AP Spec v4.0, RFC 6105, RFC 6696</span><span class="rowcount">5 rows</span><a class="anchor" href="#easymesh-ipv6-over-wi-fi-pmksa-erp-deep-dive-wi-fi-alliance-" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Topic</th><th>Standard</th><th>Description</th><th>Key Messages / Protocol Flow</th><th>Engineering Notes</th></tr></thead><tbody><tr><td>EasyMesh - Architecture</td><td>Wi-Fi Alliance
+Multi-AP Spec v4.0
+IEEE 1905.1</td><td>EasyMesh defines a standardized multi-vendor mesh Wi-Fi architecture:
+• Controller: single logical entity managing the whole mesh. Usually on the root AP (connected to WAN).
+• Agent: each AP in mesh is an agent. Agents report topology, stations, metrics to Controller.
+• 1905.1 AL-MAC: Abstraction Layer MAC - device-independent addressing for multi-technology (Wi-Fi + Ethernet) backhaul.
+• Backhaul: wired Ethernet or wireless (802.11 WDS-like but standardized). Dual-band agents can use one radio for backhaul, one for clients.</td><td>CMDU (Control Message Data Unit) - EasyMesh protocol messages over 1905.1:
+• AP Autoconfiguration: new agent discovers controller, exchanges WSC (Wi-Fi Simple Config) M1/M2 for credential provisioning
+• Topology Discovery: agents report neighbor BSSID, BSS info, STA associations
+• Channel Selection: Controller sends Channel Selection Request, Agents respond
+• Client Steering: BSS Transition Management (802.11v) to steer STAs between agents
+• Backhaul Steering: move backhaul link between channels/bands</td><td>EasyMesh vs 802.11s (mesh):
+• 802.11s: standardized L2 mesh (HWMP routing), no controller concept, IEEE standard
+• EasyMesh: controller-based management over 802.11 + Ethernet, Wi-Fi Alliance cert
+• WDS: vendor-proprietary, not interoperable
+• EasyMesh preferred for multi-vendor managed deployments (ISP, enterprise home)</td></tr><tr><td>EasyMesh - Channel Selection (CSBC)</td><td>Wi-Fi Alliance
+Multi-AP Spec v4.0
+§17</td><td>Channel Selection Based on Centralized control (CSBC): Controller coordinates channel assignment across all agents to minimize CCI.
+Algorithm:
+1. Agent reports: available channels, channel utilization (802.11k neighbor report), noise floor
+2. Controller computes non-overlapping channel plan
+3. Controller sends Channel Selection Request to each agent
+4. Agent responds with Channel Selection Response (accept/decline + reason)
+5. Agent performs CAC if DFS channel selected, then switches</td><td>Channel Selection Request TLV: Operating Class + Channel + Reason Code
+Channel Selection Response TLV: Accept/Decline (reason: DFS required, not supported, busy)
+CAC completion report: CAC_COMPLETION_REPORT TLV with result (success/radar detected)
+Metrics reporting: Channel Scan Report includes noise, utilization, neighbor list per channel</td><td>CSBC coordination prevents the &#39;AP island&#39; problem where adjacent APs independently select the same channel. In 3-agent mesh: root=ch36, hop1=ch100, hop2=ch149 = no co-channel backhaul.</td></tr><tr><td>EasyMesh - BSS Steering</td><td>Wi-Fi Alliance
+Multi-AP Spec v4.0
+§14</td><td>BSS Steering: Controller directs Agent to steer a STA from current BSS to a target BSS.
+Methods:
+• Mandate steering: Agent sends 802.11v BTM Request to STA (Mandate bit set). STA should comply.
+• Opportunity steering: Agent asks STA to roam (STA may decline).
+• Force disassociation: if STA refuses BTM, Agent can disassociate STA (last resort).
+Controller uses STA capabilities, RSSI reports, link quality metrics to decide when/where to steer.</td><td>Steering messages:
+• Client Steering Request (Controller→Agent): STA MAC, Target BSSID list, disassoc imminent, BTM request
+• Client Steering BTM Report (Agent→Controller): STA response (accept/decline), target BSSID
+• Steering Completed (Agent→Controller): confirms STA associated to target
+
+Steering metrics used:
+• RSSI of STA on current BSS &lt; threshold (e.g. -70 dBm = trigger)
+• RSSI on target BSS &gt; threshold (e.g. -65 dBm = candidate)
+• Link quality (frame error rate, retry count) from 802.11k metrics</td><td>Steering guard timer: prevent oscillation. Default: 300s hold after failed steer. 802.11v BTM Request: Disassoc Timer field (if mandatory, AP disassocs after N beacon intervals if STA stays).</td></tr><tr><td>IPv6 over Wi-Fi - RA Guard</td><td>RFC 6105 (RA Guard)
+RFC 8021 (RA Guard bypass)
+IEEE 802.11-2020</td><td>Router Advertisement (RA) Guard: AP/switch blocks rogue RA messages from STAs. RAs carry IPv6 default route - a rogue RA (from compromised STA or attacker) can redirect all IPv6 traffic.
+RA Guard policy: only designated router ports (uplink) allowed to send RA messages. All STA ports: RA from STA → dropped.
+RA Guard bypass: RFC 8021 documents RA Guard bypass via IPv6 extension header manipulation. Fragmented RA or oversize extension headers may evade some implementations.</td><td>RA Guard implementation in AP:
+• Inspect ICMPv6 type=134 (Router Advertisement) in all frames from STAs
+• If RA from STA port → drop + log
+• If RA from uplink → forward to all STAs
+
+Additional: DHCPv6 snooping - track IPv6 address assignments per STA MAC.
+IPv6 ND Proxy: AP answers Neighbor Solicitation (NS) on behalf of STAs. Prevents NS flooding.
+
+6LoWPAN (RFC 4944): IPv6 over IEEE 802.15.4. Relevant to 802.11ah IoT - compression headers reduce 40-byte IPv6 header to 2-6 bytes over low-bandwidth sub-1GHz links.</td><td>Key RA Guard checks:
+1. Source MAC = trusted router → allow
+2. Source MAC = STA → check uplink port ONLY
+3. ICMPv6 type 134 from wrong port → drop
+RA flood attack: attacker generates thousands of /64 prefixes → STA builds huge routing table → CPU exhaustion. RA Guard + rate limiting mitigates.</td></tr><tr><td>PMKSA Caching vs OKC vs ERP vs FT</td><td>IEEE 802.11-2020
+RFC 6696
+IEEE 802.11r</td><td>Comparison of fast re-authentication mechanisms:
+
+1. PMKSA Cache (same AP):
+   • PMK cached at AP and STA
+   • No full EAP on return to SAME AP
+   • Lifetime: 43200s default
+   • Works with: all standards
+
+2. OKC (different AP, same WLC domain):
+   • PMKID = HMAC(PMK, &#39;PMK Name&#39;||target_AP||STA)
+   • WLC distributes PMK to all APs
+   • No 802.11r needed
+   • Works with: WPA2/WPA3 Enterprise
+
+3. ERP (RFC 6696, different auth server):
+   • rRK derived after first EAP success
+   • Fast re-auth via EAP-Initiate/Re-auth
+   • rMSK → PMK for new AP
+   • Works across different WLCs if same ERP domain
+
+4. 802.11r FT (over-air or over-DS):
+   • PMK-R0 → PMK-R1 → PTK without 4-way HS
+   • Fastest: target &lt;50ms
+   • Requires 802.11r support on AP and client
+
+5. FILS (combines ERP + in-frame key delivery):
+   • Authentication + Association + Keys in 2 frames
+   • Target: &lt;100ms including IP address</td><td>Re-auth method selection matrix:
+• Same AP, repeat visit: PMKSA cache
+• Roaming within campus (same WLC): OKC or 802.11r
+• Cross-WLC roaming: ERP (if deployed) or full re-auth
+• IoT devices with simple association: PMKSA cache + short lifetime
+• High-mobility (voice/video): 802.11r FT mandatory (&lt;50ms)
+• Next-gen deployment: FILS for all (requires 802.11ai-capable APs)</td><td>Latency comparison:
+Full EAP + 4WHS: 300-500ms
+PMKSA cache (same AP): 30-80ms
+OKC roam: 50-100ms
+802.11r FT: &lt;50ms
+FILS: &lt;100ms (including IP assignment)</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="additional-network-protocol-details-802-11v-bss-tm-ipv6-ra-g" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">ADDITIONAL NETWORK PROTOCOL DETAILS - 802.11v BSS TM, IPv6 RA Guard, Multicast policies</span><span class="rowcount">4 rows</span><a class="anchor" href="#additional-network-protocol-details-802-11v-bss-tm-ipv6-ra-g" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Topic</th><th>Standard</th><th>Description</th><th>Key Messages / Protocol Flow</th><th>Engineering Notes</th></tr></thead><tbody><tr><td>802.11v BSS Transition Management Detail</td><td>IEEE 802.11-2020 §11.22.7
+Wi-Fi Alliance BSS TM</td><td>BSS TM allows AP to steer clients to better APs. Avoids sticky-client problem. AP sends BSS TM Request → client may comply or reject. AP can set &#39;Disassociation Imminent&#39; bit to force move.</td><td>1. AP sends BSS TM Request (Action Cat=10, Code=7): includes Candidate List (BSSID + RSSI + channel), Disassociation Timer, Disassociation Imminent bit
+2. STA sends BSS TM Response: Status 0=accepted, 1=reject (no reason), 2=reject (no suitable candidates)
+3. If accepted: STA roams within Disassociation Timer
+4. If rejected and Disassociation Imminent=1: AP sends Disassoc after timer
+
+BTM Accept rate KPI: should be &gt;80% for healthy WLAN</td><td>Sticky client fix: set Disassociation Imminent=1 + short timer (1-2s) as last resort. Monitor: dot11BSS TMRequestCount + dot11BSS TMResponseCount. Low accept rate = client doesn&#39;t support 802.11v or disagrees with AP steering decision. WPA3/Wi-Fi 6 certification requires 802.11v support.</td></tr><tr><td>Multicast-to-Unicast Policy Guidelines</td><td>IEEE 802.11-2020 §11.2.1.7
+Vendor best practice</td><td>Multicast-to-unicast (M-to-U) conversion: AP converts each multicast frame to unicast for each client individually. Enables ACK and rate selection per client. Only practical for small group sizes.</td><td>Per-client unicast delivery:
+• Each client gets individual frame → ACK required → retransmit on failure
+• Rate selection: AP uses optimal MCS per client (vs one fixed multicast rate)
+• TXOP: each unicast uses dedicated TXOP
+
+Threshold recommendations:
+• Clients ≤ 30: M-to-U enabled
+• Clients 30-100: evaluate airtime impact
+• Clients &gt; 100: disable M-to-U, use IGMP snooping + basic rate tuning instead
+
+Video streams: multicast at 24 Mbps basic rate vs unicast at MCS9 = 10× airtime saving per client</td><td>Always pair M-to-U with IGMP snooping (prevents unicast flood to non-members). mDNS/Bonjour is worst offender: Apple devices generate 20-40 mDNS/ARP packets per minute per device. At 200 devices = 4000-8000 pkt/min at basic rate. Use mDNS proxy to cache/suppress. Key metric: multicast PPS at AP radio → should be &lt;50 pkt/s on healthy network.</td></tr><tr><td><a class="xlink" href="/wiki/capwap-protocol/">CAPWAP</a> Split-MAC Best Practices</td><td>RFC 5415/5416
+Enterprise WLAN design</td><td>Recommended function placement for enterprise WLAN:
+
+Local MAC (at AP):
+• Beacon generation and transmission
+• Probe Req/Resp handling
+• 802.11 ACK and retransmission
+• Local data bridging for local SSID
+• 802.11 encryption/decryption (off-chip HW)
+
+Central MAC (at WLC):
+• User authentication (802.1X EAP relay)
+• DHCP assignment and IP policy
+• Firewall/ACL enforcement
+• Load balancing and band steering
+• PMKSA cache and key management (FT)
+• QoS policy enforcement
+• Rogue detection correlation</td><td>Modern trend: hybrid architecture per SSID policy. Corporate SSID: central MAC for security/visibility. IoT/Local SSID: local MAC for low-latency and WLC-bypass. Cloud-managed APs: local MAC everywhere (no WLC), policy from cloud. Performance: local MAC eliminates ~2ms RTT overhead per 802.11 frame exchange. Critical for VoIP and gaming.</td><td></td></tr><tr><td>802.1X Identity Protection - EAP Phases</td><td>RFC 3748 §7.3
+IEEE 802.1X-2020</td><td>Identity protection for 802.1X EAP methods:
+
+Phase 1 (outer identity): Sent in cleartext EAP-Response/Identity
+→ Visible to anyone on the wireless medium
+→ Should use anonymous outer identity: anonymous@realm.com
+
+Phase 2 (inner identity): Protected inside TLS tunnel (PEAP/TTLS/FAST)
+→ Actual username sent encrypted inside tunnel
+→ Not visible to passive observers
+
+Risk without anonymous outer identity:
+→ Username harvesting for social engineering
+→ SSID-correlation attacks (CVE-2023-52160)
+
+EAP-TLS: No inner identity needed (certificate = identity)</td><td>Configure anonymous outer identity on ALL PEAP/TTLS/FAST deployments. RADIUS policy: use User-Name attribute (inner, from tunnel) for authorization decisions. Calling-Station-Id (MAC) for device fingerprinting. Never rely on EAP outer identity (User-Name in Access-Request outer) for policy decisions.</td><td></td></tr></tbody></table></div></div></section><section class="related"><h2>Related pages</h2><div class="related-grid"><a class="related-card" href="/wiki/3gpp-wi-fi-interworking/"><span class="rc-title">3GPP-Wi-Fi Interworking</span><span class="rc-cat">Roaming &amp; Operations</span></a><a class="related-card" href="/wiki/capwap-protocol/"><span class="rc-title">CAPWAP Protocol</span><span class="rc-cat">Roaming &amp; Operations</span></a><a class="related-card" href="/wiki/802-11-amendments/"><span class="rc-title">802.11 Amendments</span><span class="rc-cat">Standards &amp; Spectrum</span></a><a class="related-card" href="/wiki/802-11-frame-types/"><span class="rc-title">802.11 Frame Types</span><span class="rc-cat">MAC Layer</span></a><a class="related-card" href="/wiki/channel-plans/"><span class="rc-title">Channel Plans</span><span class="rc-cat">Standards &amp; Spectrum</span></a><a class="related-card" href="/wiki/discovery-and-join-process/"><span class="rc-title">Discovery &amp; Join Process</span><span class="rc-cat">MAC Layer</span></a></div></section><script>
+    (function () {
+      // per-section collapse
+      document.querySelectorAll(".block.collapsible .block-head").forEach((head) => {
+        const sec = head.closest(".block");
+        head.addEventListener("click", (e) => {
+          if (e.target.closest("a.anchor")) return; // let anchor links work
+          const collapsed = sec.classList.toggle("collapsed");
+          head.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+      // expand-all / collapse-all (single button, two functions)
+      const ta = document.getElementById("toggleall");
+      function anyCollapsed() {
+        return document.querySelector(".block.collapsible.collapsed") !== null;
+      }
+      function sync() {
+        const expand = anyCollapsed(); // if something is collapsed, button offers "Expand all"
+        ta.querySelector(".ta-label").textContent = expand ? "Expand all" : "Collapse all";
+        ta.querySelector(".ta-icon").textContent = expand ? "⊞" : "⊟";
+      }
+      ta?.addEventListener("click", () => {
+        const expand = anyCollapsed();
+        document.querySelectorAll(".block.collapsible").forEach((sec) => {
+          sec.classList.toggle("collapsed", !expand);
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(expand));
+        });
+        sync();
+      });
+      // if the user follows a #anchor, open that section
+      function openHash() {
+        if (!location.hash) return;
+        const el = document.querySelector(location.hash);
+        const sec = el?.closest(".block.collapsible");
+        if (sec) {
+          sec.classList.remove("collapsed");
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", "true");
+          el.scrollIntoView();
+        }
+      }
+      document.querySelectorAll(".block-head").forEach((h) =>
+        h.addEventListener("click", sync)
+      );
+      window.addEventListener("hashchange", openHash);
+      openHash();
+      sync();
+    })();
+  </script></main><footer class="foot"><span>Reviewed 2026-07-17 · Compiled by <a href="https://www.linkedin.com/in/manish-kumar-sharma-39a22756/" target="_blank" rel="noopener">Manish Sharma</a> · <a href="/wiki/">Home</a></span></footer></div></div><script>(function(){const base = "/wiki";
+
+      // accent toggle: Navy (default) <-> Green
+      const tt = document.getElementById("themetoggle");
+      const tl = document.getElementById("themelabel");
+      function syncAccentLabel() {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (tl) tl.textContent = green ? "Green" : "Navy";
+      }
+      syncAccentLabel();
+      tt?.addEventListener("click", () => {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (green) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("accent", "navy");
+        } else {
+          document.documentElement.setAttribute("data-theme", "green");
+          localStorage.setItem("accent", "green");
+        }
+        syncAccentLabel();
+      });
+
+      // desktop sidebar collapse toggle (persisted)
+      document.getElementById("navcollapse")?.addEventListener("click", () => {
+        const collapsed = document.documentElement.getAttribute("data-nav") === "collapsed";
+        if (collapsed) {
+          document.documentElement.removeAttribute("data-nav");
+          localStorage.removeItem("nav-collapsed");
+        } else {
+          document.documentElement.setAttribute("data-nav", "collapsed");
+          localStorage.setItem("nav-collapsed", "1");
+        }
+      });
+
+      // preserve sidebar scroll position across page navigations
+      const sbEl = document.getElementById("sidebar");
+      if (sbEl) {
+        const KEY = "sb-scroll";
+        const saved = sessionStorage.getItem(KEY);
+        if (saved !== null) {
+          sbEl.scrollTop = parseInt(saved, 10) || 0;
+        } else {
+          // first visit: bring the current page's item into view
+          sbEl.querySelector("a.leaf.active")?.scrollIntoView({ block: "center" });
+        }
+        const save = () => sessionStorage.setItem(KEY, String(sbEl.scrollTop));
+        sbEl.addEventListener("scroll", save, { passive: true });
+        sbEl.querySelectorAll("a.leaf").forEach((a) => a.addEventListener("click", save));
+      }
+      // mobile menu
+      const sb = document.getElementById("sidebar");
+      const sc = document.getElementById("scrim");
+      document.getElementById("menutoggle")?.addEventListener("click", () => {
+        sb.classList.toggle("open"); sc.classList.toggle("show");
+      });
+      sc?.addEventListener("click", () => { sb.classList.remove("open"); sc.classList.remove("show"); });
+
+      // sidebar category collapse (caret)
+      document.querySelectorAll(".nav-group > .cat").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const grp = btn.closest(".nav-group");
+          const collapsed = grp.classList.toggle("collapsed");
+          btn.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+
+      // nav search: filter sidebar + "/" focus + Enter -> full search page
+      const ns = document.getElementById("navsearch");
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement !== ns) { e.preventDefault(); ns.focus(); }
+      });
+      function norm(s){return s.toLowerCase();}
+      ns?.addEventListener("input", () => {
+        const q = norm(ns.value.trim());
+        document.querySelectorAll(".nav-group").forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll("a.leaf").forEach((a) => {
+            const show = !q || norm(a.textContent).includes(q);
+            a.style.display = show ? "" : "none";
+            if (show) anyVisible = true;
+          });
+          // while searching, force-expand groups that have matches
+          if (q) { g.classList.toggle("collapsed", !anyVisible); }
+          g.querySelector(".cat").style.display = anyVisible || !q ? "" : "none";
+        });
+      });
+      ns?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && ns.value.trim()) {
+          location.href = base + "/search/?q=" + encodeURIComponent(ns.value.trim());
+        }
+      });
+    })();</script></body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>QoS &amp; DSCP Mapping · 802.11 Reference</title><meta name="description" content="A complete, accuracy-reviewed IEEE 802.11 (Wi-Fi) engineering reference - PHY, MAC, security, spectrum, roaming. Every standard from 802.11-1997 to Wi-Fi 8."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript><script>
+      // accent theme (navy default / green) + nav state, applied before paint
+      const th = localStorage.getItem("accent");
+      if (th === "green") document.documentElement.setAttribute("data-theme", "green");
+      if (localStorage.getItem("nav-collapsed") === "1")
+        document.documentElement.setAttribute("data-nav", "collapsed");
+    </script><link rel="stylesheet" href="/wiki/_astro/Base.zKibCCgX.css"></head><body><div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><a href="/wiki/"><span class="logo">802.11<span class="dot">·</span>ref</span><span class="tag">Wireless engineering reference</span></a></div><div class="nav-search"><input type="search" id="navsearch" placeholder="Search  ( / )" autocomplete="off"></div><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Start Here</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/glossary-and-acronyms/"><span>Glossary &amp; Acronyms</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/resources/"><span>Useful Resources</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/tags/"><span>Browse by Tag</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/parameters/"><span>Parameter Explorer</span><span class="lvl">L1</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Standards &amp; Spectrum</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/master-comparison/"><span>Master Comparison</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-plans/"><span>Channel Plans</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/regulatory-domains/"><span>Regulatory Domains</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/non-802-11-standards/"><span>Non-802.11 Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/802-11-amendments/"><span>802.11 Amendments</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/fcc-part-15-unii-rules/"><span>FCC Part 15 UNII Rules</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/afc-system-6-ghz/"><span>AFC System (6 GHz)</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/emerging-and-future-standards/"><span>Emerging &amp; Future Standards</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/advanced-regulatory/"><span>Advanced Regulatory</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/wi-fi-8-11bn-preview/"><span>Wi-Fi 8 (11bn) Preview</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radar-and-dfs/"><span>Radar &amp; DFS</span><span class="lvl">L2-L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>PHY Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/mcs-rate-tables/"><span>MCS Rate Tables</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/channel-models/"><span>Channel Models</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/link-budget-worksheet/"><span>Link Budget Worksheet</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/ber-vs-snr-reference/"><span>BER vs SNR Reference</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/ppdu-frame-formats/"><span>PPDU Frame Formats</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/ru-tone-plans-802-11ax/"><span>RU Tone Plans (802.11ax)</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rf-propagation-deep-dive/"><span>RF Propagation Deep Dive</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/advanced-phy-mathematics/"><span>Advanced PHY Mathematics</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/tool-engine-formulas/"><span>Formula Reference</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/rssi-mcs-thresholds/"><span>RSSI-MCS Thresholds</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/antenna-and-rf-hardware/"><span>Antenna &amp; RF Hardware</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/evm-specification-table/"><span>EVM Specification Table</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/winner-ii-and-channel-simulation/"><span>WINNER II &amp; Channel Simulation</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/modulation-and-db-math/"><span>Modulation &amp; dB Math</span><span class="lvl">L1-L2</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>MAC Layer</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/802-11-frame-types/"><span>802.11 Frame Types</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sta-state-machine/"><span>STA State Machine</span><span class="lvl">L2</span></a><a class="leaf active" href="/wiki/qos-and-dscp-mapping/"><span>QoS &amp; DSCP Mapping</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/multicast-in-wi-fi/"><span>Multicast in Wi-Fi</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/element-id-registry/"><span>Element ID Registry</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/status-and-reason-codes/"><span>Status &amp; Reason Codes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/mac-header-anatomy/"><span>MAC Header Anatomy</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/channel-access-and-backoff/"><span>Channel Access &amp; Backoff</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/power-save-and-twt/"><span>Power Save &amp; TWT</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/aggregation-and-block-ack/"><span>Aggregation &amp; Block Ack</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/discovery-and-join-process/"><span>Discovery &amp; Join Process</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/sounding-and-mu-sequences/"><span>Sounding &amp; MU Sequences</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Security</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/security-standards/"><span>Security Standards</span><span class="lvl">L1-L2</span></a><a class="leaf" href="/wiki/4-way-handshake-and-keys/"><span>4-Way Handshake &amp; Keys</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/eap-methods/"><span>EAP Methods</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/security-attacks-and-cves/"><span>Security Attacks &amp; CVEs</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/radius-attributes/"><span>RADIUS Attributes</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/fils-and-fast-auth-802-11ai/"><span>FILS &amp; Fast Auth (802.11ai)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/rsn-ie-and-security-structures/"><span>RSN IE &amp; Security Structures</span><span class="lvl">L2-L3</span></a><a class="leaf" href="/wiki/key-derivation-reference/"><span>Key Derivation Reference</span><span class="lvl">L3</span></a></div></nav><nav class="nav-group"><button class="cat" aria-expanded="true"><svg class="cat-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Roaming &amp; Operations</span></button><div class="nav-group-body"><a class="leaf" href="/wiki/wi-fi-alliance-certifications/"><span>Wi-Fi Alliance Certifications</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/capwap-protocol/"><span>CAPWAP Protocol</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/3gpp-wi-fi-interworking/"><span>3GPP-Wi-Fi Interworking</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/network-protocols-advanced/"><span>Network Protocols (Advanced)</span><span class="lvl">L3</span></a><a class="leaf" href="/wiki/roaming-reference/"><span>Roaming Reference</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/backhaul-and-60-ghz-planning/"><span>Backhaul &amp; 60 GHz Planning</span><span class="lvl">L2</span></a><a class="leaf" href="/wiki/oui-vendor-prefix-wi-fi/"><span>OUI Vendor Prefix (Wi-Fi)</span><span class="lvl">L1</span></a><a class="leaf" href="/wiki/mlo-and-wi-fi-7-deep-dive/"><span>MLO &amp; Wi-Fi 7 Deep Dive</span><span class="lvl">L2-L3</span></a></div></nav></aside><div class="scrim" id="scrim"></div><div class="main"><div class="topbar"><button class="iconbtn menu-toggle" id="menutoggle" aria-label="Menu">☰</button><button class="iconbtn nav-collapse" id="navcollapse" aria-label="Toggle sidebar"><span class="lbl"></span></button><div class="crumb"><b>MAC Layer</b></div><div class="spacer"></div><button class="iconbtn" id="themetoggle" aria-label="Switch accent color"><span class="swatch"></span><span id="themelabel">Navy</span></button></div><div class="spectrum-rule"></div><main class="content"><div class="pagehead" data-pagefind-body><div class="eyebrow"><span>MAC Layer</span><span class="lvl">L2</span></div><h1 data-pagefind-meta="title">QoS &amp; DSCP Mapping</h1><div class="tagrow"><a class="tagchip" href="/wiki/tags/mac/">MAC</a><a class="tagchip" href="/wiki/tags/qos/">QoS</a><a class="tagchip" href="/wiki/tags/design/">Design</a></div><button class="toggle-all" id="toggleall" aria-label="Expand or collapse all sections"><span class="ta-icon">⊞</span><span class="ta-label">Expand all</span></button></div><section class="block collapsible collapsed" data-pagefind-body><h2 id="qos-mapping-reference-dscp-802-1p-up-802-11e-ac-rfc-8325-upd" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">QoS Mapping Reference - DSCP → 802.1p UP → 802.11e AC  |  RFC 8325 (updated mapping), RFC 4594 (DSCP usage), IEEE 802.11e</span><span class="rowcount">11 rows</span><a class="anchor" href="#qos-mapping-reference-dscp-802-1p-up-802-11e-ac-rfc-8325-upd" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Traffic Type</th><th>DSCP (decimal)</th><th>DSCP (hex)</th><th>DSCP Name</th><th>802.1p UP (0-7)</th><th>802.11e AC</th><th>WMM Queue</th><th>CWmin/CWmax</th><th>Engineering Notes</th></tr></thead><tbody><tr><td>Network Control (BGP/OSPF)</td><td class="codey">48</td><td class="codey">0x30</td><td>CS6</td><td class="codey">7</td><td>AC_VO</td><td>VO</td><td>3/7</td><td>Router-to-router routing protocols. Highest priority. Never throttle.</td></tr><tr><td>Telephony / VoIP RTP</td><td class="codey">46</td><td class="codey">0x2E</td><td>EF (Expedited Fwd)</td><td>5 or 6</td><td>AC_VO</td><td>VO</td><td>3/7</td><td>G.711/G.729 voice. 20 ms packets. Requires &lt;150 ms one-way latency. EF = dedicated bandwidth.</td></tr><tr><td>Signaling (SIP/H.323)</td><td class="codey">40</td><td class="codey">0x28</td><td>CS5</td><td class="codey">5</td><td>AC_VO</td><td>VO</td><td>3/7</td><td>Call setup/teardown. Small packets, low volume. Higher than data but lower than voice media.</td></tr><tr><td>Video conferencing (RTP video)</td><td class="codey">34</td><td class="codey">0x22</td><td>AF41</td><td class="codey">4</td><td>AC_VI</td><td>VI</td><td>7/15</td><td>Interactive video (Zoom, Teams video). Intolerant of jitter. Separate queue from voice.</td></tr><tr><td>Streaming video</td><td class="codey">32</td><td class="codey">0x20</td><td>CS4</td><td class="codey">4</td><td>AC_VI</td><td>VI</td><td>7/15</td><td>Pre-buffered video (Netflix, YouTube). More latency tolerant than interactive. Some implementations map to BE.</td></tr><tr><td>Multimedia streaming</td><td class="codey">26</td><td class="codey">0x1A</td><td>AF31</td><td class="codey">4</td><td>AC_VI</td><td>VI</td><td>7/15</td><td>RFC 4594: multimedia streaming. Consistent bandwidth needed.</td></tr><tr><td>Business-critical data</td><td class="codey">18</td><td class="codey">0x12</td><td>AF21</td><td>0 or 3</td><td>AC_BE</td><td>BE</td><td>15/1023</td><td>ERP, CRM, business apps. Elevated priority within best effort class.</td></tr><tr><td>High-throughput data</td><td class="codey">10</td><td class="codey">0x0A</td><td>AF11</td><td class="codey">0</td><td>AC_BE</td><td>BE</td><td>15/1023</td><td>Bulk transfers with some priority. FTP, large file sync.</td></tr><tr><td>Best Effort (default)</td><td class="codey">0</td><td class="codey">0x00</td><td>CS0 / BE</td><td class="codey">0</td><td>AC_BE</td><td>BE</td><td>15/1023</td><td>Default IP traffic. HTTP, HTTPS (unclassified), most internet traffic.</td></tr><tr><td>Low-Priority / Scavenger</td><td class="codey">8</td><td class="codey">0x08</td><td>CS1</td><td class="codey">1</td><td>AC_BK</td><td>BK</td><td>15/1023</td><td>Peer-to-peer, OS updates, background backup. Deliberately deprioritized.</td></tr><tr><td>Background</td><td class="codey">2</td><td class="codey">0x02</td><td>--</td><td class="codey">1</td><td>AC_BK</td><td>BK</td><td>15/1023</td><td>Lowest priority. Bulk background transfers.</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="edca-parameters-ieee-802-11-2020-26-3-2-default-values-ap-ad" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">EDCA Parameters - IEEE 802.11-2020 §26.3.2  |  Default values (AP advertisement in beacon / Assoc Resp)</span><span class="rowcount">4 rows</span><a class="anchor" href="#edca-parameters-ieee-802-11-2020-26-3-2-default-values-ap-ad" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Access Category</th><th>AIFSN (slots)</th><th>CWmin</th><th>CWmax</th><th>TXOP Limit (µs)</th><th>TXOP Limit (ms)</th><th>Priority Order</th><th>Typical Traffic</th><th>Notes</th></tr></thead><tbody><tr><td>AC_VO (Voice)</td><td class="codey">2</td><td class="codey">3</td><td class="codey">7</td><td>1504 µs</td><td>1.504 ms</td><td>1 (highest)</td><td>VoIP RTP, SIP signaling</td><td>Smallest CW + shortest AIFS = fastest medium access. TXOP = 1504 µs = enough for one G.711 20ms frame.</td></tr><tr><td>AC_VI (Video)</td><td class="codey">2</td><td class="codey">7</td><td class="codey">15</td><td>3008 µs</td><td>3.008 ms</td><td class="codey">2</td><td>Video RTP, conferencing</td><td>Medium CW. TXOP = 3008 µs for larger video frames.</td></tr><tr><td>AC_BE (Best Effort)</td><td class="codey">3</td><td class="codey">15</td><td>1023</td><td>0 µs</td><td>0 (TXOP disabled)</td><td class="codey">3</td><td>Web browsing, HTTPS, email</td><td>TXOP=0 means one MPDU/AMPDU then must re-contend. Most traffic.</td></tr><tr><td>AC_BK (Background)</td><td class="codey">7</td><td class="codey">15</td><td>1023</td><td>0 µs</td><td>0 (TXOP disabled)</td><td>4 (lowest)</td><td>Backups, P2P, OS updates</td><td>Longest AIFS (7 slots) = waits longer before contending. Deliberately penalized.</td></tr></tbody></table></div></div></section><section class="block collapsible collapsed" data-pagefind-body><h2 id="common-qos-design-mistakes-fixes" class="block-head"><button class="block-toggle" aria-expanded="false"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></button><span class="block-title">Common QoS Design Mistakes &amp; Fixes</span><span class="rowcount">6 rows</span><a class="anchor" href="#common-qos-design-mistakes-fixes" aria-label="Link to section">#</a></h2><div class="block-body"><div class="tablewrap"><table class="data"><thead><tr><th>Access Category</th><th>AIFSN (slots)</th><th>CWmin</th><th>CWmax</th><th>TXOP Limit (µs)</th><th>TXOP Limit (ms)</th><th>Priority Order</th><th>Typical Traffic</th><th>Notes</th></tr></thead><tbody><tr><td>Mistake</td><td>Impact</td><td>Correct Approach</td><td>RFC / Standard</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Not classifying traffic at AP (all flows = BE)</td><td>VoIP packets compete equally with YouTube → jitter and packet loss on voice</td><td>Configure DSCP trust on AP/WLC, apply DSCP-to-UP-to-AC mapping per RFC 8325</td><td>RFC 8325</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Using CS6/CS7 for voice instead of EF</td><td>Router control traffic shares queue with voice → congestion during routing events</td><td>EF (DSCP 46) for voice media. CS5 for signaling. Never use CS6/CS7 for user traffic.</td><td>RFC 4594</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>40 MHz in 2.4 GHz causing AC_VO starvation</td><td>Only 1 non-overlapping 40 MHz channel → severe CCI → retransmissions fill VO queue</td><td>Use 20 MHz channels in 2.4 GHz for voice deployments</td><td>Wi-Fi Alliance Voice-Enterprise</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>DSCP remarking at NAT boundary</td><td>DSCP marking stripped by ISP or NAT device → all traffic becomes BE at far end</td><td>Use DSCP marking end-to-end. Ensure firewall/NAT rules preserve DSCP.</td><td>RFC 2474</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Multicast video at basic rate (1 Mbps)</td><td>High-throughput multicast stream sent at 1 Mbps → consumes enormous airtime</td><td>Convert multicast to unicast per client (mcast-to-ucast conversion in AP). Or raise basic rates.</td><td>IEEE 802.11-2020 §11.2.1.7</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody></table></div></div></section><section class="related"><h2>Related pages</h2><div class="related-grid"><a class="related-card" href="/wiki/channel-access-and-backoff/"><span class="rc-title">Channel Access &amp; Backoff</span><span class="rc-cat">MAC Layer</span></a><a class="related-card" href="/wiki/802-11-frame-types/"><span class="rc-title">802.11 Frame Types</span><span class="rc-cat">MAC Layer</span></a><a class="related-card" href="/wiki/aggregation-and-block-ack/"><span class="rc-title">Aggregation &amp; Block Ack</span><span class="rc-cat">MAC Layer</span></a><a class="related-card" href="/wiki/antenna-and-rf-hardware/"><span class="rc-title">Antenna &amp; RF Hardware</span><span class="rc-cat">PHY Layer</span></a><a class="related-card" href="/wiki/backhaul-and-60-ghz-planning/"><span class="rc-title">Backhaul &amp; 60 GHz Planning</span><span class="rc-cat">Roaming &amp; Operations</span></a><a class="related-card" href="/wiki/discovery-and-join-process/"><span class="rc-title">Discovery &amp; Join Process</span><span class="rc-cat">MAC Layer</span></a></div></section><script>
+    (function () {
+      // per-section collapse
+      document.querySelectorAll(".block.collapsible .block-head").forEach((head) => {
+        const sec = head.closest(".block");
+        head.addEventListener("click", (e) => {
+          if (e.target.closest("a.anchor")) return; // let anchor links work
+          const collapsed = sec.classList.toggle("collapsed");
+          head.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+      // expand-all / collapse-all (single button, two functions)
+      const ta = document.getElementById("toggleall");
+      function anyCollapsed() {
+        return document.querySelector(".block.collapsible.collapsed") !== null;
+      }
+      function sync() {
+        const expand = anyCollapsed(); // if something is collapsed, button offers "Expand all"
+        ta.querySelector(".ta-label").textContent = expand ? "Expand all" : "Collapse all";
+        ta.querySelector(".ta-icon").textContent = expand ? "⊞" : "⊟";
+      }
+      ta?.addEventListener("click", () => {
+        const expand = anyCollapsed();
+        document.querySelectorAll(".block.collapsible").forEach((sec) => {
+          sec.classList.toggle("collapsed", !expand);
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", String(expand));
+        });
+        sync();
+      });
+      // if the user follows a #anchor, open that section
+      function openHash() {
+        if (!location.hash) return;
+        const el = document.querySelector(location.hash);
+        const sec = el?.closest(".block.collapsible");
+        if (sec) {
+          sec.classList.remove("collapsed");
+          sec.querySelector(".block-toggle")?.setAttribute("aria-expanded", "true");
+          el.scrollIntoView();
+        }
+      }
+      document.querySelectorAll(".block-head").forEach((h) =>
+        h.addEventListener("click", sync)
+      );
+      window.addEventListener("hashchange", openHash);
+      openHash();
+      sync();
+    })();
+  </script></main><footer class="foot"><span>Reviewed 2026-07-17 · Compiled by <a href="https://www.linkedin.com/in/manish-kumar-sharma-39a22756/" target="_blank" rel="noopener">Manish Sharma</a> · <a href="/wiki/">Home</a></span></footer></div></div><script>(function(){const base = "/wiki";
+
+      // accent toggle: Navy (default) <-> Green
+      const tt = document.getElementById("themetoggle");
+      const tl = document.getElementById("themelabel");
+      function syncAccentLabel() {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (tl) tl.textContent = green ? "Green" : "Navy";
+      }
+      syncAccentLabel();
+      tt?.addEventListener("click", () => {
+        const green = document.documentElement.getAttribute("data-theme") === "green";
+        if (green) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("accent", "navy");
+        } else {
+          document.documentElement.setAttribute("data-theme", "green");
+          localStorage.setItem("accent", "green");
+        }
+        syncAccentLabel();
+      });
+
+      // desktop sidebar collapse toggle (persisted)
+      document.getElementById("navcollapse")?.addEventListener("click", () => {
+        const collapsed = document.documentElement.getAttribute("data-nav") === "collapsed";
+        if (collapsed) {
+          document.documentElement.removeAttribute("data-nav");
+          localStorage.removeItem("nav-collapsed");
+        } else {
+          document.documentElement.setAttribute("data-nav", "collapsed");
+          localStorage.setItem("nav-collapsed", "1");
+        }
+      });
+
+      // preserve sidebar scroll position across page navigations
+      const sbEl = document.getElementById("sidebar");
+      if (sbEl) {
+        const KEY = "sb-scroll";
+        const saved = sessionStorage.getItem(KEY);
+        if (saved !== null) {
+          sbEl.scrollTop = parseInt(saved, 10) || 0;
+        } else {
+          // first visit: bring the current page's item into view
+          sbEl.querySelector("a.leaf.active")?.scrollIntoView({ block: "center" });
+        }
+        const save = () => sessionStorage.setItem(KEY, String(sbEl.scrollTop));
+        sbEl.addEventListener("scroll", save, { passive: true });
+        sbEl.querySelectorAll("a.leaf").forEach((a) => a.addEventListener("click", save));
+      }
+      // mobile menu
+      const sb = document.getElementById("sidebar");
+      const sc = document.getElementById("scrim");
+      document.getElementById("menutoggle")?.addEventListener("click", () => {
+        sb.classList.toggle("open"); sc.classList.toggle("show");
+      });
+      sc?.addEventListener("click", () => { sb.classList.remove("open"); sc.classList.remove("show"); });
+
+      // sidebar category collapse (caret)
+      document.querySelectorAll(".nav-group > .cat").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const grp = btn.closest(".nav-group");
+          const collapsed = grp.classList.toggle("collapsed");
+          btn.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+
+      // nav search: filter sidebar + "/" focus + Enter -> full search page
+      const ns = document.getElementById("navsearch");
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement !== ns) { e.preventDefault(); ns.focus(); }
+      });
+      function norm(s){return s.toLowerCase();}
+      ns?.addEventListener("input", () => {
+        const q = norm(ns.value.trim());
+        document.querySelectorAll(".nav-group").forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll("a.leaf").forEach((a) => {
+            const show = !q || norm(a.textContent).includes(q);
+            a.style.display = show ? "" : "none";
+            if (show) anyVisible = true;
+          });
+          // while searching, force-expand groups that have matches
+          if (q) { g.classList.toggle("collapsed", !anyVisible); }
+          g.querySelector(".cat").style.display = anyVisible || !q ? "" : "none";
+        });
+      });
+      ns?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && ns.value.trim()) {
+          location.href = base + "/search/?q=" + encodeURIComponent(ns.value.trim());
+        }
+      });
+    })();</script></body></html>
