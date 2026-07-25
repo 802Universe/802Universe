@@ -18,10 +18,10 @@
   // Both values come from the Cloudflare Access application you create.
   // Neither is a secret — the AUD tag is only meaningful together with
   // Cloudflare's signature, so it is safe in the repo.
-  "vars": {
-    "TEAM_DOMAIN": "https://YOUR-TEAM-NAME.cloudflareaccess.com",
-    "POLICY_AUD": "PASTE_YOUR_APPLICATION_AUDIENCE_TAG_HERE"
-  },
+"vars": {
+  "TEAM_DOMAIN": "https://odd-mode-557c.cloudflareaccess.com",
+  "POLICY_AUD": "73fe336b62eb29345de1ba18d82856f74768d9059a5e0bd3fd7a51b53ca9ef6f"
+},
 
   "observability": { "enabled": true }
 }
