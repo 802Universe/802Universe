@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — 802 Universe</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231141B8'/><path d='M4 22 L9 22 L11 12 L13 22 L17 22 L19 8 L21 22 L26 22' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9EDF2; --surface:#FFFFFF; --surface-2:#F4F7FA;
+  --ink:#0B1220; --ink-2:#33415A; --muted:#66768D;
+  --line:#CBD5E1; --line-2:#E2E8F0;
+  --cobalt:#1141B8; --cobalt-soft:rgba(17,65,184,.07);
+  --signal:#FF5A1F; --good:#0E7C57; --bad:#B4232B;
+}
+[data-theme="dark"]{
+  --paper:#080B10; --surface:#0F141C; --surface-2:#141B25;
+  --ink:#E4EBF4; --ink-2:#A9B7C9; --muted:#7C8A9E;
+  --line:#232D3B; --line-2:#1A222D;
+  --cobalt:#6C9BFF; --cobalt-soft:rgba(108,155,255,.10);
+  --signal:#FF8A4C; --good:#3FBF92; --bad:#FF7B7B;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:'Archivo',system-ui,sans-serif; font-size:15px; line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.mono{font-family:'Martian Mono',ui-monospace,monospace}
+.wrap{width:min(920px,94vw); margin-inline:auto}
+
+/* topbar */
+.bar{position:sticky; top:0; z-index:40; background:var(--surface);
+  border-bottom:1px solid var(--line-2)}
+.bar-in{display:flex; align-items:center; gap:14px; height:60px; flex-wrap:wrap}
+.brand{display:flex; align-items:center; gap:9px; font-weight:800;
+  letter-spacing:-.03em; font-size:17px; text-decoration:none; color:inherit}
+.brand span{color:var(--cobalt)}
+.who{font-family:'Martian Mono',monospace; font-size:9px; letter-spacing:.08em;
+  color:var(--muted); margin-right:auto}
+.status{font-family:'Martian Mono',monospace; font-size:9px; letter-spacing:.08em}
+.status.ok{color:var(--good)} .status.err{color:var(--bad)} .status.warn{color:var(--signal)}
+
+button{font-family:'Martian Mono',monospace; font-size:9.5px; letter-spacing:.09em;
+  text-transform:uppercase; padding:10px 15px; border-radius:8px; cursor:pointer;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink-2); transition:.16s}
+button:hover{border-color:var(--cobalt); color:var(--cobalt)}
+button.primary{background:var(--cobalt); border-color:var(--cobalt); color:#fff}
+button.primary:hover{filter:brightness(1.08); color:#fff}
+button.primary:disabled{opacity:.45; cursor:not-allowed; filter:none}
+button.danger:hover{border-color:var(--bad); color:var(--bad)}
+button.mini{padding:5px 9px; font-size:8.5px}
+
+/* cards */
+.card{background:var(--surface); border:1px solid var(--line-2); border-radius:13px;
+  padding:20px 22px; margin:18px 0}
+.card > h2{font-size:1.05rem; font-weight:700; letter-spacing:-.02em; margin:0 0 4px}
+.card > .hint{color:var(--muted); font-size:.85rem; margin:0 0 18px}
+
+label{display:block; margin:0 0 14px}
+label > span{display:block; font-family:'Martian Mono',monospace; font-size:8.5px;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 5px}
+input,textarea,select{width:100%; font-family:inherit; font-size:.92rem; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--line-2); border-radius:8px;
+  padding:9px 11px; transition:.16s}
+input:focus,textarea:focus,select:focus{outline:none; border-color:var(--cobalt);
+  background:var(--surface)}
+textarea{resize:vertical; min-height:88px; line-height:1.55}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:0 14px}
+.row-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 14px}
+
+/* repeatable rows */
+.item{border:1px solid var(--line-2); border-radius:10px; padding:15px 16px 3px;
+  margin:0 0 12px; background:var(--surface-2)}
+.item-bar{display:flex; align-items:center; gap:7px; margin:0 0 12px}
+.item-n{font-family:'Martian Mono',monospace; font-size:9px; letter-spacing:.1em;
+  color:var(--muted); margin-right:auto}
+.check{display:flex; align-items:center; gap:8px; margin:0 0 14px}
+.check input{width:auto}
+.check span{font-family:'Martian Mono',monospace; font-size:9px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted)}
+
+/* history */
+.rev{display:flex; align-items:center; gap:10px; padding:9px 0;
+  border-bottom:1px solid var(--line-2); font-size:.86rem; color:var(--ink-2)}
+.rev:last-child{border-bottom:0}
+.rev time{font-family:'Martian Mono',monospace; font-size:9.5px; color:var(--muted); margin-right:auto}
+
+.actions{position:sticky; bottom:0; background:var(--surface);
+  border-top:1px solid var(--line-2); padding:14px 0; margin-top:26px; z-index:30}
+.actions-in{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.spacer{margin-left:auto}
+.gate{max-width:520px; margin:16vh auto; text-align:center; padding:0 20px}
+.gate h1{font-size:1.5rem; letter-spacing:-.03em}
+.gate p{color:var(--ink-2)}
+:focus-visible{outline:2px solid var(--signal); outline-offset:2px; border-radius:4px}
+@media(max-width:640px){ .row,.row-3{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="/">802<span>Universe</span></a>
+    <span class="who mono" id="who">checking identity…</span>
+    <span class="status mono" id="status"></span>
+    <button onclick="location.href='/'">View site</button>
+    <button class="primary" id="saveBtn" disabled>Save changes</button>
+  </div>
+</div>
+
+<main class="wrap" id="app" hidden>
+
+  <div class="card">
+    <h2>Page</h2>
+    <p class="hint">What search engines and browser tabs show.</p>
+    <label><span>Browser title</span><input data-path="meta.title"></label>
+    <label><span>Search description</span><textarea data-path="meta.description" style="min-height:60px"></textarea></label>
+  </div>
+
+  <div class="card">
+    <h2>Hero</h2>
+    <p class="hint">Wrap a word in *asterisks* to colour it. Example: One family of *standards*.</p>
+    <label><span>Small label above the headline</span><input data-path="hero.eyebrow"></label>
+    <label><span>Headline</span><textarea data-path="hero.title" style="min-height:60px"></textarea></label>
+    <label><span>Sub-heading</span><textarea data-path="hero.sub"></textarea></label>
+    <div class="row">
+      <label><span>Main button — text</span><input data-path="hero.primaryLabel"></label>
+      <label><span>Main button — link</span><input data-path="hero.primaryHref"></label>
+      <label><span>Second button — text</span><input data-path="hero.secondaryLabel"></label>
+      <label><span>Second button — link</span><input data-path="hero.secondaryHref"></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>About</h2>
+    <p class="hint">One paragraph per block. Leave a blank line between them.</p>
+    <label><span>Section label</span><input data-path="about.heading"></label>
+    <label><span>Paragraphs</span><textarea id="aboutParas" style="min-height:150px"></textarea></label>
+    <h2 style="font-size:.95rem; margin:22px 0 10px">Facts panel</h2>
+    <div id="facts"></div>
+    <button id="addFact">Add a fact</button>
+  </div>
+
+  <div class="card">
+    <h2>Tools section</h2>
+    <label><span>Small label</span><input data-path="tools.eyebrow"></label>
+    <label><span>Heading</span><input data-path="tools.heading"></label>
+    <label><span>Note under the heading</span><input data-path="tools.note"></label>
+  </div>
+
+  <div class="card">
+    <h2>Tiles</h2>
+    <p class="hint">Each tile links to a page or a repository. Category becomes a filter button.</p>
+    <div id="projects"></div>
+    <button id="addProject">Add a tile</button>
+  </div>
+
+  <div class="card">
+    <h2>Footer</h2>
+    <label><span>Note next to the copyright</span><input data-path="footer.note"></label>
+    <div id="links"></div>
+    <button id="addLink">Add a link</button>
+  </div>
+
+  <div class="card">
+    <h2>History</h2>
+    <p class="hint">The last ten saves. Restoring loads it into the editor — it is not live until you save.</p>
+    <div id="revs"><span class="mono" style="font-size:9.5px; color:var(--muted)">Loading…</span></div>
+  </div>
+
+  <div class="actions">
+    <div class="wrap actions-in">
+      <button class="primary" id="saveBtn2" disabled>Save changes</button>
+      <button id="reload">Discard and reload</button>
+      <span class="spacer"></span>
+      <button id="export">Export JSON</button>
+      <button id="import">Import JSON</button>
+      <input type="file" id="file" accept="application/json" hidden>
+    </div>
+  </div>
+</main>
+
+<div class="gate" id="gate">
+  <h1 class="mono" style="font-size:1.1rem">Loading the editor…</h1>
+</div>
+
+<script>
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const ICONS = ['wifi','rj45','bt','fiber','sec','vlan','mesh','ant','sw'];
+
+let state = null, dirty = false;
+
+const get = (o, p) => p.split('.').reduce((a,k) => (a == null ? a : a[k]), o);
+const set = (o, p, v) => {
+  const keys = p.split('.'), last = keys.pop();
+  keys.reduce((a,k) => (a[k] = a[k] || {}), o)[last] = v;
+};
+
+function mark(on = true){
+  dirty = on;
+  $('#saveBtn').disabled = $('#saveBtn2').disabled = !on;
+  say(on ? 'unsaved changes' : '', on ? 'warn' : '');
+}
+function say(msg, kind = ''){
+  const el = $('#status');
+  el.textContent = msg;
+  el.className = 'status mono ' + kind;
+}
+
+/* ------------------------------------------------------------------ load */
+(async function boot(){
+  try {
+    const me = await fetch('/admin/api/me').then(r => r.json());
+    if (me.error) throw new Error(me.reason || me.error);
+    $('#who').textContent = 'signed in as ' + me.email;
+
+    state = await fetch('/admin/api/content').then(r => r.json());
+    if (!state) throw new Error('no content found');
+
+    fill();
+    $('#gate').hidden = true;
+    $('#app').hidden = false;
+    loadRevisions();
+  } catch (err) {
+    $('#gate').innerHTML =
+      `<h1 class="mono" style="font-size:1.1rem">Editor unavailable</h1>
+       <p>${String(err.message)}</p>
+       <p class="mono" style="font-size:9.5px; color:var(--muted)">
+       If this says the token is missing, sign out of Cloudflare Access and open /admin again.</p>
+       <button onclick="location.reload()">Try again</button>`;
+  }
+})();
+
+/* ------------------------------------------------------------------ bind */
+function fill(){
+  $$('[data-path]').forEach(el => {
+    el.value = get(state, el.dataset.path) ?? '';
+    el.oninput = () => { set(state, el.dataset.path, el.value); mark(); };
+  });
+
+  const ta = $('#aboutParas');
+  ta.value = (get(state, 'about.paragraphs') || []).join('\n\n');
+  ta.oninput = () => {
+    set(state, 'about.paragraphs',
+      ta.value.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean));
+    mark();
+  };
+
+  drawFacts(); drawProjects(); drawLinks();
+  mark(false);
+}
+
+/* generic row helpers */
+function bindRow(root, arr, i){
+  root.querySelectorAll('[data-k]').forEach(el => {
+    const k = el.dataset.k;
+    if (el.type === 'checkbox'){
+      el.checked = !!arr[i][k];
+      el.onchange = () => { arr[i][k] = el.checked; mark(); };
+    } else if (k === 'tags'){
+      el.value = (arr[i].tags || []).join(', ');
+      el.oninput = () => {
+        arr[i].tags = el.value.split(',').map(s => s.trim()).filter(Boolean);
+        mark();
+      };
+    } else {
+      el.value = arr[i][k] ?? '';
+      el.oninput = () => { arr[i][k] = el.value; mark(); };
+    }
+  });
+}
+function controls(arr, i, redraw){
+  return `<button class="mini" data-act="up"${i === 0 ? ' disabled' : ''}>&uarr;</button>
+          <button class="mini" data-act="down"${i === arr.length-1 ? ' disabled' : ''}>&darr;</button>
+          <button class="mini danger" data-act="del">Delete</button>`;
+}
+function wireControls(root, arr, i, redraw){
+  root.querySelectorAll('[data-act]').forEach(b => b.onclick = () => {
+    if (b.dataset.act === 'del'){
+      if (!confirm('Delete this entry?')) return;
+      arr.splice(i,1);
+    }
+    if (b.dataset.act === 'up')   [arr[i-1], arr[i]] = [arr[i], arr[i-1]];
+    if (b.dataset.act === 'down') [arr[i+1], arr[i]] = [arr[i], arr[i+1]];
+    mark(); redraw();
+  });
+}
+
+/* ------------------------------------------------------------------ facts */
+function drawFacts(){
+  const arr = state.about.facts = state.about.facts || [];
+  const host = $('#facts'); host.innerHTML = '';
+  arr.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'item';
+    d.innerHTML = `<div class="item-bar"><span class="item-n">Fact ${i+1}</span>${controls(arr,i)}</div>
+      <div class="row-3">
+        <label><span>Label</span><input data-k="label"></label>
+        <label><span>Value</span><input data-k="value"></label>
+        <label><span>Link (optional)</span><input data-k="href"></label>
+      </div>`;
+    host.appendChild(d);
+    bindRow(d, arr, i); wireControls(d, arr, i, drawFacts);
+  });
+}
+$('#addFact').onclick = () => {
+  state.about.facts.push({ label:'', value:'', href:'' });
+  mark(); drawFacts();
+};
+
+/* --------------------------------------------------------------- projects */
+function drawProjects(){
+  const arr = state.projects = state.projects || [];
+  const host = $('#projects'); host.innerHTML = '';
+  arr.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'item';
+    d.innerHTML = `<div class="item-bar"><span class="item-n">Tile ${i+1}</span>${controls(arr,i)}</div>
+      <label><span>Title</span><input data-k="title"></label>
+      <label><span>Description</span><textarea data-k="desc" style="min-height:70px"></textarea></label>
+      <div class="row-3">
+        <label><span>Corner label</span><input data-k="kind" placeholder="Tool / Guide / Repo"></label>
+        <label><span>Icon</span><select data-k="icon">${
+          ICONS.map(n => `<option value="${n}">${n}</option>`).join('')}</select></label>
+        <label><span>Category</span><input data-k="cat" placeholder="Tools"></label>
+      </div>
+      <div class="row">
+        <label><span>Link</span><input data-k="href" placeholder="/loglens/ or https://…"></label>
+        <label><span>Tags (comma separated)</span><input data-k="tags"></label>
+      </div>
+      <div class="check"><input type="checkbox" data-k="soon" id="soon${i}"><label for="soon${i}"><span>Coming soon — greyed out, not clickable</span></label></div>`;
+    host.appendChild(d);
+    bindRow(d, arr, i); wireControls(d, arr, i, drawProjects);
+  });
+}
+$('#addProject').onclick = () => {
+  state.projects.push({ kind:'Tool', icon:'wifi', title:'', desc:'', tags:[], href:'', cat:'Tools', soon:false });
+  mark(); drawProjects();
+};
+
+/* ---------------------------------------------------------------- footer */
+function drawLinks(){
+  state.footer = state.footer || {};
+  const arr = state.footer.links = state.footer.links || [];
+  const host = $('#links'); host.innerHTML = '';
+  arr.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'item';
+    d.innerHTML = `<div class="item-bar"><span class="item-n">Link ${i+1}</span>${controls(arr,i)}</div>
+      <div class="row">
+        <label><span>Text</span><input data-k="label"></label>
+        <label><span>Link</span><input data-k="href"></label>
+      </div>`;
+    host.appendChild(d);
+    bindRow(d, arr, i); wireControls(d, arr, i, drawLinks);
+  });
+}
+$('#addLink').onclick = () => { state.footer.links.push({ label:'', href:'' }); mark(); drawLinks(); };
+
+/* ------------------------------------------------------------------ save */
+async function save(){
+  say('saving…');
+  try {
+    const res = await fetch('/admin/api/content', {
+      method:'PUT',
+      headers:{ 'content-type':'application/json' },
+      body: JSON.stringify(state)
+    });
+    const out = await res.json();
+    if (!res.ok) throw new Error(out.error || 'save failed');
+    mark(false);
+    say('saved ' + new Date(out.updated).toLocaleTimeString(), 'ok');
+    loadRevisions();
+  } catch (err) {
+    say(err.message, 'err');
+  }
+}
+$('#saveBtn').onclick = $('#saveBtn2').onclick = save;
+$('#reload').onclick = () => {
+  if (dirty && !confirm('Discard your unsaved changes?')) return;
+  location.reload();
+};
+addEventListener('beforeunload', e => { if (dirty){ e.preventDefault(); e.returnValue = ''; } });
+addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 's'){ e.preventDefault(); if (dirty) save(); }
+});
+
+/* -------------------------------------------------------------- history */
+async function loadRevisions(){
+  const host = $('#revs');
+  try {
+    const { revisions } = await fetch('/admin/api/revisions').then(r => r.json());
+    if (!revisions || !revisions.length){
+      host.innerHTML = '<span class="mono" style="font-size:9.5px; color:var(--muted)">No earlier versions yet.</span>';
+      return;
+    }
+    host.innerHTML = '';
+    revisions.forEach(id => {
+      const row = document.createElement('div');
+      row.className = 'rev';
+      row.innerHTML = `<time>${new Date(id).toLocaleString()}</time>
+                       <button class="mini">Load into editor</button>`;
+      row.querySelector('button').onclick = async () => {
+        if (dirty && !confirm('Discard your unsaved changes?')) return;
+        const old = await fetch('/admin/api/revisions/' + encodeURIComponent(id)).then(r => r.json());
+        if (old.error) return say(old.error, 'err');
+        state = old; fill(); mark(true);
+        say('loaded — press Save to publish it', 'warn');
+        scrollTo({ top:0, behavior:'smooth' });
+      };
+      host.appendChild(row);
+    });
+  } catch {
+    host.innerHTML = '<span class="mono" style="font-size:9.5px; color:var(--muted)">Could not load history.</span>';
+  }
+}
+
+/* -------------------------------------------------------- export / import */
+$('#export').onclick = () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '802universe-content-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+$('#import').onclick = () => $('#file').click();
+$('#file').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try {
+    const data = JSON.parse(await f.text());
+    if (!data.hero || !Array.isArray(data.projects)) throw new Error('that file is not site content');
+    state = data; fill(); mark(true);
+    say('imported — press Save to publish it', 'warn');
+  } catch (err) { say(err.message, 'err'); }
+  e.target.value = '';
+};
+
+/* ------------------------------------------------------------------ theme */
+try {
+  document.documentElement.setAttribute('data-theme',
+    localStorage.getItem('802u-theme') ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+} catch(e){}
+</script>
+</body>
+</html>

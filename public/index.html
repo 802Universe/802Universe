@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>802 Universe — tools and notes from across the 802 standards</title>
+<meta name="description" id="metaDesc" content="A small collection of free tools, references and teardowns covering the IEEE 802 family: Ethernet, Wi-Fi, Bluetooth, fibre and network security.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231141B8'/><path d='M4 22 L9 22 L11 12 L13 22 L17 22 L19 8 L21 22 L26 22' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9EDF2;  --surface:#FFFFFF; --surface-2:#F4F7FA;
+  --ink:#0B1220;    --ink-2:#33415A;   --muted:#66768D;
+  --line:#CBD5E1;   --line-2:#E2E8F0;
+  --cobalt:#1141B8; --cobalt-soft:rgba(17,65,184,.07);
+  --signal:#FF5A1F;
+  --grid:rgba(11,18,32,.05);
+  --bg-art:.05;
+  --shadow-lift:0 2px 4px rgba(11,18,32,.06), 0 18px 40px -18px rgba(17,65,184,.35);
+}
+[data-theme="dark"]{
+  --paper:#080B10;  --surface:#0F141C; --surface-2:#141B25;
+  --ink:#E4EBF4;    --ink-2:#A9B7C9;   --muted:#7C8A9E;
+  --line:#232D3B;   --line-2:#1A222D;
+  --cobalt:#6C9BFF; --cobalt-soft:rgba(108,155,255,.10);
+  --signal:#FF8A4C;
+  --grid:rgba(228,235,244,.05);
+  --bg-art:.07;
+  --shadow-lift:0 2px 4px rgba(0,0,0,.5), 0 18px 40px -18px rgba(108,155,255,.45);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:36px 36px; transition:background-color .25s ease,color .25s ease}
+.backdrop{position:fixed; inset:0; z-index:0; pointer-events:none;
+  opacity:var(--bg-art); color:var(--ink); transition:opacity .25s ease}
+.page{position:relative; z-index:1}
+.wrap{width:min(1140px,92vw); margin-inline:auto}
+.eyebrow{font-family:'Martian Mono',ui-monospace,monospace; font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:0 0 14px}
+.eyebrow-dot{color:var(--signal)}
+
+.topbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.6) blur(10px);
+  background:color-mix(in srgb,var(--paper) 84%,transparent); border-bottom:1px solid var(--line-2)}
+.topbar-in{display:flex; align-items:center; gap:22px; height:62px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; margin-right:auto}
+.brand-mark{width:26px; height:26px; flex:none; color:var(--cobalt)}
+.brand-txt{font-weight:800; letter-spacing:-.03em; font-size:18px}
+.brand-txt span{color:var(--cobalt)}
+.nav{display:flex; gap:22px}
+.nav a{font-family:'Martian Mono',ui-monospace,monospace; font-size:10.5px; letter-spacing:.1em;
+  text-transform:uppercase; text-decoration:none; color:var(--ink-2); padding:6px 0;
+  border-bottom:1.5px solid transparent; transition:color .18s,border-color .18s}
+.nav a:hover{color:var(--cobalt); border-bottom-color:var(--cobalt)}
+.theme-btn{width:36px; height:36px; display:grid; place-items:center; flex:none;
+  border:1px solid var(--line); border-radius:9px; background:var(--surface);
+  color:var(--ink-2); cursor:pointer; transition:.18s}
+.theme-btn:hover{color:var(--cobalt); border-color:var(--cobalt)}
+.theme-btn svg{width:16px; height:16px}
+[data-theme="light"] .icon-sun{display:none}
+[data-theme="dark"] .icon-moon{display:none}
+
+.hero{padding:76px 0 0; text-align:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4.3rem); font-weight:800; line-height:.98;
+  letter-spacing:-.045em; margin:0 auto 20px; max-width:16ch; text-wrap:balance}
+.hero h1 em{font-style:normal; color:var(--cobalt)}
+.hero-sub{font-size:1.06rem; color:var(--ink-2); max-width:56ch; margin:0 auto 28px}
+.hero-cta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+.btn{display:inline-flex; align-items:center; gap:9px; text-decoration:none;
+  font-family:'Martian Mono',ui-monospace,monospace; font-size:10.5px; letter-spacing:.09em;
+  text-transform:uppercase; padding:13px 20px; border-radius:9px; border:1px solid var(--cobalt);
+  background:var(--cobalt); color:#fff; transition:.18s; cursor:pointer}
+.btn:hover{transform:translateY(-1px); box-shadow:var(--shadow-lift)}
+.btn-ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--cobalt); color:var(--cobalt)}
+
+.sky{margin:26px 0 0}
+.sky svg{display:block; width:100%; height:auto; overflow:visible}
+.edge{stroke:var(--line); stroke-width:1; fill:none;
+  stroke-dasharray:1; stroke-dashoffset:1; animation:draw 1s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.node{opacity:0; animation:settle .5s cubic-bezier(.2,.8,.3,1) forwards;
+  transform-box:fill-box; transform-origin:center}
+@keyframes settle{from{opacity:0; transform:translateY(5px)}to{opacity:1; transform:none}}
+.node-dot{fill:var(--surface); stroke:var(--ink-2); stroke-width:1.6}
+.node-num{font-family:'Martian Mono',monospace; font-size:11px; font-weight:500;
+  fill:var(--ink-2); text-anchor:middle}
+.node-name{font-family:'Martian Mono',monospace; font-size:8.5px; fill:var(--muted);
+  text-anchor:middle; letter-spacing:.06em}
+.home .node-dot{fill:var(--cobalt); stroke:var(--cobalt); stroke-width:2}
+.home .node-num{font-size:15px; fill:var(--cobalt)}
+.home .node-name{fill:var(--ink-2); font-size:9.5px}
+.halo{fill:none; stroke:var(--cobalt); stroke-width:1.2; opacity:0;
+  animation:ping 3.4s ease-out infinite 1.8s}
+@keyframes ping{0%{r:9; opacity:.55}70%{r:30; opacity:0}100%{opacity:0}}
+
+.legend{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:22px 0 0;
+  padding:14px 12px; border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2)}
+.leg{display:inline-flex; align-items:center; gap:8px; padding:5px 12px; border-radius:99px;
+  border:1px solid var(--line-2); background:var(--surface)}
+.leg svg{width:16px; height:16px; color:var(--cobalt); flex:none}
+.leg b{font-family:'Martian Mono',monospace; font-size:9px; letter-spacing:.08em;
+  font-weight:500; color:var(--ink-2)}
+.leg i{font-family:'Martian Mono',monospace; font-size:8.5px; font-style:normal;
+  letter-spacing:.06em; color:var(--muted)}
+
+.section{padding:84px 0}
+.section-head{display:flex; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:30px}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.15rem); font-weight:800;
+  letter-spacing:-.035em; margin:0; line-height:1.1}
+.section-note{color:var(--muted); font-size:.93rem; max-width:46ch; margin:6px 0 0}
+
+.bio{border-top:1px solid var(--line-2)}
+.bio-grid{display:grid; grid-template-columns:1.25fr .75fr; gap:56px; align-items:start}
+.bio p{color:var(--ink-2); margin:0 0 16px}
+.bio p:first-of-type{font-size:1.12rem; color:var(--ink)}
+.facts{border:1px solid var(--line-2); border-radius:12px; background:var(--surface); overflow:hidden}
+.fact{display:flex; gap:14px; padding:13px 18px; border-bottom:1px solid var(--line-2); font-size:.9rem}
+.fact:last-child{border-bottom:0}
+.fact-k{font-family:'Martian Mono',monospace; font-size:9px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); width:78px; flex:none; padding-top:3px}
+.fact-v{color:var(--ink-2)}
+.fact-v a{color:var(--cobalt); text-decoration:none}
+.fact-v a:hover{text-decoration:underline}
+
+.filters{display:flex; gap:8px; flex-wrap:wrap; margin-left:auto}
+.chip{font-family:'Martian Mono',monospace; font-size:9.5px; letter-spacing:.1em;
+  text-transform:uppercase; padding:8px 13px; border-radius:99px; border:1px solid var(--line);
+  background:var(--surface); color:var(--ink-2); cursor:pointer; transition:.18s}
+.chip:hover{border-color:var(--cobalt); color:var(--cobalt)}
+.chip[aria-pressed="true"]{background:var(--cobalt); border-color:var(--cobalt); color:#fff}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(292px,1fr)); gap:18px}
+.tile{position:relative; display:flex; flex-direction:column; color:inherit;
+  background:var(--surface); border:1px solid var(--line-2); border-radius:14px;
+  padding:20px 20px 18px; text-decoration:none; overflow:hidden;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1), box-shadow .22s, border-color .22s}
+.tile::before{content:""; position:absolute; inset:0 auto 0 0; width:3px; background:var(--cobalt);
+  transform:scaleY(0); transform-origin:bottom; transition:transform .28s cubic-bezier(.2,.7,.3,1)}
+.tile:hover,.tile:focus-visible{transform:translateY(-3px); border-color:var(--line); box-shadow:var(--shadow-lift)}
+.tile:hover::before,.tile:focus-visible::before{transform:scaleY(1)}
+.tile-top{display:flex; align-items:center; gap:10px; margin-bottom:13px}
+.tile-kind{font-family:'Martian Mono',monospace; font-size:8.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--cobalt); background:var(--cobalt-soft);
+  padding:4px 8px; border-radius:5px}
+.tile-icon{margin-left:auto; width:20px; height:20px; color:var(--line); transition:color .22s}
+.tile:hover .tile-icon{color:var(--signal)}
+.tile h3{font-size:1.13rem; font-weight:600; letter-spacing:-.02em; margin:0 0 8px; line-height:1.25}
+.tile p{margin:0 0 16px; font-size:.9rem; color:var(--ink-2); line-height:1.55}
+.tile-foot{margin-top:auto; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.tag{font-family:'Martian Mono',monospace; font-size:8.5px; letter-spacing:.08em;
+  color:var(--muted); border:1px solid var(--line-2); padding:3px 7px; border-radius:5px}
+.tile-go{margin-left:auto; font-family:'Martian Mono',monospace; font-size:9px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--cobalt); display:inline-flex; align-items:center; gap:5px}
+.tile-go svg{width:11px; height:11px; transition:transform .22s}
+.tile:hover .tile-go svg{transform:translateX(3px)}
+.tile.soon{opacity:.6; pointer-events:none}
+.empty{border:1px dashed var(--line); border-radius:14px; padding:44px 20px; text-align:center;
+  color:var(--muted); font-family:'Martian Mono',monospace; font-size:11px;
+  letter-spacing:.08em; grid-column:1/-1}
+.skeleton{height:186px; border-radius:14px; border:1px solid var(--line-2);
+  background:var(--surface); opacity:.5}
+
+.reveal{opacity:0; transform:translateY(14px)}
+.reveal.in{opacity:1; transform:none; transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.3,1)}
+
+.footer{border-top:1px solid var(--line-2); padding:34px 0 46px}
+.footer-in{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+.footer-in p{margin:0; font-family:'Martian Mono',monospace; font-size:9.5px;
+  letter-spacing:.08em; color:var(--muted)}
+.footer-links{margin-left:auto; display:flex; gap:18px}
+.footer-links a{font-family:'Martian Mono',monospace; font-size:9.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-2); text-decoration:none}
+.footer-links a:hover{color:var(--cobalt)}
+:focus-visible{outline:2px solid var(--signal); outline-offset:3px; border-radius:4px}
+
+@media(max-width:900px){
+  .bio-grid{grid-template-columns:1fr; gap:30px}
+  .nav{display:none}
+  .hero{padding:52px 0 0}
+  .section{padding:60px 0}
+  .node-name{display:none}
+  .node-num{font-size:15px}
+}
+@media(max-width:560px){ .filters{margin-left:0} .leg i{display:none} }
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+  .reveal{opacity:1; transform:none} .edge{stroke-dashoffset:0} .node{opacity:1}
+}
+</style>
+</head>
+<body id="top">
+
+<svg class="backdrop" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-rj45" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round">
+      <path d="M7 3h10v7l3 3v8H4v-8l3-3V3z"/><path d="M9.5 5.5v3M12 5.5v3M14.5 5.5v3"/></g>
+    <g id="i-wifi" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <path d="M3 9a15 15 0 0 1 18 0"/><path d="M6.5 12.5a10 10 0 0 1 11 0"/>
+      <path d="M10 16a5 5 0 0 1 4 0"/><circle cx="12" cy="19.2" r=".9" fill="currentColor" stroke="none"/></g>
+    <g id="i-bt" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M7.5 8.5 16.5 16 12 20V4l4.5 4-9 7.5"/></g>
+    <g id="i-fiber" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <path d="M3 20.5c6.5 0 6-17 13.5-17"/><path d="M3 16.5c5.5 0 5-13 11-13"/>
+      <circle cx="19.5" cy="3.5" r="1.7" fill="currentColor" stroke="none"/></g>
+    <g id="i-sec" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round">
+      <path d="M12 2.4l8 3v6c0 5-3.6 8.9-8 10.9-4.4-2-8-5.9-8-10.9v-6l8-3z"/>
+      <rect x="9.4" y="11.4" width="5.2" height="4.4" rx=".8"/>
+      <path d="M10.6 11.4v-1.5a1.4 1.4 0 0 1 2.8 0v1.5"/></g>
+    <g id="i-vlan" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round">
+      <path d="M3 7h11.5l6.5 5-6.5 5H3z"/><circle cx="7" cy="12" r="1.2" fill="currentColor" stroke="none"/></g>
+    <g id="i-mesh" stroke="currentColor" stroke-width="1.4" fill="none">
+      <circle cx="5" cy="6" r="1.9"/><circle cx="19" cy="7" r="1.9"/>
+      <circle cx="12" cy="18.5" r="1.9"/><circle cx="12" cy="9" r="1.9"/>
+      <path d="M6.7 6.9 10.2 8.4M17.3 7.9 13.8 8.9M12 11v5.6M6.3 7.5 10.7 17M17.7 8.6 13.4 17"/></g>
+    <g id="i-ant" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <path d="M12 9.5V21"/><path d="M8 21h8"/><circle cx="12" cy="6.5" r="1.9"/>
+      <path d="M7.6 10.6a6.5 6.5 0 0 1 0-8.2"/><path d="M16.4 2.4a6.5 6.5 0 0 1 0 8.2"/></g>
+    <g id="i-sw" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round">
+      <rect x="2.5" y="8" width="19" height="9" rx="1.6"/>
+      <path d="M6 11.5v2M10 11.5v2M14 11.5v2M18 11.5v2"/></g>
+
+    <pattern id="field" width="560" height="560" patternUnits="userSpaceOnUse">
+      <g stroke-linecap="round">
+        <use href="#i-wifi"  width="24" height="24" transform="translate(40,52)   scale(2.4)"/>
+        <use href="#i-rj45"  width="24" height="24" transform="translate(300,26)  scale(1.7) rotate(12)"/>
+        <use href="#i-fiber" width="24" height="24" transform="translate(452,120) scale(2.1) rotate(-8)"/>
+        <use href="#i-sec"   width="24" height="24" transform="translate(180,180) scale(1.9)"/>
+        <use href="#i-bt"    width="24" height="24" transform="translate(390,250) scale(2.2)"/>
+        <use href="#i-mesh"  width="24" height="24" transform="translate(60,290)  scale(2)  rotate(6)"/>
+        <use href="#i-ant"   width="24" height="24" transform="translate(268,380) scale(2.3)"/>
+        <use href="#i-vlan"  width="24" height="24" transform="translate(468,420) scale(1.8) rotate(-6)"/>
+        <use href="#i-sw"    width="24" height="24" transform="translate(96,462)  scale(2.1)"/>
+        <use href="#i-wifi"  width="24" height="24" transform="translate(360,510) scale(1.5) rotate(-14)"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#field)"/>
+</svg>
+
+<div class="page">
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="/">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x=".8" y=".8" width="30.4" height="30.4" rx="7" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M5 22h4l2-10 2 10h4l2-14 2 14h4" stroke="currentColor" stroke-width="2"
+              stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <span class="brand-txt">802<span>Universe</span></span>
+    </a>
+    <nav class="nav">
+      <a href="#about">About</a><a href="#tools">Tools</a><a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" aria-label="Switch to dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow"><span class="eyebrow-dot">&#9679;</span> <span id="heroEyebrow">IEEE 802 &middot; Tools, references &amp; teardowns</span></p>
+      <h1 id="heroTitle">One family of standards. <em>Everything</em> runs on it.</h1>
+      <p class="hero-sub" id="heroSub">Ethernet, Wi&#8209;Fi, Bluetooth, fibre, VLANs, port security &mdash; all of it grew out of the same committee. This is where I put the tools and notes I build while working across it.</p>
+      <div class="hero-cta">
+        <a class="btn" id="ctaPrimary" href="#tools">See the tools</a>
+        <a class="btn btn-ghost" id="ctaSecondary" href="#about">About me</a>
+      </div>
+
+      <div class="sky">
+        <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet" role="img"
+             aria-label="A constellation of the IEEE 802 working groups.">
+          <g id="edges"></g><g id="nodes"></g>
+        </svg>
+      </div>
+
+      <div class="legend">
+        <span class="leg"><svg viewBox="0 0 24 24"><use href="#i-rj45"/></svg><b>Wired</b><i>802.3</i></span>
+        <span class="leg"><svg viewBox="0 0 24 24"><use href="#i-wifi"/></svg><b>Wireless</b><i>802.11</i></span>
+        <span class="leg"><svg viewBox="0 0 24 24"><use href="#i-bt"/></svg><b>Bluetooth</b><i>802.15.1</i></span>
+        <span class="leg"><svg viewBox="0 0 24 24"><use href="#i-fiber"/></svg><b>Fibre</b><i>802.3ae</i></span>
+        <span class="leg"><svg viewBox="0 0 24 24"><use href="#i-sec"/></svg><b>Security</b><i>802.1X</i></span>
+        <span class="leg"><svg viewBox="0 0 24 24"><use href="#i-vlan"/></svg><b>Tagging</b><i>802.1Q</i></span>
+        <span class="leg"><svg viewBox="0 0 24 24"><use href="#i-mesh"/></svg><b>Mesh</b><i>802.15.4</i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bio" id="about">
+    <div class="wrap">
+      <p class="eyebrow" id="aboutHeading">About</p>
+      <div class="bio-grid">
+        <div id="aboutBody">
+          <p>I&rsquo;m Manish. I work at the hard end of networking &mdash; the problems that survive three tiers of troubleshooting and end up needing a capture, a timestamp, and a very careful reading of the standard.</p>
+          <p>Most of what&rsquo;s on this site started as something I built to answer one question faster, then kept because it turned out useful. If any of it saves you an afternoon, that&rsquo;s the whole point.</p>
+        </div>
+        <div class="facts" id="facts"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tools">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" id="toolsEyebrow">The collection</p>
+          <h2 id="toolsHeading">Pick something and open it.</h2>
+          <p class="section-note" id="toolsNote">Every tile is its own page or repository. Nothing here needs an account.</p>
+        </div>
+        <div class="filters" id="filters"></div>
+      </div>
+      <div class="grid" id="grid">
+        <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="wrap footer-in">
+    <p>&copy; <span id="yr"></span> 802universe.com &mdash; <span id="footNote">personal project, not affiliated with any employer</span></p>
+    <div class="footer-links" id="footLinks"></div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+/* ---------------------------------------------------------------- helpers */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+/* *word* becomes the cobalt highlight */
+const accent = s => esc(s).replace(/\*(.+?)\*/g, '<em>$1</em>');
+const safeHref = h => {
+  const v = String(h || '').trim();
+  return /^(https?:|mailto:|\/|#)/i.test(v) ? v : '#';
+};
+const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+
+/* ---------------------------------------------------------------- content */
+let CONTENT = null;
+
+fetch('/api/content', { headers: { accept: 'application/json' } })
+  .then(r => r.ok ? r.json() : null)
+  .then(c => { if (c) { CONTENT = c; apply(c); } else fallback(); })
+  .catch(fallback);
+
+function fallback(){ renderProjects([]); }
+
+function apply(c){
+  if (c.meta){
+    if (c.meta.title) document.title = c.meta.title;
+    if (c.meta.description) $('#metaDesc').setAttribute('content', c.meta.description);
+  }
+
+  if (c.hero){
+    $('#heroEyebrow').textContent = c.hero.eyebrow || '';
+    $('#heroTitle').innerHTML = accent(c.hero.title);
+    $('#heroSub').textContent = c.hero.sub || '';
+    const a = $('#ctaPrimary'), b = $('#ctaSecondary');
+    a.textContent = c.hero.primaryLabel || 'See the tools';
+    a.href = safeHref(c.hero.primaryHref || '#tools');
+    if (c.hero.secondaryLabel){
+      b.textContent = c.hero.secondaryLabel;
+      b.href = safeHref(c.hero.secondaryHref || '#about');
+      b.hidden = false;
+    } else b.hidden = true;
+  }
+
+  if (c.about){
+    $('#aboutHeading').textContent = c.about.heading || 'About';
+    $('#aboutBody').innerHTML = (c.about.paragraphs || [])
+      .map(p => `<p>${esc(p)}</p>`).join('');
+    $('#facts').innerHTML = (c.about.facts || []).map(f => {
+      const v = f.href
+        ? `<a href="${esc(safeHref(f.href))}"${/^https?:/i.test(f.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(f.value)}</a>`
+        : esc(f.value);
+      return `<div class="fact"><span class="fact-k">${esc(f.label)}</span><span class="fact-v">${v}</span></div>`;
+    }).join('');
+  }
+
+  if (c.tools){
+    $('#toolsEyebrow').textContent = c.tools.eyebrow || 'The collection';
+    $('#toolsHeading').textContent = c.tools.heading || '';
+    $('#toolsNote').textContent = c.tools.note || '';
+  }
+
+  if (c.footer){
+    $('#footNote').textContent = c.footer.note || '';
+    $('#footLinks').innerHTML = (c.footer.links || []).map(l =>
+      `<a href="${esc(safeHref(l.href))}"${/^https?:/i.test(l.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(l.label)}</a>`
+    ).join('') + '<a href="#top">Top</a>';
+  }
+
+  renderProjects(c.projects || []);
+}
+
+/* ---------------------------------------------------------------- tiles */
+const grid = $('#grid'), filters = $('#filters');
+let ALL = [];
+
+function tileHTML(p){
+  const href = safeHref(p.href);
+  const ext = /^https?:/i.test(href);
+  const open = p.soon
+    ? '<a class="tile soon reveal" aria-disabled="true"'
+    : `<a class="tile reveal" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}`;
+  return `${open}>
+    <div class="tile-top">
+      <span class="tile-kind">${esc(p.kind || 'Tool')}</span>
+      <svg class="tile-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${esc(p.icon || 'wifi')}"/></svg>
+    </div>
+    <h3>${esc(p.title)}</h3>
+    <p>${esc(p.desc)}</p>
+    <div class="tile-foot">
+      ${(p.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}
+      <span class="tile-go">${p.soon ? 'Soon' : (ext ? 'Open' : 'View')}${p.soon ? '' : ' ' + ARROW}</span>
+    </div></a>`;
+}
+
+function renderProjects(list){
+  ALL = list;
+  const cats = ['All', ...new Set(list.map(p => p.cat).filter(Boolean))];
+  filters.innerHTML = cats.length > 1
+    ? cats.map((c,i) => `<button class="chip" aria-pressed="${i===0}">${esc(c)}</button>`).join('')
+    : '';
+  draw('All');
+}
+
+function draw(cat){
+  const list = cat === 'All' ? ALL : ALL.filter(p => p.cat === cat);
+  grid.innerHTML = list.length
+    ? list.map(tileHTML).join('')
+    : '<div class="empty">Nothing here yet — first project coming soon.</div>';
+  observe();
+}
+
+filters.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  filters.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+  draw(b.textContent);
+});
+
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.12 });
+function observe(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.reveal:not(.in)').forEach((el,i) => {
+    if (reduce){ el.classList.add('in'); return; }
+    el.style.transitionDelay = (i % 6) * 55 + 'ms';
+    io.observe(el);
+  });
+}
+
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------------------------------------------------------------- theme */
+const root = document.documentElement, tBtn = $('#themeBtn');
+let saved = null;
+try { saved = localStorage.getItem('802u-theme'); } catch(e){}
+setTheme(saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+function setTheme(t){
+  root.setAttribute('data-theme', t);
+  tBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+}
+tBtn.addEventListener('click', () => {
+  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  setTheme(next);
+  try { localStorage.setItem('802u-theme', next); } catch(e){}
+});
+
+/* ---------------------------------------------------------- constellation */
+(function(){
+  const STARS = {
+    fiber:{x:82,  y:150, num:"802.3ae", name:"Fibre",       up:false},
+    eth:  {x:150, y:296, num:"802.3",   name:"Ethernet",    up:false},
+    lldp: {x:306, y:352, num:"802.1AB", name:"LLDP",        up:false},
+    lag:  {x:258, y:206, num:"802.1AX", name:"Link agg",    up:true },
+    vlan: {x:356, y:98,  num:"802.1Q",  name:"VLAN",        up:true },
+    sec:  {x:436, y:272, num:"802.1X",  name:"Port auth",   up:false},
+    wlan: {x:624, y:180, num:"802.11",  name:"Wireless LAN",up:true, home:true},
+    ax:   {x:782, y:80,  num:"802.11ax",name:"Wi-Fi 6",     up:true },
+    be:   {x:944, y:132, num:"802.11be",name:"Wi-Fi 7",     up:true },
+    bt:   {x:800, y:300, num:"802.15.1",name:"Bluetooth",   up:false},
+    lr:   {x:962, y:350, num:"802.15.4",name:"Low-rate",    up:false},
+    bwa:  {x:1112,y:236, num:"802.16",  name:"Broadband",   up:true }
+  };
+  const LINKS = [["fiber","eth"],["eth","lag"],["eth","lldp"],["eth","sec"],["lag","vlan"],
+    ["lag","sec"],["vlan","wlan"],["sec","wlan"],["wlan","ax"],["ax","be"],
+    ["wlan","bt"],["bt","lr"],["wlan","be"],["be","bwa"],["lr","bwa"]];
+  const NS = 'http://www.w3.org/2000/svg';
+  const edges = $('#edges'), nodes = $('#nodes');
+
+  LINKS.forEach(([a,b],i) => {
+    const l = document.createElementNS(NS,'line');
+    l.setAttribute('class','edge');
+    l.setAttribute('x1',STARS[a].x); l.setAttribute('y1',STARS[a].y);
+    l.setAttribute('x2',STARS[b].x); l.setAttribute('y2',STARS[b].y);
+    l.setAttribute('pathLength','1');
+    l.style.animationDelay = (i*55)+'ms';
+    edges.appendChild(l);
+  });
+
+  Object.values(STARS).forEach((s,i) => {
+    const g = document.createElementNS(NS,'g');
+    g.setAttribute('class','node' + (s.home ? ' home' : ''));
+    g.style.animationDelay = (750 + i*60)+'ms';
+    if (s.home){
+      const halo = document.createElementNS(NS,'circle');
+      halo.setAttribute('class','halo');
+      halo.setAttribute('cx',s.x); halo.setAttribute('cy',s.y); halo.setAttribute('r','9');
+      g.appendChild(halo);
+    }
+    const dot = document.createElementNS(NS,'circle');
+    dot.setAttribute('class','node-dot');
+    dot.setAttribute('cx',s.x); dot.setAttribute('cy',s.y);
+    dot.setAttribute('r', s.home ? 7 : 3.8);
+    g.appendChild(dot);
+    const numY = s.up ? s.y - 26 : s.y + (s.home ? 30 : 24);
+    for (const [cls, txt, y] of [['node-num', s.num, numY], ['node-name', s.name, numY + 13]]){
+      const t = document.createElementNS(NS,'text');
+      t.setAttribute('class', cls); t.setAttribute('x', s.x); t.setAttribute('y', y);
+      t.textContent = txt; g.appendChild(t);
+    }
+    nodes.appendChild(g);
+  });
+})();
+</script>
+</body>
+</html>

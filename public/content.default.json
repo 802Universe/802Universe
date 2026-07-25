@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "title": "802 Universe — tools and notes from across the 802 standards",
+    "description": "A small collection of free tools, references and teardowns covering the IEEE 802 family: Ethernet, Wi-Fi, Bluetooth, fibre and network security."
+  },
+  "hero": {
+    "eyebrow": "IEEE 802 · Tools, references & teardowns",
+    "title": "One family of standards. *Everything* runs on it.",
+    "sub": "Ethernet, Wi-Fi, Bluetooth, fibre, VLANs, port security — all of it grew out of the same committee. This is where I put the tools and notes I build while working across it.",
+    "primaryLabel": "See the tools",
+    "primaryHref": "#tools",
+    "secondaryLabel": "About me",
+    "secondaryHref": "#about"
+  },
+  "about": {
+    "heading": "About",
+    "paragraphs": [
+      "I'm Manish. I work at the hard end of networking — the problems that survive three tiers of troubleshooting and end up needing a capture, a timestamp, and a very careful reading of the standard.",
+      "Most of what's on this site started as something I built to answer one question faster, then kept because it turned out useful. If any of it saves you an afternoon, that's the whole point."
+    ],
+    "facts": [
+      { "label": "Focus", "value": "802.11 — RF design, DFS, 6 GHz, packet analysis", "href": "" },
+      { "label": "Based in", "value": "Fremont, California", "href": "" },
+      { "label": "Code", "value": "github.com/welcomemanish", "href": "https://github.com/welcomemanish" },
+      { "label": "Email", "value": "802universe@gmail.com", "href": "mailto:802universe@gmail.com" }
+    ]
+  },
+  "tools": {
+    "eyebrow": "The collection",
+    "heading": "Pick something and open it.",
+    "note": "Every tile is its own page or repository. Nothing here needs an account."
+  },
+  "projects": [
+    {
+      "kind": "Repo",
+      "icon": "wifi",
+      "title": "Wireshark Profile Library",
+      "desc": "Ready-made Wireshark profiles across 20 protocol categories. Drop the folder in, restart, and the columns and colouring rules are already right.",
+      "tags": ["Wireshark", "Capture"],
+      "href": "https://github.com/welcomemanish",
+      "cat": "Capture",
+      "soon": false
+    },
+    {
+      "kind": "Tool",
+      "icon": "sw",
+      "title": "LogLens",
+      "desc": "A single HTML file that parses tech-support bundles in the browser. Nothing is uploaded anywhere — open the file, drop the log, read the summary.",
+      "tags": ["Browser", "Offline"],
+      "href": "/loglens/",
+      "cat": "Tools",
+      "soon": false
+    },
+    {
+      "kind": "Guide",
+      "icon": "ant",
+      "title": "802.11 Reference Workbook",
+      "desc": "Frame formats, information elements, timers and channel plans collected in one workbook, so the lookup takes ten seconds instead of ten minutes.",
+      "tags": ["Reference", "XLSX"],
+      "href": "/reference/",
+      "cat": "Reference",
+      "soon": false
+    },
+    {
+      "kind": "Notes",
+      "icon": "sec",
+      "title": "802.1X, End to End",
+      "desc": "What actually happens between supplicant, authenticator and RADIUS server — and the four places it usually breaks.",
+      "tags": ["802.1X", "AAA"],
+      "href": "/dot1x/",
+      "cat": "Reference",
+      "soon": false
+    },
+    {
+      "kind": "Tool",
+      "icon": "mesh",
+      "title": "Channel Planner",
+      "desc": "A visual channel-plan sketchpad for 2.4, 5 and 6 GHz — set your width, see the overlap, export the plan.",
+      "tags": ["Planning", "6 GHz"],
+      "href": "#",
+      "cat": "Tools",
+      "soon": true
+    }
+  ],
+  "footer": {
+    "note": "personal project, not affiliated with any employer",
+    "links": [
+      { "label": "GitHub", "href": "https://github.com/welcomemanish" },
+      { "label": "Email", "href": "mailto:802universe@gmail.com" }
+    ]
+  }
+}
