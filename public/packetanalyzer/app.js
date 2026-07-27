@@ -11,8 +11,7 @@
    README.md and point CDN below at "./vendor".
    ========================================================================== */
 
-const WG_VER = "1.9.1";
-const CDN    = `https://cdn.jsdelivr.net/npm/@goodtools/wiregasm@${WG_VER}/dist`;
+const VENDOR = "./vendor";   // self-hosted engine files (see README); each kept < 25 MiB for Cloudflare
 
 /* -------------------------------------------------------------------- utils */
 const $  = (s, r = document) => r.querySelector(s);
@@ -76,22 +75,55 @@ function loadScript(src) {
 
 async function ensureEngine() {
   if (state.wg) return state.wg;
-  setStage("Loading the analysis engine…", "First time only · ~20 MB · cached by your browser afterwards");
-  // ESM wrapper (small) — imported on demand so the page shell works even if the CDN is briefly unreachable
-  const { Wiregasm } = await import(/* @vite-ignore */ `${CDN}/module.js`);
-  // The emscripten glue is a UMD module; loading it as a classic script exposes window.loadWiregasm
-  await loadScript(`${CDN}/wiregasm.js`);
+  // 1) download the compressed wasm (19 MB) with real progress, then decompress in-browser.
+  //    We hand the bytes straight to the engine so nothing over 25 MiB is ever stored/served.
+  setStage("Loading the analysis engine…", "First time only · ~19 MB · cached by your browser afterwards");
+  setBarMode(true);
+  const wasmBinary = await fetchWasmBinary();
+
+  // 2) start the engine
+  setStage("Starting the analysis engine…", "");
+  setBarMode(false);
+  const { Wiregasm } = await import(/* @vite-ignore */ `${VENDOR}/module.js`);
+  await loadScript(`${VENDOR}/wiregasm.js`);   // UMD glue → window.loadWiregasm
   const loader = window.loadWiregasm;
   if (typeof loader !== "function") throw new Error("Engine loaded but no entry point was found.");
   const wg = new Wiregasm();
   await wg.init(loader, {
-    locateFile: (p) => `${CDN}/${p}`,   // resolves wiregasm.wasm + wiregasm.data on the CDN
+    wasmBinary,                          // bypasses the engine's own wasm fetch entirely
+    locateFile: (p) => `${VENDOR}/${p}`, // used only for wiregasm.data
     print: () => {}, printErr: () => {},
   });
   state.wg = wg;
   state.cols = wg.columns();
   state.protoIdx = state.cols.indexOf("Protocol");
   return wg;
+}
+
+async function fetchWasmBinary() {
+  let res;
+  try { res = await fetch(`${VENDOR}/wiregasm.wasm.gz`); }
+  catch { throw new Error("Couldn't reach the engine file. Check your connection and retry."); }
+  if (!res.ok) throw new Error(`Couldn't load the engine (HTTP ${res.status}). Make sure vendor/wiregasm.wasm.gz is deployed next to this page.`);
+  if (typeof DecompressionStream === "undefined")
+    throw new Error("This browser can't decompress the engine. Please use a current version of Chrome, Edge, Firefox or Safari.");
+
+  // stream with a progress bar
+  const total = +(res.headers.get("content-length") || 0);
+  const reader = res.body.getReader();
+  const chunks = []; let received = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value); received += value.length;
+    if (total) setBar(received / total);
+  }
+  setBar(1);
+
+  // gunzip → ArrayBuffer
+  const stream = new Blob(chunks).stream().pipeThrough(new DecompressionStream("gzip"));
+  const buf = await new Response(stream).arrayBuffer();
+  return new Uint8Array(buf);
 }
 
 /* --------------------------------------------------------------- file flow */
@@ -164,6 +196,8 @@ function reset() {
 /* ------------------------------------------------------------- progress UI */
 function showProgress(on) { $("#progress").classList.toggle("show", on); }
 function setStage(line, note) { $("#stageLine").textContent = line; $("#stageNote").textContent = note || ""; }
+function setBarMode(determinate) { const b = $("#progBar"); b.classList.toggle("determinate", determinate); if (!determinate) { const i = $("#progBar > i"); if (i) i.style.width = ""; } }
+function setBar(frac) { const i = $("#progBar > i"); if (i) i.style.width = (Math.max(0, Math.min(1, frac)) * 100).toFixed(1) + "%"; }
 function showErr(on, title, detail) {
   const box = $("#errBox");
   box.classList.toggle("show", on);
