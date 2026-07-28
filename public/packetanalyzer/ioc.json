@@ -1,0 +1,5 @@
+{
+  "_comment": "Optional threat-intel list. Add known-bad IPs and domains here; the Threat Intel page flags any external endpoint that matches. This file is optional — if absent, IOC matching is simply disabled.",
+  "ips": [],
+  "domains": []
+}
