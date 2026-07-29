@@ -69,7 +69,8 @@ async function download(path, request, env) {
   try { content = JSON.parse(await currentContent(request, env)); }
   catch { return new Response("content unavailable", { status: 500 }); }
 
-  const tool = ((content && content.projects) || []).find((p) => p.slug === slug);
+  const norm = (s) => String(s || "").replace(/^\/+|\/+$/g, "");
+  const tool = ((content && content.projects) || []).find((p) => p.slug === slug || norm(p.href) === slug);
   if (!tool) return new Response("unknown tool", { status: 404 });
 
   const files = (Array.isArray(tool.files) && tool.files.length)
