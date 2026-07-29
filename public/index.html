@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>802 Universe — tools and notes from across the 802 standards</title>
 <meta name="description" id="metaDesc" content="A small collection of free tools, references and teardowns covering the IEEE 802 family: Ethernet, Wi-Fi, Bluetooth, fibre and network security.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231141B8'/><path d='M4 22 L9 22 L11 12 L13 22 L17 22 L19 8 L21 22 L26 22' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/></svg>">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1141B8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -120,6 +124,9 @@ body{margin:0; background:var(--paper); color:var(--ink);
 .bio-grid{display:grid; grid-template-columns:1.25fr .75fr; gap:56px; align-items:start}
 .bio p{color:var(--ink-2); margin:0 0 16px}
 .bio p:first-of-type{font-size:1.12rem; color:var(--ink)}
+.bio-side{display:flex; flex-direction:column; gap:20px}
+.bio-photo{width:132px; aspect-ratio:3/4; object-fit:cover; border-radius:12px;
+  border:1px solid var(--line-2); background:var(--surface); display:block}
 .facts{border:1px solid var(--line-2); border-radius:12px; background:var(--surface); overflow:hidden}
 .fact{display:flex; gap:14px; padding:13px 18px; border-bottom:1px solid var(--line-2); font-size:.9rem}
 .fact:last-child{border-bottom:0}
@@ -308,7 +315,10 @@ body{margin:0; background:var(--paper); color:var(--ink);
           <p>I&rsquo;m Manish. I work at the hard end of networking &mdash; the problems that survive three tiers of troubleshooting and end up needing a capture, a timestamp, and a very careful reading of the standard.</p>
           <p>Most of what&rsquo;s on this site started as something I built to answer one question faster, then kept because it turned out useful. If any of it saves you an afternoon, that&rsquo;s the whole point.</p>
         </div>
-        <div class="facts" id="facts"></div>
+        <div class="bio-side">
+          <img class="bio-photo" src="/about-photo.png" alt="Manish Sharma" width="132" height="176" onerror="this.style.display='none'">
+          <div class="facts" id="facts"></div>
+        </div>
       </div>
     </div>
   </section>
