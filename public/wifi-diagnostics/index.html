@@ -207,6 +207,8 @@ async function readmeText(tool){
   const spec = tool.readme || { from:'repo' };
   if(spec.from==='inline') return spec.md || '';
   if(spec.from==='file'){ try{ const r=await fetch(spec.path); return r.ok?await r.text():''; }catch{ return ''; } }
+  // local override: /readmes/<slug>.md wins over the repo README when present
+  try{ const r=await fetch('/readmes/'+slug+'.md',{cache:'no-store'}); if(r.ok){ const t=await r.text(); if(t.trim()) return t; } }catch{}
   // repo
   let url = spec.url;
   if(!url && spec.repo){ const p=spec.repo.split('/'); url=`https://raw.githubusercontent.com/${p[0]}/${p[1]}/${p[2]||'main'}/README.md`; }
