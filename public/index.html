@@ -121,10 +121,9 @@ body{margin:0; background:var(--paper); color:var(--ink);
 .section-note{color:var(--muted); font-size:.93rem; max-width:46ch; margin:6px 0 0}
 
 .bio{border-top:1px solid var(--line-2)}
-.bio-grid{display:grid; grid-template-columns:1.25fr .75fr; gap:56px; align-items:start}
+.bio-grid{display:grid; grid-template-columns:1.25fr 132px 0.5fr; gap:40px; align-items:start}
 .bio p{color:var(--ink-2); margin:0 0 16px}
 .bio p:first-of-type{font-size:1.12rem; color:var(--ink)}
-.bio-side{display:flex; flex-direction:column; gap:20px}
 .bio-photo{width:132px; aspect-ratio:3/4; object-fit:cover; border-radius:12px;
   border:1px solid var(--line-2); background:var(--surface); display:block}
 .facts{border:1px solid var(--line-2); border-radius:12px; background:var(--surface); overflow:hidden}
@@ -315,10 +314,8 @@ body{margin:0; background:var(--paper); color:var(--ink);
           <p>I&rsquo;m Manish. I work at the hard end of networking &mdash; the problems that survive three tiers of troubleshooting and end up needing a capture, a timestamp, and a very careful reading of the standard.</p>
           <p>Most of what&rsquo;s on this site started as something I built to answer one question faster, then kept because it turned out useful. If any of it saves you an afternoon, that&rsquo;s the whole point.</p>
         </div>
-        <div class="bio-side">
-          <img class="bio-photo" src="/about-photo.png" alt="Manish Sharma" width="132" height="176" onerror="this.style.display='none'">
-          <div class="facts" id="facts"></div>
-        </div>
+        <img class="bio-photo" src="/about-photo.png" alt="Manish Sharma" width="132" height="176" onerror="this.style.display='none'">
+        <div class="facts" id="facts"></div>
       </div>
     </div>
   </section>
