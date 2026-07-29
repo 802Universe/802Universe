@@ -271,6 +271,19 @@ function bindRow(root, arr, i){
     }
   });
 }
+function bindDownloads(root, arr, i){
+  const el = root.querySelector('[data-dl]');
+  if (!el) return;
+  el.value = (arr[i].files || []).map(f => (f.label ? f.label + ' | ' : '') + (f.url || '')).join('\n');
+  el.oninput = () => {
+    const files = el.value.split('\n').map(s => s.trim()).filter(Boolean).map(line => {
+      const bar = line.indexOf('|');
+      return bar === -1 ? { url: line } : { label: line.slice(0, bar).trim(), url: line.slice(bar + 1).trim() };
+    });
+    if (files.length) arr[i].files = files; else delete arr[i].files;
+    mark();
+  };
+}
 function controls(arr, i, redraw){
   return `<button class="mini" data-act="up"${i === 0 ? ' disabled' : ''}>&uarr;</button>
           <button class="mini" data-act="down"${i === arr.length-1 ? ' disabled' : ''}>&darr;</button>
@@ -330,9 +343,10 @@ function drawProjects(){
         <label><span>Link</span><input data-k="href" placeholder="/loglens/ or https://…"></label>
         <label><span>Tags (comma separated)</span><input data-k="tags"></label>
       </div>
+      <label><span>Downloads — one per line:  Label | GitHub URL  (leave empty for a normal tile)</span><textarea data-dl style="min-height:64px" placeholder="macOS script (.sh) | https://github.com/you/repo/blob/main/file.sh"></textarea></label>
       <div class="check"><input type="checkbox" data-k="soon" id="soon${i}"><label for="soon${i}"><span>Coming soon — greyed out, not clickable</span></label></div>`;
     host.appendChild(d);
-    bindRow(d, arr, i); wireControls(d, arr, i, drawProjects);
+    bindRow(d, arr, i); bindDownloads(d, arr, i); wireControls(d, arr, i, drawProjects);
   });
 }
 $('#addProject').onclick = () => {
